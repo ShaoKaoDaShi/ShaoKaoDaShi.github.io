@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>麦田国际首页布局 | 自信即巅峰</title><meta name="keywords" content="html css"><meta name="author" content="MAX"><meta name="copyright" content="MAX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="麦田国际网站布局 战略合作板块  由图片可以看出 图片外圈有一个1px的小边框 和 背景颜色不一样，写出处理方法？  table表格写法， 用border-collapse + td&gt;border 来合并表格边框（这里解释一下为什么不用 border-spacing 使用border-spacing两张图片之间的边框在网页上是叠加的效果， 这种情况下颜色会比其他非叠加的边框颜色深， 不好看.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="麦田国际首页布局">
+<meta property="og:url" content="https://shaokaodashi.github.io/2021/09/05/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/index.html">
+<meta property="og:site_name" content="自信即巅峰">
+<meta property="og:description" content="麦田国际网站布局 战略合作板块  由图片可以看出 图片外圈有一个1px的小边框 和 背景颜色不一样，写出处理方法？  table表格写法， 用border-collapse + td&gt;border 来合并表格边框（这里解释一下为什么不用 border-spacing 使用border-spacing两张图片之间的边框在网页上是叠加的效果， 这种情况下颜色会比其他非叠加的边框颜色深， 不好看.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg">
+<meta property="article:published_time" content="2021-09-05T02:24:23.000Z">
+<meta property="article:modified_time" content="2021-09-05T02:28:14.560Z">
+<meta property="article:author" content="MAX">
+<meta property="article:tag" content="html css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg"><link rel="shortcut icon" href="/img/titleimg.jpg"><link rel="canonical" href="https://shaokaodashi.github.io/2021/09/05/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '麦田国际首页布局',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-09-05 10:28:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/titleimg.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章目录</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">自信即巅峰</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章目录</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">麦田国际首页布局</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-09-05T02:24:23.000Z" title="发表于 2021-09-05 10:24:23">2021-09-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-09-05T02:28:14.560Z" title="更新于 2021-09-05 10:28:14">2021-09-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="麦田国际首页布局"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="麦田国际网站布局"><a href="#麦田国际网站布局" class="headerlink" title="麦田国际网站布局"></a>麦田国际网站布局</h1><ol>
+<li><p>战略合作板块</p>
+<p><img src="../images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210905094154085.png" alt="image-20210905094154085"></p>
+<p>由图片可以看出 图片外圈有一个1px的小边框 和 背景颜色不一样，写出处理方法？</p>
+<ul>
+<li>table表格写法， 用border-collapse + td&gt;border 来合并表格边框（这里解释一下为什么不用 border-spacing 使用border-spacing两张图片之间的边框在网页上是叠加的效果， 这种情况下颜色会比其他非叠加的边框颜色深， 不好看.用表格的话 要设置 所有 td中的img 为block 不然会出现 td 中 图片下面有一条小空白</li>
+<li>div盒子 分为两排  每一行有一个大盒子包裹着其中的小盒子，小盒子添加右边框，大盒子设置外边框</li>
+<li>ul&gt;li 的方式 li相当于div</li>
+</ul>
+</li>
+<li><p>成功案例 板块</p>
+<p><img src="../images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210905095349043.png" alt="image-20210905095349043"></p>
+<p>这种布局图片上下左右之间的距离一样，用什么方法布局？</p>
+<ul>
+<li><p>table border-spacing 可以控制 单元格之间的 距离</p>
+<p>需要注意：模块整体 的左边会多出来一个空白， 这个空白的大小是 border-spacing 的大小 ， 这个时候 整个板块的位置是偏左的， 需要 设置 transform ：translate；向左移动一段距离，让整个模块处于局中的位置</p>
+</li>
+<li><p>div 设置float 和 margin 来控制整体的布局</p>
+<ul>
+<li>每个盒子 都有左右外边距，整体向左移动 一个左边距的距离</li>
+<li>每个盒子设置右边距，浮动的时候 设置父元素的整体宽度最小大于子元素的大小和右边距的距离之和</li>
+</ul>
+</li>
+<li><p>为甚么不推荐 inline-block 的方式设置 整体的布局， 首先行内快圆度的 对齐方式不同不好调，如果在html 中行内块元素写完的情况下， 敲回车会出现 一个小白边 这个白边的距离为基线和底线之间的距离。解决办法 需要把vertical-algn：middle/text-top/text-bottom 给到 img元素才能起到向下对齐的作用。</p>
+</li>
+</ul>
+</li>
+<li><p>新闻板块</p>
+<p><img src="../images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210905101405445.png" alt="image-20210905101405445"></p>
+<p>每个新闻板块划分为一个大板块，其中 标题一行，新闻内容一行， 链接跳转按钮一行 ， 新闻内容板块 分为左右两块，分别设置左右浮动，新闻内容条目 设置超出部分内容为显示 省略号</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">MAX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shaokaodashi.github.io/2021/09/05/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/">https://shaokaodashi.github.io/2021/09/05/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shaokaodashi.github.io" target="_blank">自信即巅峰</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/html-css/">html css</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/09/04/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/"><img class="next-cover" src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">福星考试</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/titleimg.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">MAX</div><div class="author-info__description">知己知彼,百战不殆</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E7%BD%91%E7%AB%99%E5%B8%83%E5%B1%80"><span class="toc-number">1.</span> <span class="toc-text">麦田国际网站布局</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/09/05/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/" title="麦田国际首页布局"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="麦田国际首页布局"/></a><div class="content"><a class="title" href="/2021/09/05/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/" title="麦田国际首页布局">麦田国际首页布局</a><time datetime="2021-09-05T02:24:23.000Z" title="发表于 2021-09-05 10:24:23">2021-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/04/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/" title="福星考试"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="福星考试"/></a><div class="content"><a class="title" href="/2021/09/04/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/" title="福星考试">福星考试</a><time datetime="2021-09-04T03:40:11.000Z" title="发表于 2021-09-04 11:40:11">2021-09-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/01/hexo-typora-image/" title="解决 hexo+typeora 图片上传问题"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="解决 hexo+typeora 图片上传问题"/></a><div class="content"><a class="title" href="/2021/09/01/hexo-typora-image/" title="解决 hexo+typeora 图片上传问题">解决 hexo+typeora 图片上传问题</a><time datetime="2021-09-01T14:47:56.000Z" title="发表于 2021-09-01 22:47:56">2021-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/01/imgtest/" title="imgtest"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="imgtest"/></a><div class="content"><a class="title" href="/2021/09/01/imgtest/" title="imgtest">imgtest</a><time datetime="2021-09-01T13:50:04.000Z" title="发表于 2021-09-01 21:50:04">2021-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/01/hello-world/" title="Hello World"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2021/09/01/hello-world/" title="Hello World">Hello World</a><time datetime="2021-09-01T13:48:09.418Z" title="发表于 2021-09-01 21:48:09">2021-09-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By MAX</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CDN是什么有什么用 | 自信即巅峰</title><meta name="keywords" content="网站搭建"><meta name="author" content="MAX"><meta name="copyright" content="MAX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CDN 是什么？CDN作用？作者：阿里巴巴淘系技术链接：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;36514327&#x2F;answer&#x2F;1604554133来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 淘宝的图片访问，有98%的流量都走了CDN缓存。只有2%会回源到源站，节省了大量的服务器资源。 但是，如果在用户访问高峰期，图片内容大批量发生变化，大">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CDN是什么有什么用">
+<meta property="og:url" content="https://shaokaodashi.github.io/2021/09/06/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/index.html">
+<meta property="og:site_name" content="自信即巅峰">
+<meta property="og:description" content="CDN 是什么？CDN作用？作者：阿里巴巴淘系技术链接：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;36514327&#x2F;answer&#x2F;1604554133来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 淘宝的图片访问，有98%的流量都走了CDN缓存。只有2%会回源到源站，节省了大量的服务器资源。 但是，如果在用户访问高峰期，图片内容大批量发生变化，大">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg">
+<meta property="article:published_time" content="2021-09-06T12:59:35.000Z">
+<meta property="article:modified_time" content="2021-09-06T13:01:27.379Z">
+<meta property="article:author" content="MAX">
+<meta property="article:tag" content="网站搭建">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg"><link rel="shortcut icon" href="/img/titleimg.jpg"><link rel="canonical" href="https://shaokaodashi.github.io/2021/09/06/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CDN是什么有什么用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-09-06 21:01:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/titleimg.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章目录</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">自信即巅峰</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章目录</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CDN是什么有什么用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-09-06T12:59:35.000Z" title="发表于 2021-09-06 20:59:35">2021-09-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-09-06T13:01:27.379Z" title="更新于 2021-09-06 21:01:27">2021-09-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CDN是什么有什么用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="CDN-是什么？CDN作用？"><a href="#CDN-是什么？CDN作用？" class="headerlink" title="CDN 是什么？CDN作用？"></a>CDN 是什么？CDN作用？</h1><p>作者：阿里巴巴淘系技术<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/36514327/answer/1604554133">https://www.zhihu.com/question/36514327/answer/1604554133</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>淘宝的图片访问，有98%的流量都走了CDN缓存。只有2%会回源到源站，节省了大量的服务器资源。</p>
+<p>但是，如果在用户访问高峰期，图片内容大批量发生变化，大量用户的访问就会穿透cdn，对源站造成巨大的压力。</p>
+<p><strong>结合阿里淘系2020年双11的淘宝实践，给大家分享下在图片业务里，我们是如何使用CDN以及如何解决挑战和困难。（点击头像关注我们，看更多阿里工程师干货）</strong></p>
+<h2 id="———————————————————————————————————-CDN工作原理"><a href="#———————————————————————————————————-CDN工作原理" class="headerlink" title="———————————————————————————————————   CDN工作原理"></a>———————————————————————————————————   CDN工作原理</h2><p>内容分发网络（Content Delivery Network，简称CDN）是建立并覆盖在承载网之上，由分布在不同区域的边缘节点服务器群组成的分布式网络。</p>
+<p>CDN应用广泛，支持多种行业、多种场景内容加速，例如：图片小文件、大文件下载、视音频点播、直播流媒体、全站加速、安全加速。</p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-5ba76e77f05b030b5879177bd336928f_720w.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-5ba76e77f05b030b5879177bd336928f_720w-16309332752579.jpg" alt="img"></p>
+<p>借用阿里云官网的例子，来简单介绍CDN的工作原理。</p>
+<p>假设通过CDN加速的域名为<code>www.a.com</code>，接入CDN网络，开始使用加速服务后，当终端用户（北京）发起HTTP请求时，处理流程如下：</p>
+<ol>
+<li>当终端用户（北京）向<code>www.a.com</code>下的指定资源发起请求时，首先向LDNS（本地DNS）发起域名解析请求。</li>
+<li>LDNS检查缓存中是否有<code>www.a.com</code>的IP地址记录。如果有，则直接返回给终端用户；如果没有，则向授权DNS查询。</li>
+<li>当授权DNS解析<code>www.a.com</code>时，返回域名CNAME <code>www.a.tbcdn.com</code>对应IP地址。</li>
+<li>域名解析请求发送至阿里云DNS调度系统，并为请求分配最佳节点IP地址。</li>
+<li>LDNS获取DNS返回的解析IP地址。</li>
+<li>用户获取解析IP地址。</li>
+<li>用户向获取的IP地址发起对该资源的访问请求。</li>
+</ol>
+<ul>
+<li>如果该IP地址对应的节点已缓存该资源，则会将数据直接返回给用户，例如，图中步骤7和8，请求结束。</li>
+<li>如果该IP地址对应的节点未缓存该资源，则节点向源站发起对该资源的请求。获取资源后，结合用户自定义配置的缓存策略，将资源缓存至节点，例如，图中的北京节点，并返回给用户，请求结束。</li>
+</ul>
+<p>从这个例子可以了解到：</p>
+<p>（1）CDN的加速资源是跟域名绑定的。<br>（2）通过域名访问资源，首先是通过DNS分查找离用户最近的CDN节点（边缘服务器）的IP<br>（3）通过IP访问实际资源时，如果CDN上并没有缓存资源，则会到源站请求资源，并缓存到CDN节点上，这样，用户下一次访问时，该CDN节点就会有对应资源的缓存了。</p>
+<h2 id="淘宝鹿班图片业务背景"><a href="#淘宝鹿班图片业务背景" class="headerlink" title="淘宝鹿班图片业务背景"></a>淘宝鹿班图片业务背景</h2><p>商品的主图贯穿整个导购和交易链路，相比文字，图片更能吸引眼球，主图对消费者的购物决策有很大的影响。主图上表达的内容各式各样，但其中一定少不了的一定是价格的表达。</p>
+<pre><code> 长期以来，主图上的价格表达都是商家自己维护，商品价格发生变化后，手动去换图。这样做，会带来3个问题：
+</code></pre>
+<p>   （1）价格的准确性：商家手动填写的图片价格，跟实际的购买价可能不一致，造成不好的用户体验。<br>   （2）价格更新的及时性：有时候，由于优惠券/品类券的生效失效，会导致商品的价格变化会很频繁，商家根本来不及换图。<br>   （3）商家的操作成本：手动修改图片的价格，成本还是很高的，需要通过ps等软件修改图片，重新上传，编辑商品。</p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-17941feedfcb2bf15dcc1377f4819753_720w-163093327525710.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-17941feedfcb2bf15dcc1377f4819753_720w.jpg" alt="img"></p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-92bae61afa859c1063123f165160da35_720w.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-92bae61afa859c1063123f165160da35_720w-163093327525813.jpg" alt="img"></p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-7603aa843ffce7358037721375e8c232_720w-163093327525814.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-7603aa843ffce7358037721375e8c232_720w.jpg" alt="img"></p>
+<p>今年双11，我们淘宝鹿班团队，试图通过技术手段来解决这些问题。当商品价格发生变化后，系统自动计算新的价格，自动合成图片，然后更新商品主图。</p>
+<p>我们知道，淘宝网有上亿的商品，光大促商品就有几千万，因此，价格变化导致的图片变化频率非常高。最高的就是在双11的0点，全部大促商品的价格都会由日常价格变成大促价格。</p>
+<p>这就意味着，大促高峰期，有上千万的图片刚生成就会被用户访问。那这个情况会产生什么问题呢，让我们先了解下淘宝的图片空间和CDN的架构，就清楚了。</p>
+<h2 id="淘宝图片空间和CDN的架构"><a href="#淘宝图片空间和CDN的架构" class="headerlink" title="淘宝图片空间和CDN的架构"></a>淘宝图片空间和CDN的架构</h2><p>淘宝整个图片的访问链路有三级缓存（客户端本地、CDN L1、CDN L2），所有图片都持久化的存储到OSS中。真正处理图片的是img-picasso系统，它的功能比较复杂，包括从OSS读取文件，对图片尺寸进行缩放，编解码，所以机器成本比较高。</p>
+<p>CDN的缓存分成2级，合理的分配L1和L2的比例，一方面，可以通过一致性hash的手段，在同等资源的情况下，缓存更多内容，提升整体缓存命中率；另一方面，可以平衡计算和IO，充分利用不同配置的机器的能力。</p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-30a352e1c3727aa51ede5bce5c1a0f0d_720w.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-30a352e1c3727aa51ede5bce5c1a0f0d_720w-163093327525817.jpg" alt="img"></p>
+<p>用户访问图片的过程如下：<br>（1）用户通过手机淘宝来搜索商品或者查看宝贝详情。<br>（2）详情/搜索/推荐通过调用商品中心返回商品的图片URL。<br>（3）客户端本地如果有该图片的缓存，则直接渲染图片，否则执行下一步。<br>（4）从CDN L1回源图片，如果L1有该图片的缓存，则客户端渲染图片，同时缓存到本地，如果L1没有缓存，则执行下一步。<br>（5）从CDN L2回源图片，如果L2有该图片的缓存，则客户端渲染图片，同时CDN L1及客户端缓存图片内容，如果CDN L2没有缓存该图片，则执行下一步。<br>（6）从图片空间回源图片，图片空间会从OSS拉取图片源文件，按要求进行尺寸缩放，然后执行编解码，返回客户端能够支持的图片内容，之后客户端就可以渲染图片，同时CDN的L1、L2以及客户端都会缓存图片内容。</p>
+<h2 id="频繁换图带来的技术挑战"><a href="#频繁换图带来的技术挑战" class="headerlink" title="频繁换图带来的技术挑战"></a>频繁换图带来的技术挑战</h2><p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-746d584643762d2c25ae897151c90527_720w.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-746d584643762d2c25ae897151c90527_720w-163093327525819.jpg" alt="img"></p>
+<p>当商品的价格发生变化时，我们会使用新的价格重新合成图片，更新商品中心中存储的图片URL。</p>
+<p>这样会带来2个问题：<br>（1）CDN及手机淘宝原本缓存的图片内容失效了，用户访问图片会全部回源到img-picasso。<br>（2）由于更改了商品的字段，交易的核心应用（购物车和商品中心）的缓存也失效了，用户浏览及购物时，对商品的访问会走到db。</p>
+<p>源站img-picasso处理图片，以及查询商品DB，都是非常消耗资源的。CDN及商品的缓存命中率降低后，对源站img-picsasso以及db会产生巨大的压力。</p>
+<p>拿CDN缓存为例，简单计算一下，CDN平时的命中率是98%，假设命中率降低1个点，对源站的压力就会增加1/3（原本承担2%的流量，现在需要承担3%的流量），意味着img-picasso需要扩容1/3。如果全网一半的图片都同时变化，cdn的命中率降到50%，对img-picasso的访问量就会增加25倍，这个扩容成本肯定没法接受。</p>
+<p>解决这2个问题，对应的有2个办法：<br>（1）改图保持图片URL不变，可以避免商品链路的缓存失效。<br>（2）在访问高峰到来之前，提前预热图片到CDN，可以避免CDN缓存失效对源站的压力。</p>
+<p>下面，介绍下我们具体是怎么做到这2点的。</p>
+<h2 id="频繁换图的应对方案"><a href="#频繁换图的应对方案" class="headerlink" title="频繁换图的应对方案"></a>频繁换图的应对方案</h2><p><strong>改图保持图片URL不变</strong></p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-4afe8e70baf3c2a752b240c22cab1d95_720w-163093327525920.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-4afe8e70baf3c2a752b240c22cab1d95_720w.jpg" alt="img"></p>
+<p>图片内容发生变化时，执行下面2个操作：<br>（1）更新OSS内容：使用新的图片内容替换OSS中老的图片内容<br>（2）刷新CDN缓存：清除CDN之前缓存的图片内容</p>
+<p>这样，用户再次访问图片时，发现CDN没有缓存，就会回源到img-picasso，从OSS拉取新的图片内容。</p>
+<p>由于图片URL没有变化，就不必去更新商品中心的图片链接，这样商品链路的缓存可以保持不变。<br>在真正实施这个方案的过程中，遇到了几个问题，简单跟大家分享下：</p>
+<p><strong>OSS三地同步</strong></p>
+<p>淘宝的图片空间，承载了淘系所有图片的上下行稳定性保障，为了保障高可用，一份资源会存储到三地OSS。图片上传时，默认只上传一地，利用OSS的能力，自动同步到另外两地。</p>
+<pre><code> 但是使用URL不变方案，CDN缓存已经清除完成后，如果另外2地的OSS还未同步完成，用户访问后，就会回源到旧的图片内容，发现图片内容没有变化。
+
+
+  针对该问题，我们将异步同步OSS软链的模式，改成三地同步建软链，三地都返回成功后，再去清除CDN缓存，这就保证了用户访问的图片一定是最新的内容。
+</code></pre>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-eb32615abe1a199be6fd6fd9387716f9_720w.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-eb32615abe1a199be6fd6fd9387716f9_720w-163093327525923.jpg" alt="img"></p>
+<p><strong>图片尺寸收敛</strong></p>
+<p>同一张商品图片会用于不同的场景坑位展现，不同的坑位对图片的尺寸有不同的要求。为此，图片空间提供了一项功能，可以方便的生成不同尺寸的缩率图。只需要访问图片时，给图片增加不同的后缀，img-picasso源站就可以按要求进行图片进行缩放。</p>
+<p>由于历史原因，之前对缩放的尺寸种类没有限制，导致CDN上的图片后缀格式多达2400种+，TOP6格式覆盖率46%，TOP15格式覆盖率64%。这意味着，一张图片，在cdn上最多可能有2400+个不同的url，当图片内容变化后，要把这些缓存全部清掉，才能保证所有用户看到的图片都是新内容。</p>
+<p>为了解决这个问题，我们对域名格式进行了收敛。</p>
+<p>图片空间对于图片质量压缩参数的规则如下：<br>* 图片质量参数常见有一下8种形式：Q90、Q75、Q50、Q30、q90、q75、q50、q30<br>* 图片锐化参数常见有一下3种形式：s100，s150，s200</p>
+<p>我们重新将图片质量定义为高质量图片和低质量图片，收敛格式为 q90 和 p50s150<br>这样，就可以把2000多种格式收敛到6种主要格式，CDN清除缓存才变得可行。</p>
+<p><strong>多副本清除CDN缓存</strong></p>
+<p>通过图片尺寸收敛，每张图片只需要清除6个不同的url就可以了，那能不能进一步提升刷新效率呢？</p>
+<p>为此，阿里云CDN为我们提供了多副本刷新的解决方案：每种不同后缀的图片，作为图片的一个副本，在CDN的swift层增加一层KV结构，存储url和不同副本的映射关系，清除缓存时，可以通过该结构找到所有副本，实现快速清除所有副本。这样，每张图片，我们只需要调用一次CDN清除缓存接口就可以了，极大提升了CDN缓存刷新效率。</p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-0a2e76dde8f27bdc415fa9c5bce720b3_720w-163093327525924.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-0a2e76dde8f27bdc415fa9c5bce720b3_720w.jpg" alt="img"></p>
+<p><strong>图片域名收敛</strong></p>
+<p>淘系的图片域名有300多种，主要有下面2个原因：<br>（1）图片完整的链接太长，所以存储时经常只存最后一段，业务自己来拼域名，很多业务就自己申请了一个图片域名来拼。<br>（2）PC时代，浏览器对同一域名下的并发请求数是有限制的，不同浏览器不一样，一般6个左右。</p>
+<p>为了突破该限制，一些业务就会申请多个域名，随机的拼不同的域名。</p>
+<p>前面我们讲过，CDN的缓存是跟域名绑定的，不管是缓存命中还是缓存清除，都只能针对一个域名。</p>
+<p>我们显然不可能改一张图，就去对300个域名调用CDN刷新。于是我们考虑对图片域名进行收敛，使得用户对图片的访问都路由到同一个域名，我们希望将所有的图片访问统一收敛到<a href="https://link.zhihu.com/?target=http://picasso.alicdn.com">http://picasso.alicdn.com</a>，具体实现方式如下：</p>
+<p>（1）对于手淘和猫客客户端，图片访问都收口在图片库，我们推进图片库进行改造，符合一定规则的url，统一收敛到<a href="https://link.zhihu.com/?target=http://picasso.alicdn.com">http://picasso.alicdn.com</a>，实现了域名的一刀切。<br>（2）对于PC浏览器端，就比较麻烦了，没有统一收口的地方。我们只能退而求其次，针对访问最多的6大域名，在cdn上配置域名转发规则，重定向到picasso域名。</p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-d9ba041380dbfa094687132ef662506b_720w-163093327525926.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-d9ba041380dbfa094687132ef662506b_720w.jpg" alt="img"></p>
+<p>通过这种方式，我们实现了全网99%以上的图片访问流量都路由到picasso域名，图片内容发生变化时，通过清除picasso域名的cdn缓存，就能保证基本所有的场景都能看到新的图片内容。</p>
+<h2 id="客户端及浏览器缓存"><a href="#客户端及浏览器缓存" class="headerlink" title="客户端及浏览器缓存"></a>客户端及浏览器缓存</h2><p>通过多副本和图片域名收敛，cdn的缓存问题得到了解决。但在cdn之上，用户图片访问首先是来自客户端或者浏览器，这里也会有一层缓存。</p>
+<p>大家知道，浏览器的缓存都遵循标准的http max-age协议，指定该header后，到了时间图片就会失效，访问到新的图片。所以我们可以在源站img-picasso回源给cdn时，添加max-age协议头，值为1分钟，cdn会原封不动的透给浏览器，这样浏览器就可以实现1分钟内图片缓存失效，重新到cdn拉新的图片资源。</p>
+<p>对于手机淘宝客户端，我们在原有的LRU缓存机制之上，另外支持标准的http协议。这样，手机淘宝也实现了1分钟内图片缓存失效。</p>
+<p><strong>提前预热CDN图片</strong></p>
+<p>通过改图保持图片URL不变，我们解决了改图对商品链路缓存的影响。但是，图片变化时，虽然URL没有变，但我们清除了CDN缓存，导致用户访问时还是会回源到img-picasso源站，所以对图片源站的压力依然存在。</p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-850ca866556e746441d7a133da8d1474_720w.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-850ca866556e746441d7a133da8d1474_720w-163093327526029.jpg" alt="img"></p>
+<p>我们发现，商品的价格变化大部分发生在大促节奏变化的时刻，基于这个特点，我们通过提前合成图片，提前预热到CDN，可以实现图片切换瞬间生效，同时对源站没有压力。</p>
+<p>具体方案如下：<br>（1）提前合成多波段图片：我们知道大促期间商家集中换图的时间点后，按这些时间点把图片的展示分成多个波段，每个波段图片提前合成，并提前将图片URL写入到商品中心扩展结构中。<br>（2）图片访问路由：营销系统根据配置的大促氛围切换计划，告诉鹿班图片二方包，当前是哪个波段，鹿班根据当前波段及场景，返回正确的图片URL给各个场景。<br>（3）图片渲染：各个场景拿到图片URL后，结合自身的业务逻辑，决定是否要展现该图片。<br>（4）CDN图片预热：为了避免图片集中切换时，把源站击垮，我们会在集中切换前把这些冷图片内容预热到CDN。<br>（5）波段内图片变化：提前合成各个波段图片后，商家可能会临时发券/改价，导致商品价格再次变化，对于这类换图需求，为了避免更新商品中心的图片URL，我们通过本文上一章节刷CDN缓存的方式实现。</p>
+<h2 id="总结和展望"><a href="#总结和展望" class="headerlink" title="总结和展望"></a>总结和展望</h2><p>CDN技术广泛应用于互联网的各个场景，如今的CDN服务商，都提供了非常简单的业务接入方式，而且CDN的费用每年都在降低，这一切使得CDN的接入和使用成本越来越低。</p>
+<p> 本文通过淘宝图片业务的例子，为大家阐述了使用CDN过程中可能遇到的问题和解决思路。</p>
+<p>淘宝的图片业务除了访问量大，还会面临更新频繁的问题。图片的频繁更新，一方面会由于商品上的图片url变化，导致商品缓存失效，另一方面会大幅降低CDN的图片访问缓存命中率。</p>
+<p>针对图片url变化导致商品缓存失效的问题，我们通过刷新cdn缓存，用户访问时重新回源的方式，实现了改图保持图片url不变，这个过程中了，我们解决了一些列的问题，包括：OSS三地同步更新、图片尺寸收敛、图片域名收敛、客户端及浏览器本地缓存。</p>
+<p>针对改图降低CDN图片缓存命中率的问题，我们根据业务的特点，提前合成不同波段的图片，并预热到CDN，保障了源站的安全。</p>
+<p>目前，淘宝上用户看到的图片，都是提前合成好的。未来，我们考虑在用户访问图片时，实时合成图片。通过这项技术，可以实时感知业务更多的实时信息，可以根据这些信息，在图片上合成当前用户或者环境更匹配的文案/元素等内容，给用户带来更多的惊喜。</p>
+<p>当然，实时合图也会面临更多的挑战，如：计算能力、合图性能。此外，对于CDN而言，由于每次用户访问的内容是临时合成的，CDN的缓存策略也是一个很大的挑战。</p>
+<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#122;&#x68;&#97;&#x6f;&#x6d;&#105;&#x6e;&#x67;&#46;&#121;&#119;&#116;&#64;&#x74;&#x61;&#x6f;&#98;&#97;&#x6f;&#46;&#99;&#111;&#109;">&#122;&#x68;&#97;&#x6f;&#x6d;&#105;&#x6e;&#x67;&#46;&#121;&#119;&#116;&#64;&#x74;&#x61;&#x6f;&#98;&#97;&#x6f;&#46;&#99;&#111;&#109;</a> </p>
+<p>——————————————————————————————————————</p>
+<p>阿里巴巴集团淘系技术部官方账号。淘系技术部是阿里巴巴新零售技术的王牌军，支撑淘宝、天猫核心电商以及淘宝直播、闲鱼、躺平、阿里汽车、阿里房产等创新业务，服务9亿用户，赋能各行业1000万商家。我们打造了全球领先的线上新零售技术平台，并作为核心技术团队保障了11次双十一购物狂欢节的成功。</p>
+<p>[点击此处关注我们，你将收获更多来自阿里一线工程师的技术实战技巧&amp;成长经历心得。另，不定期更新最新岗位招聘信息和简历内推通道，欢迎各位以最短路径加入我们。](</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">MAX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shaokaodashi.github.io/2021/09/06/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/">https://shaokaodashi.github.io/2021/09/06/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shaokaodashi.github.io" target="_blank">自信即巅峰</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/">网站搭建</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/09/06/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/"><img class="prev-cover" src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">office部署工具officeToolsPlus</div></div></a></div><div class="next-post pull-right"><a href="/2021/09/06/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/"><img class="next-cover" src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">网页加载速度优化</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/09/06/网页加载速度优化/" title="网页加载速度优化"><img class="cover" src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-06</div><div class="title">网页加载速度优化</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/titleimg.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">MAX</div><div class="author-info__description">知己知彼,百战不殆</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CDN-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9FCDN%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">CDN 是什么？CDN作用？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94-CDN%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">———————————————————————————————————   CDN工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%98%E5%AE%9D%E9%B9%BF%E7%8F%AD%E5%9B%BE%E7%89%87%E4%B8%9A%E5%8A%A1%E8%83%8C%E6%99%AF"><span class="toc-number">1.2.</span> <span class="toc-text">淘宝鹿班图片业务背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%98%E5%AE%9D%E5%9B%BE%E7%89%87%E7%A9%BA%E9%97%B4%E5%92%8CCDN%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">淘宝图片空间和CDN的架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%91%E7%B9%81%E6%8D%A2%E5%9B%BE%E5%B8%A6%E6%9D%A5%E7%9A%84%E6%8A%80%E6%9C%AF%E6%8C%91%E6%88%98"><span class="toc-number">1.4.</span> <span class="toc-text">频繁换图带来的技术挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%91%E7%B9%81%E6%8D%A2%E5%9B%BE%E7%9A%84%E5%BA%94%E5%AF%B9%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.</span> <span class="toc-text">频繁换图的应对方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98"><span class="toc-number">1.6.</span> <span class="toc-text">客户端及浏览器缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%92%8C%E5%B1%95%E6%9C%9B"><span class="toc-number">1.7.</span> <span class="toc-text">总结和展望</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/09/06/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/" title="office部署工具officeToolsPlus"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="office部署工具officeToolsPlus"/></a><div class="content"><a class="title" href="/2021/09/06/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/" title="office部署工具officeToolsPlus">office部署工具officeToolsPlus</a><time datetime="2021-09-06T13:13:36.000Z" title="发表于 2021-09-06 21:13:36">2021-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/06/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/" title="CDN是什么有什么用"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CDN是什么有什么用"/></a><div class="content"><a class="title" href="/2021/09/06/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/" title="CDN是什么有什么用">CDN是什么有什么用</a><time datetime="2021-09-06T12:59:35.000Z" title="发表于 2021-09-06 20:59:35">2021-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/06/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/" title="网页加载速度优化"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网页加载速度优化"/></a><div class="content"><a class="title" href="/2021/09/06/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/" title="网页加载速度优化">网页加载速度优化</a><time datetime="2021-09-06T12:57:53.000Z" title="发表于 2021-09-06 20:57:53">2021-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/" title="打出网页中的特殊符号"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="打出网页中的特殊符号"/></a><div class="content"><a class="title" href="/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/" title="打出网页中的特殊符号">打出网页中的特殊符号</a><time datetime="2021-09-06T12:56:27.000Z" title="发表于 2021-09-06 20:56:27">2021-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/06/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/" title="butterfly主题修改"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="butterfly主题修改"/></a><div class="content"><a class="title" href="/2021/09/06/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/" title="butterfly主题修改">butterfly主题修改</a><time datetime="2021-09-06T12:53:42.000Z" title="发表于 2021-09-06 20:53:42">2021-09-06</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By MAX</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

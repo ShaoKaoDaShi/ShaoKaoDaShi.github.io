@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>扣丁学堂 | 自信即巅峰</title><meta name="keywords" content="html css"><meta name="author" content="MAX"><meta name="copyright" content="MAX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="扣钉学堂网页布局  网页整体分为几个大模块, 设置宽高, 添加上背景颜色  头部一般有图片logo  , 用margin + float来定位    搜索框 分为 输入框 和 提交按钮 提交按钮, 中包含图片的样式, 图片以背景图片的形式, 设置图片居中, 不平铺 输入框: 鼠标点击会出现一个黑边框 , 可以通过css 设置 outline属性 值为 none清除   菜单导航栏部分:  通过sp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="扣丁学堂">
+<meta property="og:url" content="https://shaokaodashi.github.io/2021/09/06/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/index.html">
+<meta property="og:site_name" content="自信即巅峰">
+<meta property="og:description" content="扣钉学堂网页布局  网页整体分为几个大模块, 设置宽高, 添加上背景颜色  头部一般有图片logo  , 用margin + float来定位    搜索框 分为 输入框 和 提交按钮 提交按钮, 中包含图片的样式, 图片以背景图片的形式, 设置图片居中, 不平铺 输入框: 鼠标点击会出现一个黑边框 , 可以通过css 设置 outline属性 值为 none清除   菜单导航栏部分:  通过sp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg">
+<meta property="article:published_time" content="2021-09-06T12:51:11.000Z">
+<meta property="article:modified_time" content="2021-09-06T12:52:56.828Z">
+<meta property="article:author" content="MAX">
+<meta property="article:tag" content="html css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg"><link rel="shortcut icon" href="/img/titleimg.jpg"><link rel="canonical" href="https://shaokaodashi.github.io/2021/09/06/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '扣丁学堂',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-09-06 20:52:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/titleimg.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章目录</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">自信即巅峰</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章目录</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">扣丁学堂</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-09-06T12:51:11.000Z" title="发表于 2021-09-06 20:51:11">2021-09-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-09-06T12:52:56.828Z" title="更新于 2021-09-06 20:52:56">2021-09-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="扣丁学堂"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>扣钉学堂网页布局</p>
+<ol>
+<li><p>网页整体分为几个大模块, 设置宽高, 添加上背景颜色</p>
+</li>
+<li><p>头部一般有图片logo  , 用margin + float来定位</p>
+<img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210822082443427-16296818596341-16309327650911.png" alt="image-20210822082443427" style="zoom: 67%;" />
+
+<ol>
+<li>搜索框 分为 输入框 和 提交按钮</li>
+<li>提交按钮, 中包含图片的样式, 图片以背景图片的形式, 设置图片居中, 不平铺</li>
+<li>输入框: 鼠标点击会出现一个黑边框 , 可以通过css 设置 outline属性 值为 none清除</li>
+</ol>
+</li>
+<li><p>菜单导航栏部分:  通过span来布局转换为行内块状元素,行内块状元素可以通过设置父元素的文本居中方式水平居中对齐,通过设置行高的方式垂直居中对齐</p>
+<img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210822082552540-16309327650922.png" alt="image-20210822082552540" style="zoom: 67%;" /></li>
+<li><p>新闻内容部分: 分为三个盒子 div1设置左浮动, div2 div3设置右浮动, 所以用一个大盒子包裹住这三个盒子, 大盒子水平居居中, div123设置浮动(父元素可能产生高度塌陷)</p>
+<p><img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210822082717750-16309327650924.png" alt="image-20210822082717750"></p>
+<ol>
+<li>动态新闻模块:<ol>
+<li>标题: p元素组成  css设置文本的格式 </li>
+<li>设置li前面的符号为图片 {list-style-image: url(‘图片地址’);} </li>
+<li>无序列表总的每个小li 分为左右两个部分, 设置右半部分右浮动</li>
+</ol>
+</li>
+<li>关于扣丁:<ol>
+<li>标题: 同上</li>
+<li>内容部分由两个 <p>   css分别设置不同的格式, 内容的位置通过设置padding来增加文字和边框的距离, 盒子的总大小是 内容+padding , 需要重新设置div的大</li>
+</ol>
+</li>
+<li>人才招聘模块:<ol>
+<li>组成: 标题<p>, 内容文本<p>, 底部<div></li>
+<li>整体 内容部分的位置通过padding设置</li>
+<li>标题:同上</li>
+<li>内容文本: p元素设置宽度</li>
+<li>底部:  div设置大小, 按钮设置水平居中, 背景图片通过background-position来定位</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>HTML5模块部分: padding设置内容的位置(会改变div的大小), 同时调整div的大小, 大盒子内部分为 图片 和 内容区, 图片左浮动, 内容div右浮动</p>
+<p><img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210822084939947-16309327650923.png" alt="image-20210822084939947"></p>
+</li>
+<li><p>人物名片模块: </p>
+<p><img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210822101833610-16309327650925.png" alt="image-20210822101833610"></p>
+</li>
+<li><p>底部信息栏: div&gt;p </p>
+<ol>
+<li><p>p元素居中方式为css3的transform居中方式,  这个时候p 元素会影响div 让div上面产生一个空隙,</p>
+<p>解决办法:设置清楚p元素的margin</p>
+</li>
+<li><p>p元素居中方式: 设置父元素为table-cell 使用vertical-align: middle; 垂直居中, 不会产生空隙</p>
+</li>
+</ol>
+</li>
+<li><p>两个div之间的间隙 : 其中一个div中有p元素</p>
+<p><img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210822100841393-16309327650926.png"></p>
+<p>红色线框起来的部分是两个div之间的间隙, 通过控制台检查 不是两个盒子的问题(两个盒子的margin之间的距离,不属于任何一个盒子)</p>
+<p>通过控制台对两个盒子中的元素分别测试筛选出哪个子元素影响了这个布局: div&gt;p 那么就会在div的上下产生间隙(p的margin大小)</p>
+<p>解决办法: 去掉p元素的margin</p>
+</li>
+</ol>
+<p><img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210823093517339-16309327650927.png" alt="image-20210823093517339"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">MAX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shaokaodashi.github.io/2021/09/06/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/">https://shaokaodashi.github.io/2021/09/06/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shaokaodashi.github.io" target="_blank">自信即巅峰</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/html-css/">html css</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/09/06/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/"><img class="prev-cover" src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">butterfly主题修改</div></div></a></div><div class="next-post pull-right"><a href="/2021/09/05/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/"><img class="next-cover" src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Ps图片内容测量标注脚本</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/09/05/Ps图片内容测量标注脚本/" title="Ps图片内容测量标注脚本"><img class="cover" src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-05</div><div class="title">Ps图片内容测量标注脚本</div></div></a></div><div><a href="/2021/09/06/打出网页中的特殊符号/" title="打出网页中的特殊符号"><img class="cover" src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-06</div><div class="title">打出网页中的特殊符号</div></div></a></div><div><a href="/2021/09/05/麦田国际首页布局/" title="麦田国际首页布局"><img class="cover" src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-05</div><div class="title">麦田国际首页布局</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/titleimg.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">MAX</div><div class="author-info__description">知己知彼,百战不殆</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/09/06/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/" title="office部署工具officeToolsPlus"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="office部署工具officeToolsPlus"/></a><div class="content"><a class="title" href="/2021/09/06/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/" title="office部署工具officeToolsPlus">office部署工具officeToolsPlus</a><time datetime="2021-09-06T13:13:36.000Z" title="发表于 2021-09-06 21:13:36">2021-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/06/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/" title="CDN是什么有什么用"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CDN是什么有什么用"/></a><div class="content"><a class="title" href="/2021/09/06/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/" title="CDN是什么有什么用">CDN是什么有什么用</a><time datetime="2021-09-06T12:59:35.000Z" title="发表于 2021-09-06 20:59:35">2021-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/06/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/" title="网页加载速度优化"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网页加载速度优化"/></a><div class="content"><a class="title" href="/2021/09/06/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/" title="网页加载速度优化">网页加载速度优化</a><time datetime="2021-09-06T12:57:53.000Z" title="发表于 2021-09-06 20:57:53">2021-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/" title="打出网页中的特殊符号"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="打出网页中的特殊符号"/></a><div class="content"><a class="title" href="/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/" title="打出网页中的特殊符号">打出网页中的特殊符号</a><time datetime="2021-09-06T12:56:27.000Z" title="发表于 2021-09-06 20:56:27">2021-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/06/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/" title="butterfly主题修改"><img src="https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="butterfly主题修改"/></a><div class="content"><a class="title" href="/2021/09/06/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/" title="butterfly主题修改">butterfly主题修改</a><time datetime="2021-09-06T12:53:42.000Z" title="发表于 2021-09-06 20:53:42">2021-09-06</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://i.loli.net/2021/09/03/v65NJDQdEBAcMRp.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By MAX</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

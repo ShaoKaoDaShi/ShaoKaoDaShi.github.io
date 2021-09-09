@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Ps图片内容测量标注脚本</title>
+    <url>/2021/09/05/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<h1 id="Ps图片内容测量标注脚本"><a href="#Ps图片内容测量标注脚本" class="headerlink" title="Ps图片内容测量标注脚本"></a>Ps图片内容测量标注脚本</h1><ol>
+<li>把脚本SizeMarks.jsx复制到PS的安装目录：\PhotoShopCs6\Presets\Scripts(具体可以右键ps查看属性，找到ps的安装位置)<img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902163719799.png" alt="image-20210902163719799"></li>
+<li>修改字体大小，用记事本打开脚本文件，搜索【txtLayerItem.font=”ArialMT”,】在这条语句后加上【txtLayerItem.size=”12px”,】字体大小可以自己调整 每次修改后ctrl+s保存就可以了 不用重启ps</li>
+<li>设置SizeMarks快捷键：编辑–》快捷键设置–》应用程序菜单–》文件–》一直往下滑找到脚本SizeMarks设置快捷键</li>
+</ol>
+<h1 id="PhotoShopCs6在windows10打不开解决办法"><a href="#PhotoShopCs6在windows10打不开解决办法" class="headerlink" title="PhotoShopCs6在windows10打不开解决办法"></a>PhotoShopCs6在windows10打不开解决办法</h1><ol>
+<li>以管理员身份运行</li>
+<li>通过右键cs6快捷方式–》属性–》兼容性–》win8</li>
+</ol>
+<p><img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902165922802.png" alt="image-20210902165922802"></p>
+]]></content>
+      <tags>
+        <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>office部署工具officeToolsPlus</title>
+    <url>/2021/09/06/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/</url>
+    <content><![CDATA[<h1 id="office安装-OFFICE-Tool-Plus-（8-2-43）"><a href="#office安装-OFFICE-Tool-Plus-（8-2-43）" class="headerlink" title="office安装 OFFICE Tool Plus （8.2.43）"></a>office安装 OFFICE Tool Plus （8.2.43）</h1><ol>
+<li><p>移除本地office 工具箱–》修复工具<img src="/images/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/image-20210903090325118.png" alt="image-20210903090325118"></p>
+</li>
+<li><p>部署office 2019 企业长期班 –》部署–》产品</p>
+<p><img src="/images/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/image-20210903090814572.png" alt="image-20210903090814572"></p>
+</li>
+<li><p>激活</p>
+<p><img src="/images/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/image-20210903101928660.png" alt="image-20210903101928660"></p>
+<p>​    首先安装许可证，安装完之后选择kms激活</p>
+<p>​        <img src="/images/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/image-20210903154827500.png" alt="image-20210903154827500"></p>
+</li>
+<li><p>officetoolplus：<a href="https://otp.landian.vip/zh-cn/">https://otp.landian.vip/zh-cn/</a><br>安装激活教程：<a href="https://www.ixigua.com/6822076425810477582?wid_try=1">https://www.ixigua.com/6822076425810477582?wid_try=1</a></p>
+</li>
+<li><h5 id="KMS服务器"><a href="#KMS服务器" class="headerlink" title="KMS服务器"></a>KMS服务器</h5><p>office激活：</p>
+<p>kms.03k.org</p>
+<p>kms.chinancce.com</p>
+<p>kms.lotro.cc</p>
+<p>cy2617.jios.org</p>
+<p>kms.shuax.com</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>好用的软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>butterfly主题修改</title>
+    <url>/2021/09/06/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/</url>
+    <content><![CDATA[<h1 id="butterfly主题修改"><a href="#butterfly主题修改" class="headerlink" title="butterfly主题修改"></a>butterfly主题修改</h1><ol>
+<li><p>背景特效 canvas动画</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">canvas_ribbon:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">size:</span> <span class="number">150</span></span><br><span class="line">  <span class="attr">alpha:</span> <span class="number">0.6</span></span><br><span class="line">  <span class="attr">zIndex:</span> <span class="number">-1</span></span><br><span class="line">  <span class="attr">click_to_change:</span> <span class="literal">false</span>  <span class="comment">#設置是否每次點擊都更換綵帶</span></span><br><span class="line">  <span class="attr">mobile:</span> <span class="literal">false</span> <span class="comment"># false 手機端不顯示 true 手機端顯示</span></span><br></pre></td></tr></table></figure></li>
+<li><p>鼠标点击效果</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">fireworks:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">zIndex:</span> <span class="number">9999</span> <span class="comment"># -1 or 9999</span></span><br><span class="line">  <span class="attr">mobile:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
+<li><p>网站副标题 （打字效果）</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 主頁subtitle</span></span><br><span class="line"><span class="attr">subtitle:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 打字效果</span></span><br><span class="line">  <span class="attr">effect:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 循環或者只打字一次</span></span><br><span class="line">  <span class="attr">loop:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># source調用第三方服務</span></span><br><span class="line">  <span class="comment"># source: false 關閉調用</span></span><br><span class="line">  <span class="comment"># source: 1  調用搏天api的隨機語錄（簡體） </span></span><br><span class="line">  <span class="comment"># source: 2  調用一言網的一句話（簡體） </span></span><br><span class="line">  <span class="comment"># source: 3  調用一句網（簡體） </span></span><br><span class="line">  <span class="comment"># source: 4  調用今日詩詞（簡體</span></span><br><span class="line">  <span class="comment"># subtitle 會先顯示 source , 再顯示 sub 的內容</span></span><br><span class="line">  <span class="attr">source:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># 如果有英文逗號&#x27; , &#x27;,請使用轉義字元 &amp;#44;</span></span><br><span class="line">  <span class="comment"># 如果有英文雙引號&#x27; &quot; &#x27;,請使用轉義字元 &amp;quot;</span></span><br><span class="line">  <span class="comment"># 開頭不允許轉義字元，如需要，請把整個句子用雙引號包住</span></span><br><span class="line">  <span class="comment"># 例如 ”&amp;quotNever put off till tomorrow what you can do today&amp;quot&quot;</span></span><br><span class="line">  <span class="comment"># 如果關閉打字效果，subtitle只會顯示sub的第一行文字</span></span><br><span class="line">  <span class="attr">sub:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">今日事&amp;#44;今日畢</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">Never</span> <span class="string">put</span> <span class="string">off</span> <span class="string">till</span> <span class="string">tomorrow</span> <span class="string">what</span> <span class="string">you</span> <span class="string">can</span> <span class="string">do</span> <span class="string">today</span></span><br></pre></td></tr></table></figure></li>
+<li><p>页面加载动画</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 加載動畫 Loading Animation</span></span><br><span class="line"><span class="attr">preloader:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
+<li><p>代码高亮</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight_theme:</span> <span class="string">light</span></span><br></pre></td></tr></table></figure></li>
+<li><p>顶部图</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Disable all banner image</span></span><br><span class="line"><span class="attr">disable_top_img:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The banner image of home page</span></span><br><span class="line"><span class="attr">index_img:</span> <span class="string">orange</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If the banner of page not setting, it will show the top_img 文章标题，文章预览标题， </span></span><br><span class="line"><span class="attr">default_top_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The banner image of archive page</span></span><br><span class="line"><span class="attr">archive_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If the banner of tag page not setting, it will show the top_img</span></span><br><span class="line"><span class="comment"># <span class="doctag">note:</span> tag page, not tags page (子標籤頁面的 top_img)</span></span><br><span class="line"><span class="attr">tag_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The banner image of tag page</span></span><br><span class="line"><span class="comment"># format:</span></span><br><span class="line"><span class="comment">#  - tag name: xxxxx</span></span><br><span class="line"><span class="attr">tag_per_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If the banner of category page not setting, it will show the top_img</span></span><br><span class="line"><span class="comment"># <span class="doctag">note:</span> category page, not categories page (子分類頁面的 top_img)</span></span><br><span class="line"><span class="attr">category_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The banner image of category page</span></span><br><span class="line"><span class="comment"># format:</span></span><br><span class="line"><span class="comment">#  - category name: xxxxx</span></span><br><span class="line"><span class="attr">category_per_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#渐变色： &#x27;linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347)&#x27;目前用不了</span></span><br></pre></td></tr></table></figure></li>
+<li><p>头像</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="attr">img:</span> <span class="string">/img/avatar.png</span></span><br><span class="line">  <span class="attr">effect:</span> <span class="literal">true</span> <span class="comment"># 頭像會一直轉圈</span></span><br></pre></td></tr></table></figure></li>
+<li><p>夜间模式切换</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># dark mode</span></span><br><span class="line"><span class="attr">darkmode:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># dark mode和 light mode切換按鈕</span></span><br><span class="line">  <span class="attr">button:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">autoChangeMode:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
+<li><p>阅读模式</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">readmode:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
+<li><p>侧边排版</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">aside:</span></span><br></pre></td></tr></table></figure></li>
+<li><p>网站背景</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">background:</span> <span class="string">url(https://i.loli.net/2019/09/09/5oDRkWVKctx2b6A.png)</span></span><br></pre></td></tr></table></figure></li>
+<li><p>footer背景</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">footer_bg:</span> <span class="literal">true</span> <span class="comment">#跟top_img 一样</span></span><br><span class="line"><span class="comment">#值： img/ 颜色/true</span></span><br></pre></td></tr></table></figure></li>
+<li><p>图片存储网站获取图片链接 –》imageurl</p>
+<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/image-20210902215339903.png" alt="image-20210902215339903"></p>
+</li>
+<li><p>cdn jsdelivr 加速博客访问速度</p>
+<p>首先上传文件到github仓库， 然后通过国内cdn镜像访问 访问连接</p>
+</li>
+<li><p>修改 导航栏显示标签时候, 需要把创建 一个 tags页面, hexo new page tags, </p>
+</li>
+<li><p>标签页：</p>
+<p>命令行输入：hexo new page tags</p>
+<p>修改：<code>source/tags/index.md</code>文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标籤</span><br><span class="line">date: 2018-01-05 00:00:00</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>截图：</p>
+<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzM1MDA1MQ==,size_16,color_FFFFFF,t_70.png" alt="img"></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/ldu-xingjiahui/p/12594024.html">短短1天我学会了如何修改Butterfly的配置文件 - XJHui - 博客园 (cnblogs.com)</a></p>
+</li>
+</ol>
+<h3 id="添加搜索框"><a href="#添加搜索框" class="headerlink" title="添加搜索框"></a>添加搜索框</h3><p><strong>说明：</strong></p>
+<p>①添加后效果：</p>
+<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzM1MDA1MQ==,size_16,color_FFFFFF,t_70.png" alt="img"></p>
+<p>图源：<a href="https://www.shawnlin.cn/">Shawn’s Blog</a> </p>
+<p>②作用：键入任意关键字找到包含这些关键字的文章。</p>
+<p><strong>安装方法：</strong></p>
+<p>1、安装 hexo-generator-searchdb 搜索插件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+
+<p>2、修改配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim source/_data/butterfly.yml</span><br></pre></td></tr></table></figure>
+
+<p>找到local_search将enable修改为true： </p>
+<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzM1MDA1MQ==,size_16,color_FFFFFF,t_70.png" alt="img"></p>
+<p>更新后即可看到 “搜索” 自动添加到了上方：</p>
+<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/20200317180818426.png" alt="img"></p>
+]]></content>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 hexo+typeora 图片上传问题</title>
+    <url>/2021/09/01/hexo-typora-image/</url>
+    <content><![CDATA[<ol>
+<li><p>Typeora： 文件–&gt; 偏好设置 –&gt; 图像</p>
+<p><img src="/images/hexo-typora-image/image-20210901225715645.png" alt="image-20210901225715645"></p>
+</li>
+<li><p>设置图片根目录：格式 –&gt;图像 –&gt;设置图片根目录为 source文件夹</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>打出网页中的特殊符号</title>
+    <url>/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/</url>
+    <content><![CDATA[<h1 id="网页特殊符号是怎么打出来的"><a href="#网页特殊符号是怎么打出来的" class="headerlink" title="网页特殊符号是怎么打出来的"></a>网页特殊符号是怎么打出来的</h1><p>△△□●☆§№☆★○◎●○★◇○●◆△→■※→△↑→※↓＠＠＼＾＠＼＿</p>
+<p>用输入法的软键盘, 选择特殊符号选项, 用哪个特殊符号直接打出来就ok</p>
+<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906114900157.png" alt="image-20210906114900157"></p>
+<p>↗↗↗↗↗↑←↓↙↓→㊥㊨۞曱☋↕㈱∷▏㊨▕▕██☒♂☾▇✚☂⊙✄▅▄▇</p>
+<p>用软键盘选择表情符号需要哪个直接点击</p>
+<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906115124680.png" alt="image-20210906115124680"></p>
+]]></content>
+      <tags>
+        <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode无法从工作区外粘贴复制</title>
+    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
+<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
+]]></content>
+      <tags>
+        <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>扣丁学堂</title>
+    <url>/2021/09/06/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/</url>
+    <content><![CDATA[<p>扣钉学堂网页布局</p>
+<ol>
+<li><p>网页整体分为几个大模块, 设置宽高, 添加上背景颜色</p>
+</li>
+<li><p>头部一般有图片logo  , 用margin + float来定位</p>
+<img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210822082443427-16296818596341-16309327650911.png" alt="image-20210822082443427" style="zoom: 67%;" />
+
+<ol>
+<li>搜索框 分为 输入框 和 提交按钮</li>
+<li>提交按钮, 中包含图片的样式, 图片以背景图片的形式, 设置图片居中, 不平铺</li>
+<li>输入框: 鼠标点击会出现一个黑边框 , 可以通过css 设置 outline属性 值为 none清除</li>
+</ol>
+</li>
+<li><p>菜单导航栏部分:  通过span来布局转换为行内块状元素,行内块状元素可以通过设置父元素的文本居中方式水平居中对齐,通过设置行高的方式垂直居中对齐</p>
+<img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210822082552540-16309327650922.png" alt="image-20210822082552540" style="zoom: 67%;" /></li>
+<li><p>新闻内容部分: 分为三个盒子 div1设置左浮动, div2 div3设置右浮动, 所以用一个大盒子包裹住这三个盒子, 大盒子水平居居中, div123设置浮动(父元素可能产生高度塌陷)</p>
+<p><img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210822082717750-16309327650924.png" alt="image-20210822082717750"></p>
+<ol>
+<li>动态新闻模块:<ol>
+<li>标题: p元素组成  css设置文本的格式 </li>
+<li>设置li前面的符号为图片 {list-style-image: url(‘图片地址’);} </li>
+<li>无序列表总的每个小li 分为左右两个部分, 设置右半部分右浮动</li>
+</ol>
+</li>
+<li>关于扣丁:<ol>
+<li>标题: 同上</li>
+<li>内容部分由两个 <p>   css分别设置不同的格式, 内容的位置通过设置padding来增加文字和边框的距离, 盒子的总大小是 内容+padding , 需要重新设置div的大</li>
+</ol>
+</li>
+<li>人才招聘模块:<ol>
+<li>组成: 标题<p>, 内容文本<p>, 底部<div></li>
+<li>整体 内容部分的位置通过padding设置</li>
+<li>标题:同上</li>
+<li>内容文本: p元素设置宽度</li>
+<li>底部:  div设置大小, 按钮设置水平居中, 背景图片通过background-position来定位</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>HTML5模块部分: padding设置内容的位置(会改变div的大小), 同时调整div的大小, 大盒子内部分为 图片 和 内容区, 图片左浮动, 内容div右浮动</p>
+<p><img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210822084939947-16309327650923.png" alt="image-20210822084939947"></p>
+</li>
+<li><p>人物名片模块: </p>
+<p><img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210822101833610-16309327650925.png" alt="image-20210822101833610"></p>
+</li>
+<li><p>底部信息栏: div&gt;p </p>
+<ol>
+<li><p>p元素居中方式为css3的transform居中方式,  这个时候p 元素会影响div 让div上面产生一个空隙,</p>
+<p>解决办法:设置清楚p元素的margin</p>
+</li>
+<li><p>p元素居中方式: 设置父元素为table-cell 使用vertical-align: middle; 垂直居中, 不会产生空隙</p>
+</li>
+</ol>
+</li>
+<li><p>两个div之间的间隙 : 其中一个div中有p元素</p>
+<p><img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210822100841393-16309327650926.png"></p>
+<p>红色线框起来的部分是两个div之间的间隙, 通过控制台检查 不是两个盒子的问题(两个盒子的margin之间的距离,不属于任何一个盒子)</p>
+<p>通过控制台对两个盒子中的元素分别测试筛选出哪个子元素影响了这个布局: div&gt;p 那么就会在div的上下产生间隙(p的margin大小)</p>
+<p>解决办法: 去掉p元素的margin</p>
+</li>
+</ol>
+<p><img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210823093517339-16309327650927.png" alt="image-20210823093517339"></p>
+]]></content>
+      <tags>
+        <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网页加载速度优化</title>
+    <url>/2021/09/06/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h3 id="网页加载速度优化–图像加载："><a href="#网页加载速度优化–图像加载：" class="headerlink" title="网页加载速度优化–图像加载："></a>网页加载速度优化–图像加载：</h3><ol>
+<li><p>关于 通过 git + hexo 上传文件的问题， 每次改完主题，以本地服务器的显示为主 ， 向github 上传文本文件 github加载速度很快， 但是上传 图片需要等个10分钟左右才能加载出来，查看了一下文件大小，图片大小640*640 jpg文件小大概在 :20-80k， png文件图片大，大概在 300k-800k</p>
+</li>
+<li><p>网页加载速度取决于页面中元素内容的总大小， 一个文件html， 文件中加入了 大量的图片， 那么这些图片就会影响网页的加载速度， 所以尽量在保证质量的情况下， 减小图片的文件大小，jpg 格式的图片就比较合适，同时要考虑到 图片在网页上能够显示的最大面积， 从而合理优化图片的大小，让网页速度加载更加快速</p>
+</li>
+<li><p>关于html img中src=“ 网络图片地址/本地图片地址” 用户访问的时候有什么区别：</p>
+<ol>
+<li><p>网页中图片加载速度和什么有关：</p>
+<ol>
+<li>本机带宽的速度</li>
+<li>服务器带宽的速度</li>
+<li>图片大小</li>
+</ol>
+</li>
+<li><p>一张图片png 大小为1M，我有一台服务器 带宽为1M ，客户机带宽2M，同时我把图片存在百度图库中，百度图库服务器带宽100M，用两种 src用两种方式来加载， 一种时相对路径（服务器上)， 一种超链接的方式（图片在百度图库服务器中）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;http://baidu.com/hello.png&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这种情况下服务器 只需要加载 几个字节的问题，图片具体由百度图库服务器来传输</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;/img/hello.png&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>图片完全由自己的服务器传输， 如果自己的服务器带宽太小的话，整个网页的加载的速度就会变得很慢，文字可以先加载出来，但是图片要响应很长时间</p>
+</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="bit，byte，位，字节，汉字的关系："><a href="#bit，byte，位，字节，汉字的关系：" class="headerlink" title="bit，byte，位，字节，汉字的关系："></a>bit，byte，位，字节，汉字的关系：</h3><ol>
+<li>字节(Byte)：通常将可表示常用英文字符8位二进制称为一字节。<ul>
+<li>一个英文字母(不分大小写)占一个字节的空间</li>
+<li>一个中文汉字占两个字节的空间</li>
+<li>英文标点占一个字节</li>
+<li>中文标点占两个字节</li>
+</ul>
+</li>
+<li>位/比特(bit)：<ul>
+<li>二进制数系统中，每个0或1就是一个位(bit)，位是数据存储的最小单位。</li>
+<li>计算机中的CPU位数指的是CPU一次能处理的最大位数, 例如32位计算机的CPU一次最多能处理32位数据。</li>
+</ul>
+</li>
+<li>单位的换算为：<ul>
+<li>1TB = 1024GB</li>
+<li>1GB = 1024MB</li>
+<li>1MB = 1024KB</li>
+<li>1Byte = bit</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="图片大小计算方法："><a href="#图片大小计算方法：" class="headerlink" title="图片大小计算方法："></a>图片大小计算方法：</h3><ol>
+<li>假如手机分辨率是1920×1080，即有这么多个像素点，每个像素点采用RGB（三原色）三个数值记录该点颜色，三个数值大小范围涉及另一个概念色深。</li>
+<li>以24位色深为例，即RGB的每一个值用8位二进制数表示（8×3=24），即每一种颜色的范围为0～2的8次方。所以每一个像素点存储时要占24位，也就是3字节（8位1字节），所以</li>
+<li>图片理论上的存储大小就是图片的像素点数乘以每个像素点的所占存储空间</li>
+<li>不过实际图片用不了这么大存储空间，，因为各种格式的图片还涉及一个关键技术压缩，不同的压缩技术也就导致压缩后图片的存储大小不同。举个不太恰当的例子，用坐标表示每个像素位置，假如像素点（1，2）的颜色值是（12，13，14），像素点（1，3）的颜色值也是（12，13，14），存储的时候就只需要存储一组颜色值，另一个点的颜色值就“同上”，这样就节省了存储空间，压缩就是类似于这样的处理。肉眼观察你所截的图，也能很明显感觉到，画面越丰富，色彩越多，占空间就大，画面越单调，色彩越小，占空间就少。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>网站搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>福星考试</title>
+    <url>/2021/09/04/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/</url>
+    <content><![CDATA[<h3 id="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"><a href="#全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！" class="headerlink" title="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"></a>全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！</h3><p> 今天通过福星的考试从新复习了一下sql语句同时完成考试，福星中午在食堂请我吃了一顿饭，我选的包子蘸料是醋和辣椒。</p>
+<p><img src="/images/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/d8f9d72a6059252d06aaf4b9a02c0c325ab5b90b-16307279093382.jpeg" alt="img"></p>
+<p>顺便记录一下今天图片上传没有显示， typeora图片根目录设置到source目录就可以了</p>
+]]></content>
+      <tags>
+        <tag>快乐时光</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>麦田国际首页布局</title>
+    <url>/2021/09/05/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<ol>
+<li><h1 id="麦田国际网站布局"><a href="#麦田国际网站布局" class="headerlink" title="麦田国际网站布局"></a>麦田国际网站布局</h1><ol>
+<li><p>战略合作板块</p>
+<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210905094154085-16308112057051.png" alt="image-20210905094154085"></p>
+<p>由图片可以看出 图片外圈有一个1px的小边框 和 背景颜色不一样，写出处理方法？</p>
+<ul>
+<li>table表格写法， 用border-collapse + td&gt;border 来合并表格边框（这里解释一下为什么不用 border-spacing 使用border-spacing两张图片之间的边框在网页上是叠加的效果， 这种情况下颜色会比其他非叠加的边框颜色深， 不好看.用表格的话 要设置 所有 td中的img 为block 不然会出现 td 中 图片下面有一条小空白</li>
+<li>div盒子 分为两排  每一行有一个大盒子包裹着其中的小盒子，小盒子添加右边框，大盒子设置外边框</li>
+<li>ul&gt;li 的方式 li相当于div</li>
+</ul>
+</li>
+<li><p>成功案例 板块</p>
+<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210905095349043-16308112057052.png" alt="image-20210905095349043"></p>
+<p>这种布局图片上下左右之间的距离一样，用什么方法布局？</p>
+<ul>
+<li><p>table border-spacing 可以控制 单元格之间的 距离</p>
+<p>需要注意：模块整体 的左边会多出来一个空白， 这个空白的大小是 border-spacing 的大小 ， 这个时候 整个板块的位置是偏左的， 需要 设置 transform ：translate；向左移动一段距离，让整个模块处于局中的位置</p>
+</li>
+<li><p>div 设置float 和 margin 来控制整体的布局</p>
+<ul>
+<li>每个盒子 都有左右外边距，整体向左移动 一个左边距的距离</li>
+<li>每个盒子设置右边距，浮动的时候 设置父元素的整体宽度最小大于子元素的大小和右边距的距离之和</li>
+</ul>
+</li>
+<li><p>为甚么不推荐 inline-block 的方式设置 整体的布局， 首先行内快圆度的 对齐方式不同不好调，如果在html 中行内块元素写完的情况下， 敲回车会出现 一个小白边 这个白边的距离为基线和底线之间的距离。解决办法 需要把vertical-algn：middle/text-top/text-bottom 给到 img元素才能起到向下对齐的作用。</p>
+</li>
+</ul>
+</li>
+<li><p>新闻板块</p>
+<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210905101405445-16308112057093.png" alt="image-20210905101405445"></p>
+<p>每个新闻板块划分为一个大板块，其中 标题一行，新闻内容一行， 链接跳转按钮一行 ， 新闻内容板块 分为左右两块，分别设置左右浮动，新闻内容条目 设置超出部分内容为显示 省略号</p>
+<ol>
+<li><p>页脚 板块</p>
+<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210906120310552.png" alt="image-20210906120310552"></p>
+<p>页脚导航栏模块实现方法：</p>
+<ul>
+<li><p>ul+li 设置float  li中设置 p+span（span作为中间的分隔符），</p>
+<p>这样做有一个弊端 就是edge浏览器渲染出来的分隔符宽度不一样，但是下面的chrome浏览器渲染就没有问题，</p>
+<p>分隔符与文字之间的距离用 float来实现。</p>
+</li>
+</ul>
+<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210906120323719.png" alt="image-20210906120323719"></p>
+<ul>
+<li>分割符用边框宽度来实现 这种情况下 不需要单独调整 分隔符与文字的距离 （文字是居中显示的，和li的边框有一定的距离。</li>
+<li>分隔符用 | 符号来实现，文字和分割符之间的距离用  &amp;nbsp；来实现</li>
+</ul>
+<h4 id="关于导航栏中-有分隔符边框-li设置float-ul设置宽度为所有-li-border-的值的和-但是在浏览器缩放的时候会出现-有的li被挤下去的情况-这种情况是什么引起的-如何解决-li在没有边框的情况下-缩放浏览器就不会出现这种问题-愿因-没有边框-中体大小不会因为-border的改变而受到影响"><a href="#关于导航栏中-有分隔符边框-li设置float-ul设置宽度为所有-li-border-的值的和-但是在浏览器缩放的时候会出现-有的li被挤下去的情况-这种情况是什么引起的-如何解决-li在没有边框的情况下-缩放浏览器就不会出现这种问题-愿因-没有边框-中体大小不会因为-border的改变而受到影响" class="headerlink" title="关于导航栏中 有分隔符边框 li设置float; ul设置宽度为所有 li+border 的值的和, 但是在浏览器缩放的时候会出现 有的li被挤下去的情况, 这种情况是什么引起的?如何解决?(li在没有边框的情况下 缩放浏览器就不会出现这种问题 愿因:没有边框, 中体大小不会因为 border的改变而受到影响)"></a>关于导航栏中 有分隔符边框 li设置float; ul设置宽度为所有 li+border 的值的和, 但是在浏览器缩放的时候会出现 有的li被挤下去的情况, 这种情况是什么引起的?如何解决?(li在没有边框的情况下 缩放浏览器就不会出现这种问题 愿因:没有边框, 中体大小不会因为 border的改变而受到影响)</h4><ul>
+<li>ul中的li设置 box-sizing: border-box; 这种情况下, 内容+border高宽为 设置li的高宽不需要再次计算li的高宽</li>
+<li>ul设置的宽度大于 li 的宽度(具体多少因情况而定), 只有ul足够的宽才能 防止li被挤到下面的情况.</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* border-box设置盒子模型为 边框盒子模型 */</span><span class="comment">/* 给 li的块元素为盒子模型的情况能够保证 缩放的情况下 li不会被挤下去 </span></span><br><span class="line"><span class="comment">观察到的现象是缩放过程中 border 从1px变成了4px, 同时内容部分 和 border相加 仍然为 69px*/</span></span><br><span class="line"><span class="comment">/* width: 69px; */</span></span><br><span class="line"><span class="comment">/* box-sizing: border-box; */</span></span><br><span class="line"><span class="attribute">width</span>: <span class="number">68px</span>;</span><br><span class="line"><span class="attribute">height</span>: <span class="number">13px</span>;</span><br><span class="line"><span class="attribute">line-height</span>: <span class="number">11px</span>;</span><br><span class="line"><span class="attribute">border-right</span>: <span class="number">1px</span> solid <span class="number">#727272</span>;</span><br><span class="line"><span class="comment">/* content-box为标准盒子模型 是默认值, 这种情况下 在缩小页面的情况下 ul中的li会被挤下去, 我观察到的现象是 边框变宽了,从设置的1px变成了 4px 在这个过程中 内容部分大小 仍然为68px  之间有时候会变成67.9px  这样相当与盒子整体 从69px 变成了 72px 每个小li 宽了3px */</span></span><br><span class="line"><span class="attribute">box-sizing</span>: content-box;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CDN是什么有什么用</title>
+    <url>/2021/09/06/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="CDN-是什么？CDN作用？"><a href="#CDN-是什么？CDN作用？" class="headerlink" title="CDN 是什么？CDN作用？"></a>CDN 是什么？CDN作用？</h1><p>作者：阿里巴巴淘系技术<br>链接：<a href="https://www.zhihu.com/question/36514327/answer/1604554133">https://www.zhihu.com/question/36514327/answer/1604554133</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>淘宝的图片访问，有98%的流量都走了CDN缓存。只有2%会回源到源站，节省了大量的服务器资源。</p>
+<p>但是，如果在用户访问高峰期，图片内容大批量发生变化，大量用户的访问就会穿透cdn，对源站造成巨大的压力。</p>
+<p><strong>结合阿里淘系2020年双11的淘宝实践，给大家分享下在图片业务里，我们是如何使用CDN以及如何解决挑战和困难。（点击头像关注我们，看更多阿里工程师干货）</strong></p>
+<h2 id="———————————————————————————————————-CDN工作原理"><a href="#———————————————————————————————————-CDN工作原理" class="headerlink" title="———————————————————————————————————   CDN工作原理"></a>———————————————————————————————————   CDN工作原理</h2><p>内容分发网络（Content Delivery Network，简称CDN）是建立并覆盖在承载网之上，由分布在不同区域的边缘节点服务器群组成的分布式网络。</p>
+<p>CDN应用广泛，支持多种行业、多种场景内容加速，例如：图片小文件、大文件下载、视音频点播、直播流媒体、全站加速、安全加速。</p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-5ba76e77f05b030b5879177bd336928f_720w.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-5ba76e77f05b030b5879177bd336928f_720w-16309332752579.jpg" alt="img"></p>
+<p>借用阿里云官网的例子，来简单介绍CDN的工作原理。</p>
+<p>假设通过CDN加速的域名为<code>www.a.com</code>，接入CDN网络，开始使用加速服务后，当终端用户（北京）发起HTTP请求时，处理流程如下：</p>
+<ol>
+<li>当终端用户（北京）向<code>www.a.com</code>下的指定资源发起请求时，首先向LDNS（本地DNS）发起域名解析请求。</li>
+<li>LDNS检查缓存中是否有<code>www.a.com</code>的IP地址记录。如果有，则直接返回给终端用户；如果没有，则向授权DNS查询。</li>
+<li>当授权DNS解析<code>www.a.com</code>时，返回域名CNAME <code>www.a.tbcdn.com</code>对应IP地址。</li>
+<li>域名解析请求发送至阿里云DNS调度系统，并为请求分配最佳节点IP地址。</li>
+<li>LDNS获取DNS返回的解析IP地址。</li>
+<li>用户获取解析IP地址。</li>
+<li>用户向获取的IP地址发起对该资源的访问请求。</li>
+</ol>
+<ul>
+<li>如果该IP地址对应的节点已缓存该资源，则会将数据直接返回给用户，例如，图中步骤7和8，请求结束。</li>
+<li>如果该IP地址对应的节点未缓存该资源，则节点向源站发起对该资源的请求。获取资源后，结合用户自定义配置的缓存策略，将资源缓存至节点，例如，图中的北京节点，并返回给用户，请求结束。</li>
+</ul>
+<p>从这个例子可以了解到：</p>
+<p>（1）CDN的加速资源是跟域名绑定的。<br>（2）通过域名访问资源，首先是通过DNS分查找离用户最近的CDN节点（边缘服务器）的IP<br>（3）通过IP访问实际资源时，如果CDN上并没有缓存资源，则会到源站请求资源，并缓存到CDN节点上，这样，用户下一次访问时，该CDN节点就会有对应资源的缓存了。</p>
+<h2 id="淘宝鹿班图片业务背景"><a href="#淘宝鹿班图片业务背景" class="headerlink" title="淘宝鹿班图片业务背景"></a>淘宝鹿班图片业务背景</h2><p>商品的主图贯穿整个导购和交易链路，相比文字，图片更能吸引眼球，主图对消费者的购物决策有很大的影响。主图上表达的内容各式各样，但其中一定少不了的一定是价格的表达。</p>
+<pre><code> 长期以来，主图上的价格表达都是商家自己维护，商品价格发生变化后，手动去换图。这样做，会带来3个问题：
+</code></pre>
+<p>   （1）价格的准确性：商家手动填写的图片价格，跟实际的购买价可能不一致，造成不好的用户体验。<br>   （2）价格更新的及时性：有时候，由于优惠券/品类券的生效失效，会导致商品的价格变化会很频繁，商家根本来不及换图。<br>   （3）商家的操作成本：手动修改图片的价格，成本还是很高的，需要通过ps等软件修改图片，重新上传，编辑商品。</p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-17941feedfcb2bf15dcc1377f4819753_720w-163093327525710.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-17941feedfcb2bf15dcc1377f4819753_720w.jpg" alt="img"></p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-92bae61afa859c1063123f165160da35_720w.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-92bae61afa859c1063123f165160da35_720w-163093327525813.jpg" alt="img"></p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-7603aa843ffce7358037721375e8c232_720w-163093327525814.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-7603aa843ffce7358037721375e8c232_720w.jpg" alt="img"></p>
+<p>今年双11，我们淘宝鹿班团队，试图通过技术手段来解决这些问题。当商品价格发生变化后，系统自动计算新的价格，自动合成图片，然后更新商品主图。</p>
+<p>我们知道，淘宝网有上亿的商品，光大促商品就有几千万，因此，价格变化导致的图片变化频率非常高。最高的就是在双11的0点，全部大促商品的价格都会由日常价格变成大促价格。</p>
+<p>这就意味着，大促高峰期，有上千万的图片刚生成就会被用户访问。那这个情况会产生什么问题呢，让我们先了解下淘宝的图片空间和CDN的架构，就清楚了。</p>
+<h2 id="淘宝图片空间和CDN的架构"><a href="#淘宝图片空间和CDN的架构" class="headerlink" title="淘宝图片空间和CDN的架构"></a>淘宝图片空间和CDN的架构</h2><p>淘宝整个图片的访问链路有三级缓存（客户端本地、CDN L1、CDN L2），所有图片都持久化的存储到OSS中。真正处理图片的是img-picasso系统，它的功能比较复杂，包括从OSS读取文件，对图片尺寸进行缩放，编解码，所以机器成本比较高。</p>
+<p>CDN的缓存分成2级，合理的分配L1和L2的比例，一方面，可以通过一致性hash的手段，在同等资源的情况下，缓存更多内容，提升整体缓存命中率；另一方面，可以平衡计算和IO，充分利用不同配置的机器的能力。</p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-30a352e1c3727aa51ede5bce5c1a0f0d_720w.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-30a352e1c3727aa51ede5bce5c1a0f0d_720w-163093327525817.jpg" alt="img"></p>
+<p>用户访问图片的过程如下：<br>（1）用户通过手机淘宝来搜索商品或者查看宝贝详情。<br>（2）详情/搜索/推荐通过调用商品中心返回商品的图片URL。<br>（3）客户端本地如果有该图片的缓存，则直接渲染图片，否则执行下一步。<br>（4）从CDN L1回源图片，如果L1有该图片的缓存，则客户端渲染图片，同时缓存到本地，如果L1没有缓存，则执行下一步。<br>（5）从CDN L2回源图片，如果L2有该图片的缓存，则客户端渲染图片，同时CDN L1及客户端缓存图片内容，如果CDN L2没有缓存该图片，则执行下一步。<br>（6）从图片空间回源图片，图片空间会从OSS拉取图片源文件，按要求进行尺寸缩放，然后执行编解码，返回客户端能够支持的图片内容，之后客户端就可以渲染图片，同时CDN的L1、L2以及客户端都会缓存图片内容。</p>
+<h2 id="频繁换图带来的技术挑战"><a href="#频繁换图带来的技术挑战" class="headerlink" title="频繁换图带来的技术挑战"></a>频繁换图带来的技术挑战</h2><p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-746d584643762d2c25ae897151c90527_720w.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-746d584643762d2c25ae897151c90527_720w-163093327525819.jpg" alt="img"></p>
+<p>当商品的价格发生变化时，我们会使用新的价格重新合成图片，更新商品中心中存储的图片URL。</p>
+<p>这样会带来2个问题：<br>（1）CDN及手机淘宝原本缓存的图片内容失效了，用户访问图片会全部回源到img-picasso。<br>（2）由于更改了商品的字段，交易的核心应用（购物车和商品中心）的缓存也失效了，用户浏览及购物时，对商品的访问会走到db。</p>
+<p>源站img-picasso处理图片，以及查询商品DB，都是非常消耗资源的。CDN及商品的缓存命中率降低后，对源站img-picsasso以及db会产生巨大的压力。</p>
+<p>拿CDN缓存为例，简单计算一下，CDN平时的命中率是98%，假设命中率降低1个点，对源站的压力就会增加1/3（原本承担2%的流量，现在需要承担3%的流量），意味着img-picasso需要扩容1/3。如果全网一半的图片都同时变化，cdn的命中率降到50%，对img-picasso的访问量就会增加25倍，这个扩容成本肯定没法接受。</p>
+<p>解决这2个问题，对应的有2个办法：<br>（1）改图保持图片URL不变，可以避免商品链路的缓存失效。<br>（2）在访问高峰到来之前，提前预热图片到CDN，可以避免CDN缓存失效对源站的压力。</p>
+<p>下面，介绍下我们具体是怎么做到这2点的。</p>
+<h2 id="频繁换图的应对方案"><a href="#频繁换图的应对方案" class="headerlink" title="频繁换图的应对方案"></a>频繁换图的应对方案</h2><p><strong>改图保持图片URL不变</strong></p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-4afe8e70baf3c2a752b240c22cab1d95_720w-163093327525920.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-4afe8e70baf3c2a752b240c22cab1d95_720w.jpg" alt="img"></p>
+<p>图片内容发生变化时，执行下面2个操作：<br>（1）更新OSS内容：使用新的图片内容替换OSS中老的图片内容<br>（2）刷新CDN缓存：清除CDN之前缓存的图片内容</p>
+<p>这样，用户再次访问图片时，发现CDN没有缓存，就会回源到img-picasso，从OSS拉取新的图片内容。</p>
+<p>由于图片URL没有变化，就不必去更新商品中心的图片链接，这样商品链路的缓存可以保持不变。<br>在真正实施这个方案的过程中，遇到了几个问题，简单跟大家分享下：</p>
+<p><strong>OSS三地同步</strong></p>
+<p>淘宝的图片空间，承载了淘系所有图片的上下行稳定性保障，为了保障高可用，一份资源会存储到三地OSS。图片上传时，默认只上传一地，利用OSS的能力，自动同步到另外两地。</p>
+<pre><code> 但是使用URL不变方案，CDN缓存已经清除完成后，如果另外2地的OSS还未同步完成，用户访问后，就会回源到旧的图片内容，发现图片内容没有变化。
+
+
+  针对该问题，我们将异步同步OSS软链的模式，改成三地同步建软链，三地都返回成功后，再去清除CDN缓存，这就保证了用户访问的图片一定是最新的内容。
+</code></pre>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-eb32615abe1a199be6fd6fd9387716f9_720w.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-eb32615abe1a199be6fd6fd9387716f9_720w-163093327525923.jpg" alt="img"></p>
+<p><strong>图片尺寸收敛</strong></p>
+<p>同一张商品图片会用于不同的场景坑位展现，不同的坑位对图片的尺寸有不同的要求。为此，图片空间提供了一项功能，可以方便的生成不同尺寸的缩率图。只需要访问图片时，给图片增加不同的后缀，img-picasso源站就可以按要求进行图片进行缩放。</p>
+<p>由于历史原因，之前对缩放的尺寸种类没有限制，导致CDN上的图片后缀格式多达2400种+，TOP6格式覆盖率46%，TOP15格式覆盖率64%。这意味着，一张图片，在cdn上最多可能有2400+个不同的url，当图片内容变化后，要把这些缓存全部清掉，才能保证所有用户看到的图片都是新内容。</p>
+<p>为了解决这个问题，我们对域名格式进行了收敛。</p>
+<p>图片空间对于图片质量压缩参数的规则如下：<br>* 图片质量参数常见有一下8种形式：Q90、Q75、Q50、Q30、q90、q75、q50、q30<br>* 图片锐化参数常见有一下3种形式：s100，s150，s200</p>
+<p>我们重新将图片质量定义为高质量图片和低质量图片，收敛格式为 q90 和 p50s150<br>这样，就可以把2000多种格式收敛到6种主要格式，CDN清除缓存才变得可行。</p>
+<p><strong>多副本清除CDN缓存</strong></p>
+<p>通过图片尺寸收敛，每张图片只需要清除6个不同的url就可以了，那能不能进一步提升刷新效率呢？</p>
+<p>为此，阿里云CDN为我们提供了多副本刷新的解决方案：每种不同后缀的图片，作为图片的一个副本，在CDN的swift层增加一层KV结构，存储url和不同副本的映射关系，清除缓存时，可以通过该结构找到所有副本，实现快速清除所有副本。这样，每张图片，我们只需要调用一次CDN清除缓存接口就可以了，极大提升了CDN缓存刷新效率。</p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-0a2e76dde8f27bdc415fa9c5bce720b3_720w-163093327525924.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-0a2e76dde8f27bdc415fa9c5bce720b3_720w.jpg" alt="img"></p>
+<p><strong>图片域名收敛</strong></p>
+<p>淘系的图片域名有300多种，主要有下面2个原因：<br>（1）图片完整的链接太长，所以存储时经常只存最后一段，业务自己来拼域名，很多业务就自己申请了一个图片域名来拼。<br>（2）PC时代，浏览器对同一域名下的并发请求数是有限制的，不同浏览器不一样，一般6个左右。</p>
+<p>为了突破该限制，一些业务就会申请多个域名，随机的拼不同的域名。</p>
+<p>前面我们讲过，CDN的缓存是跟域名绑定的，不管是缓存命中还是缓存清除，都只能针对一个域名。</p>
+<p>我们显然不可能改一张图，就去对300个域名调用CDN刷新。于是我们考虑对图片域名进行收敛，使得用户对图片的访问都路由到同一个域名，我们希望将所有的图片访问统一收敛到<a href="https://link.zhihu.com/?target=http://picasso.alicdn.com">http://picasso.alicdn.com</a>，具体实现方式如下：</p>
+<p>（1）对于手淘和猫客客户端，图片访问都收口在图片库，我们推进图片库进行改造，符合一定规则的url，统一收敛到<a href="https://link.zhihu.com/?target=http://picasso.alicdn.com">http://picasso.alicdn.com</a>，实现了域名的一刀切。<br>（2）对于PC浏览器端，就比较麻烦了，没有统一收口的地方。我们只能退而求其次，针对访问最多的6大域名，在cdn上配置域名转发规则，重定向到picasso域名。</p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-d9ba041380dbfa094687132ef662506b_720w-163093327525926.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-d9ba041380dbfa094687132ef662506b_720w.jpg" alt="img"></p>
+<p>通过这种方式，我们实现了全网99%以上的图片访问流量都路由到picasso域名，图片内容发生变化时，通过清除picasso域名的cdn缓存，就能保证基本所有的场景都能看到新的图片内容。</p>
+<h2 id="客户端及浏览器缓存"><a href="#客户端及浏览器缓存" class="headerlink" title="客户端及浏览器缓存"></a>客户端及浏览器缓存</h2><p>通过多副本和图片域名收敛，cdn的缓存问题得到了解决。但在cdn之上，用户图片访问首先是来自客户端或者浏览器，这里也会有一层缓存。</p>
+<p>大家知道，浏览器的缓存都遵循标准的http max-age协议，指定该header后，到了时间图片就会失效，访问到新的图片。所以我们可以在源站img-picasso回源给cdn时，添加max-age协议头，值为1分钟，cdn会原封不动的透给浏览器，这样浏览器就可以实现1分钟内图片缓存失效，重新到cdn拉新的图片资源。</p>
+<p>对于手机淘宝客户端，我们在原有的LRU缓存机制之上，另外支持标准的http协议。这样，手机淘宝也实现了1分钟内图片缓存失效。</p>
+<p><strong>提前预热CDN图片</strong></p>
+<p>通过改图保持图片URL不变，我们解决了改图对商品链路缓存的影响。但是，图片变化时，虽然URL没有变，但我们清除了CDN缓存，导致用户访问时还是会回源到img-picasso源站，所以对图片源站的压力依然存在。</p>
+<p><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-850ca866556e746441d7a133da8d1474_720w.jpg" alt="img"><img src="/images/CDN%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/v2-850ca866556e746441d7a133da8d1474_720w-163093327526029.jpg" alt="img"></p>
+<p>我们发现，商品的价格变化大部分发生在大促节奏变化的时刻，基于这个特点，我们通过提前合成图片，提前预热到CDN，可以实现图片切换瞬间生效，同时对源站没有压力。</p>
+<p>具体方案如下：<br>（1）提前合成多波段图片：我们知道大促期间商家集中换图的时间点后，按这些时间点把图片的展示分成多个波段，每个波段图片提前合成，并提前将图片URL写入到商品中心扩展结构中。<br>（2）图片访问路由：营销系统根据配置的大促氛围切换计划，告诉鹿班图片二方包，当前是哪个波段，鹿班根据当前波段及场景，返回正确的图片URL给各个场景。<br>（3）图片渲染：各个场景拿到图片URL后，结合自身的业务逻辑，决定是否要展现该图片。<br>（4）CDN图片预热：为了避免图片集中切换时，把源站击垮，我们会在集中切换前把这些冷图片内容预热到CDN。<br>（5）波段内图片变化：提前合成各个波段图片后，商家可能会临时发券/改价，导致商品价格再次变化，对于这类换图需求，为了避免更新商品中心的图片URL，我们通过本文上一章节刷CDN缓存的方式实现。</p>
+<h2 id="总结和展望"><a href="#总结和展望" class="headerlink" title="总结和展望"></a>总结和展望</h2><p>CDN技术广泛应用于互联网的各个场景，如今的CDN服务商，都提供了非常简单的业务接入方式，而且CDN的费用每年都在降低，这一切使得CDN的接入和使用成本越来越低。</p>
+<p> 本文通过淘宝图片业务的例子，为大家阐述了使用CDN过程中可能遇到的问题和解决思路。</p>
+<p>淘宝的图片业务除了访问量大，还会面临更新频繁的问题。图片的频繁更新，一方面会由于商品上的图片url变化，导致商品缓存失效，另一方面会大幅降低CDN的图片访问缓存命中率。</p>
+<p>针对图片url变化导致商品缓存失效的问题，我们通过刷新cdn缓存，用户访问时重新回源的方式，实现了改图保持图片url不变，这个过程中了，我们解决了一些列的问题，包括：OSS三地同步更新、图片尺寸收敛、图片域名收敛、客户端及浏览器本地缓存。</p>
+<p>针对改图降低CDN图片缓存命中率的问题，我们根据业务的特点，提前合成不同波段的图片，并预热到CDN，保障了源站的安全。</p>
+<p>目前，淘宝上用户看到的图片，都是提前合成好的。未来，我们考虑在用户访问图片时，实时合成图片。通过这项技术，可以实时感知业务更多的实时信息，可以根据这些信息，在图片上合成当前用户或者环境更匹配的文案/元素等内容，给用户带来更多的惊喜。</p>
+<p>当然，实时合图也会面临更多的挑战，如：计算能力、合图性能。此外，对于CDN而言，由于每次用户访问的内容是临时合成的，CDN的缓存策略也是一个很大的挑战。</p>
+<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#122;&#x68;&#x61;&#111;&#x6d;&#x69;&#x6e;&#103;&#46;&#x79;&#x77;&#116;&#x40;&#116;&#x61;&#111;&#x62;&#97;&#111;&#46;&#99;&#111;&#x6d;">&#122;&#x68;&#x61;&#111;&#x6d;&#x69;&#x6e;&#103;&#46;&#x79;&#x77;&#116;&#x40;&#116;&#x61;&#111;&#x62;&#97;&#111;&#46;&#99;&#111;&#x6d;</a> </p>
+<p>——————————————————————————————————————</p>
+<p>阿里巴巴集团淘系技术部官方账号。淘系技术部是阿里巴巴新零售技术的王牌军，支撑淘宝、天猫核心电商以及淘宝直播、闲鱼、躺平、阿里汽车、阿里房产等创新业务，服务9亿用户，赋能各行业1000万商家。我们打造了全球领先的线上新零售技术平台，并作为核心技术团队保障了11次双十一购物狂欢节的成功。</p>
+<p>[点击此处关注我们，你将收获更多来自阿里一线工程师的技术实战技巧&amp;成长经历心得。另，不定期更新最新岗位招聘信息和简历内推通道，欢迎各位以最短路径加入我们。](</p>
+]]></content>
+      <tags>
+        <tag>网站搭建</tag>
+      </tags>
+  </entry>
+</search>

@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Ps图片内容测量标注脚本</title>
-    <url>/2021/09/05/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/</url>
-    <content><![CDATA[<h1 id="Ps图片内容测量标注脚本"><a href="#Ps图片内容测量标注脚本" class="headerlink" title="Ps图片内容测量标注脚本"></a>Ps图片内容测量标注脚本</h1><ol>
-<li>把脚本SizeMarks.jsx复制到PS的安装目录：\PhotoShopCs6\Presets\Scripts(具体可以右键ps查看属性，找到ps的安装位置)<img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902163719799.png" alt="image-20210902163719799"></li>
-<li>修改字体大小，用记事本打开脚本文件，搜索【txtLayerItem.font=”ArialMT”,】在这条语句后加上【txtLayerItem.size=”12px”,】字体大小可以自己调整 每次修改后ctrl+s保存就可以了 不用重启ps</li>
-<li>设置SizeMarks快捷键：编辑–》快捷键设置–》应用程序菜单–》文件–》一直往下滑找到脚本SizeMarks设置快捷键</li>
-</ol>
-<h1 id="PhotoShopCs6在windows10打不开解决办法"><a href="#PhotoShopCs6在windows10打不开解决办法" class="headerlink" title="PhotoShopCs6在windows10打不开解决办法"></a>PhotoShopCs6在windows10打不开解决办法</h1><ol>
-<li>以管理员身份运行</li>
-<li>通过右键cs6快捷方式–》属性–》兼容性–》win8</li>
-</ol>
-<p><img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902165922802.png" alt="image-20210902165922802"></p>
-]]></content>
-      <tags>
-        <tag>html css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>butterfly主题修改</title>
     <url>/2021/09/06/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/</url>
     <content><![CDATA[<h1 id="butterfly主题修改"><a href="#butterfly主题修改" class="headerlink" title="butterfly主题修改"></a>butterfly主题修改</h1><ol>
@@ -87,28 +69,21 @@
       </tags>
   </entry>
   <entry>
-    <title>解决 hexo+typeora 图片上传问题</title>
-    <url>/2021/09/01/hexo-typora-image/</url>
-    <content><![CDATA[<ol>
-<li><p>Typeora： 文件–&gt; 偏好设置 –&gt; 图像</p>
-<p><img src="/images/hexo-typora-image/image-20210901225715645.png" alt="image-20210901225715645"></p>
-</li>
-<li><p>设置图片根目录：格式 –&gt;图像 –&gt;设置图片根目录为 source文件夹</p>
-</li>
+    <title>Ps图片内容测量标注脚本</title>
+    <url>/2021/09/05/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<h1 id="Ps图片内容测量标注脚本"><a href="#Ps图片内容测量标注脚本" class="headerlink" title="Ps图片内容测量标注脚本"></a>Ps图片内容测量标注脚本</h1><ol>
+<li>把脚本SizeMarks.jsx复制到PS的安装目录：\PhotoShopCs6\Presets\Scripts(具体可以右键ps查看属性，找到ps的安装位置)<img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902163719799.png" alt="image-20210902163719799"></li>
+<li>修改字体大小，用记事本打开脚本文件，搜索【txtLayerItem.font=”ArialMT”,】在这条语句后加上【txtLayerItem.size=”12px”,】字体大小可以自己调整 每次修改后ctrl+s保存就可以了 不用重启ps</li>
+<li>设置SizeMarks快捷键：编辑–》快捷键设置–》应用程序菜单–》文件–》一直往下滑找到脚本SizeMarks设置快捷键</li>
 </ol>
+<h1 id="PhotoShopCs6在windows10打不开解决办法"><a href="#PhotoShopCs6在windows10打不开解决办法" class="headerlink" title="PhotoShopCs6在windows10打不开解决办法"></a>PhotoShopCs6在windows10打不开解决办法</h1><ol>
+<li>以管理员身份运行</li>
+<li>通过右键cs6快捷方式–》属性–》兼容性–》win8</li>
+</ol>
+<p><img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902165922802.png" alt="image-20210902165922802"></p>
 ]]></content>
       <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vscode无法从工作区外粘贴复制</title>
-    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
-<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
-]]></content>
-      <tags>
-        <tag>vscode</tag>
+        <tag>html css</tag>
       </tags>
   </entry>
   <entry>
@@ -138,6 +113,105 @@
 ]]></content>
       <tags>
         <tag>好用的软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 hexo+typeora 图片上传问题</title>
+    <url>/2021/09/01/hexo-typora-image/</url>
+    <content><![CDATA[<ol>
+<li><p>Typeora： 文件–&gt; 偏好设置 –&gt; 图像</p>
+<p><img src="/images/hexo-typora-image/image-20210901225715645.png" alt="image-20210901225715645"></p>
+</li>
+<li><p>设置图片根目录：格式 –&gt;图像 –&gt;设置图片根目录为 source文件夹</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>preload</title>
+    <url>/2021/09/09/preload/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>vscode无法从工作区外粘贴复制</title>
+    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
+<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
+]]></content>
+      <tags>
+        <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>打出网页中的特殊符号</title>
+    <url>/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/</url>
+    <content><![CDATA[<h1 id="网页特殊符号是怎么打出来的"><a href="#网页特殊符号是怎么打出来的" class="headerlink" title="网页特殊符号是怎么打出来的"></a>网页特殊符号是怎么打出来的</h1><p>△△□●☆§№☆★○◎●○★◇○●◆△→■※→△↑→※↓＠＠＼＾＠＼＿</p>
+<p>用输入法的软键盘, 选择特殊符号选项, 用哪个特殊符号直接打出来就ok</p>
+<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906114900157.png" alt="image-20210906114900157"></p>
+<p>↗↗↗↗↗↑←↓↙↓→㊥㊨۞曱☋↕㈱∷▏㊨▕▕██☒♂☾▇✚☂⊙✄▅▄▇</p>
+<p>用软键盘选择表情符号需要哪个直接点击</p>
+<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906115124680.png" alt="image-20210906115124680"></p>
+]]></content>
+      <tags>
+        <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于preload不同属性的区别</title>
+    <url>/2021/09/09/%E5%85%B3%E4%BA%8Epreload%E4%B8%8D%E5%90%8C%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h2 id="What-does-the-preload-attribute-actually-do-in-the-HTML-video-element"><a href="#What-does-the-preload-attribute-actually-do-in-the-HTML-video-element" class="headerlink" title="What does the preload attribute actually do in the HTML video element?"></a>What does the preload attribute actually do in the HTML video element?</h2><p><strong>Filed under:</strong> <a href="https://clubmate.fi/category/html-css">HTML/CSS</a><strong>— Tagged with:</strong> <a href="https://clubmate.fi/tag/lazyload">lazyload</a>, <a href="https://clubmate.fi/tag/media">media</a></p>
+<p>The html video element’s preload attribute can have three values: <code>metadata</code>, <code>auto</code>, or <code>none</code>. This post explains what they do and which one to use.</p>
+<h2 id="How-does-video-element-load-its-content"><a href="#How-does-video-element-load-its-content" class="headerlink" title="How does video element load its content?"></a>How does video element load its content?</h2><p>The content in the html video elements is kind of “lazy loaded” by default, <strong>meaning that not all of the video’s data is transported until the user clicks play</strong>. Therefor, adding large videos to a site won’t slow down the initial page load, if the preload attribute is set the right way, that is.</p>
+<p>Maybe you know about the relatively new <code>loading</code> html attribute, that can be set to lazy: <code>loading=&#39;lazy&#39;</code>. It applies to <code>img</code> and <code>iframe</code> tags, <em>but not to videos</em>, because videos are not blocking if you use <code>preload=&quot;metadata&quot;</code> or <code>preload=&quot;none&quot;</code>.</p>
+<h3 id="Video-metadata"><a href="#Video-metadata" class="headerlink" title="Video metadata"></a>Video metadata</h3><p>Videos need to load much more metadata than images before they can start playing, because videos are <em>way</em> more complex creatures. Browsers have to partially read in the video to gain access to its dimensions, size, length, the placeholder image (first frame of the video), or the poster image, and so on.</p>
+<h2 id="The-test-video"><a href="#The-test-video" class="headerlink" title="The test video"></a>The test video</h2><p>I choose a chunky test video on purpose: 9MB <code>.mov</code>, just to better see how the loading process actually happens.</p>
+<p>Below is the example video with preload set to none (because it’s so big):</p>
+<p><video class="hxozj1-0 hlVyYK" controls="" playsinline="" preload="none" muted="" style="box-sizing: inherit; display: inline-block; vertical-align: bottom; margin-bottom: 3px; max-width: 100%;"></video></p>
+<p>A 9MB video with no preload. @doggface208</p>
+<p>💁‍♂️ That video could probably be compressed into ~500KB <code>.mp4</code>, without loosing any significant quality.</p>
+<h2 id="Preload-metadata"><a href="#Preload-metadata" class="headerlink" title="Preload metadata"></a>Preload metadata</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">preload</span>=<span class="string">&quot;metadata&quot;</span> <span class="attr">src</span>=<span class="string">&quot;ocean-spray.mov&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>This screenshot (fig 1) is taken right after the page had loaded, before play was pressed. In the Network tab you’ll see that it took <strong>919KB</strong> of data to show this preview of the video (<strong>9MB</strong> original size). That <strong>919KB</strong> includes at least:</p>
+<ul>
+<li>Dimensions</li>
+<li>Length</li>
+<li>Weight</li>
+<li>Placeholder image</li>
+<li>A tiny bit of the actual video</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这张截图(图1 )是在页面加载之后，在按下播放之前拍摄的。在Network选项卡中您会看到，显示视频的这种预览( 9MB原始大小)需要919KB的数据。那919KB至少包括在内：</span><br><span class="line"></span><br><span class="line">尺寸</span><br><span class="line">长度</span><br><span class="line">体重</span><br><span class="line">占位符图像</span><br><span class="line">实际视频的一小部分</span><br><span class="line">视频越小，这个初始负载越小。</span><br></pre></td></tr></table></figure>
+
+<p>The smaller the video is, the smaller this initial load is.<img src="/images/%E5%85%B3%E4%BA%8Epreload%E4%B8%8D%E5%90%8C%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8C%BA%E5%88%AB/html-video-preload-metadata.png" alt="Screenshot of an html video with preload set to metadata"></p>
+<p><img src="https://clubmate.fi/images/html-video-preload-metadata.png" alt="Screenshot of an html video with preload set to metadata">fig 1</p>
+<h2 id="Preload-auto"><a href="#Preload-auto" class="headerlink" title="Preload auto"></a>Preload auto</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">preload</span>=<span class="string">&quot;auto&quot;</span> <span class="attr">src</span>=<span class="string">&quot;ocean-spray.mov&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>This is the default setting in Chrome, the default might different per browser, so don’t trust that. It will download the <strong>metadata and the video</strong> just as if play would’ve been pressed.</p>
+<p><strong>I would avoid this setting</strong>, because it’s just wasting bandwidth on a video that the user might never play.</p>
+<p>You can see that the size of the request was <strong>5.4MB</strong> (fig 2), of the total <strong>9MB</strong>, the video loading indicator is at about 3/4 in.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这是Chrome中的默认设置，每个浏览器的默认设置可能不同，所以不要相信。它将下载元数据和视频，就像播放被按下一样。</span><br><span class="line"></span><br><span class="line">我会避免这种设置，因为它只是在一段用户可能永远不会播放的视频上浪费带宽。</span><br><span class="line"></span><br><span class="line">您可以看到，请求的大小是5.4MB (图2 )，在总的9MB中，视频加载指示器大约在3 / 4in。</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E5%85%B3%E4%BA%8Epreload%E4%B8%8D%E5%90%8C%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8C%BA%E5%88%AB/html-video-preload-auto.png" alt="Screenshot of an html video with preload set to auto"></p>
+<p>fig 2</p>
+<h2 id="Preload-none"><a href="#Preload-none" class="headerlink" title="Preload none"></a>Preload none</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">preload</span>=<span class="string">&quot;none&quot;</span> <span class="attr">src</span>=<span class="string">&quot;ocean-spray.mov&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>No request is made and nothing is loaded. Browsers show a default sized empty video player (fig 3). And when play is pressed the video will resize itself, causing ugly content jumping.<img src="/images/%E5%85%B3%E4%BA%8Epreload%E4%B8%8D%E5%90%8C%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8C%BA%E5%88%AB/html-video-preload-none.png" alt="Screenshot of an html video with preload set to none"></p>
+<p><img src="https://clubmate.fi/images/html-video-preload-none.png" alt="Screenshot of an html video with preload set to none">fig 3</p>
+<p>This is the fasted way to load videos, no request is made on the initial page load, but it looks ugly. If you know the size of the video already, you can build the placeholder yourself using a low quality image placeholder or a solid color, whatever fits your design.</p>
+<h2 id="What-about-autoplay-with-preload"><a href="#What-about-autoplay-with-preload" class="headerlink" title="What about autoplay with preload?"></a>What about autoplay with preload?</h2><p>If <code>autoplay</code> is set to true, the preload is ignored, then browsers of course need to start downloading the video immediately.</p>
+<h2 id="Which-preload-value-should-be-used-then"><a href="#Which-preload-value-should-be-used-then" class="headerlink" title="Which preload value should be used then?"></a>Which preload value should be used then?</h2><p>If you just want something easy, then <code>preload=&quot;metadata&quot;</code> is the easiest, nicest looking, and fastest. <strong>It’s also recommended by the spec</strong>. But that does add a request in the beginning, slowing down the initial page load. If you already know the video’s size, you could set <code>preload=&quot;none&quot;</code> and build a placeholder yourself.</p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>Here’s the demo, it’s just the default CodeSandbox React app:</p>
+<p><a href="https://codesandbox.io/s/video-preload-test-zcfcq?fontsize=14&hidenavigation=1&theme=dark"><img src="/images/%E5%85%B3%E4%BA%8Epreload%E4%B8%8D%E5%90%8C%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8C%BA%E5%88%AB/play-codesandbox.svg" alt="img"></a></p>
+<h2 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h2><ul>
+<li><code>preload=&quot;metadata&quot;</code>: easy to setup and adequately good.</li>
+<li><code>preload=&quot;auto&quot;</code>: not really commended unless really have to.</li>
+<li><code>preload=&quot;none&quot;</code>: fastest, but most work to make it look good.</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>html css</tag>
       </tags>
   </entry>
   <entry>
@@ -211,31 +285,6 @@
       </tags>
   </entry>
   <entry>
-    <title>福星考试</title>
-    <url>/2021/09/04/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/</url>
-    <content><![CDATA[<h3 id="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"><a href="#全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！" class="headerlink" title="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"></a>全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！</h3><p> 今天通过福星的考试从新复习了一下sql语句同时完成考试，福星中午在食堂请我吃了一顿饭，我选的包子蘸料是醋和辣椒。</p>
-<p><img src="/images/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/d8f9d72a6059252d06aaf4b9a02c0c325ab5b90b-16307279093382.jpeg" alt="img"></p>
-<p>顺便记录一下今天图片上传没有显示， typeora图片根目录设置到source目录就可以了</p>
-]]></content>
-      <tags>
-        <tag>快乐时光</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>打出网页中的特殊符号</title>
-    <url>/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/</url>
-    <content><![CDATA[<h1 id="网页特殊符号是怎么打出来的"><a href="#网页特殊符号是怎么打出来的" class="headerlink" title="网页特殊符号是怎么打出来的"></a>网页特殊符号是怎么打出来的</h1><p>△△□●☆§№☆★○◎●○★◇○●◆△→■※→△↑→※↓＠＠＼＾＠＼＿</p>
-<p>用输入法的软键盘, 选择特殊符号选项, 用哪个特殊符号直接打出来就ok</p>
-<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906114900157.png" alt="image-20210906114900157"></p>
-<p>↗↗↗↗↗↑←↓↙↓→㊥㊨۞曱☋↕㈱∷▏㊨▕▕██☒♂☾▇✚☂⊙✄▅▄▇</p>
-<p>用软键盘选择表情符号需要哪个直接点击</p>
-<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906115124680.png" alt="image-20210906115124680"></p>
-]]></content>
-      <tags>
-        <tag>html css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>网页加载速度优化</title>
     <url>/2021/09/06/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/</url>
     <content><![CDATA[<h3 id="网页加载速度优化–图像加载："><a href="#网页加载速度优化–图像加载：" class="headerlink" title="网页加载速度优化–图像加载："></a>网页加载速度优化–图像加载：</h3><ol>
@@ -295,6 +344,17 @@
 ]]></content>
       <tags>
         <tag>网站搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>福星考试</title>
+    <url>/2021/09/04/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/</url>
+    <content><![CDATA[<h3 id="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"><a href="#全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！" class="headerlink" title="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"></a>全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！</h3><p> 今天通过福星的考试从新复习了一下sql语句同时完成考试，福星中午在食堂请我吃了一顿饭，我选的包子蘸料是醋和辣椒。</p>
+<p><img src="/images/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/d8f9d72a6059252d06aaf4b9a02c0c325ab5b90b-16307279093382.jpeg" alt="img"></p>
+<p>顺便记录一下今天图片上传没有显示， typeora图片根目录设置到source目录就可以了</p>
+]]></content>
+      <tags>
+        <tag>快乐时光</tag>
       </tags>
   </entry>
   <entry>
@@ -455,7 +515,7 @@
 <p>针对改图降低CDN图片缓存命中率的问题，我们根据业务的特点，提前合成不同波段的图片，并预热到CDN，保障了源站的安全。</p>
 <p>目前，淘宝上用户看到的图片，都是提前合成好的。未来，我们考虑在用户访问图片时，实时合成图片。通过这项技术，可以实时感知业务更多的实时信息，可以根据这些信息，在图片上合成当前用户或者环境更匹配的文案/元素等内容，给用户带来更多的惊喜。</p>
 <p>当然，实时合图也会面临更多的挑战，如：计算能力、合图性能。此外，对于CDN而言，由于每次用户访问的内容是临时合成的，CDN的缓存策略也是一个很大的挑战。</p>
-<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#122;&#104;&#x61;&#x6f;&#x6d;&#105;&#110;&#x67;&#46;&#x79;&#119;&#x74;&#x40;&#x74;&#x61;&#x6f;&#x62;&#97;&#x6f;&#46;&#99;&#111;&#x6d;">&#122;&#104;&#x61;&#x6f;&#x6d;&#105;&#110;&#x67;&#46;&#x79;&#119;&#x74;&#x40;&#x74;&#x61;&#x6f;&#x62;&#97;&#x6f;&#46;&#99;&#111;&#x6d;</a> </p>
+<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#122;&#x68;&#x61;&#x6f;&#x6d;&#105;&#110;&#103;&#x2e;&#121;&#x77;&#x74;&#64;&#x74;&#97;&#x6f;&#x62;&#97;&#111;&#46;&#99;&#111;&#x6d;">&#122;&#x68;&#x61;&#x6f;&#x6d;&#105;&#110;&#103;&#x2e;&#121;&#x77;&#x74;&#64;&#x74;&#97;&#x6f;&#x62;&#97;&#111;&#46;&#99;&#111;&#x6d;</a> </p>
 <p>——————————————————————————————————————</p>
 <p>阿里巴巴集团淘系技术部官方账号。淘系技术部是阿里巴巴新零售技术的王牌军，支撑淘宝、天猫核心电商以及淘宝直播、闲鱼、躺平、阿里汽车、阿里房产等创新业务，服务9亿用户，赋能各行业1000万商家。我们打造了全球领先的线上新零售技术平台，并作为核心技术团队保障了11次双十一购物狂欢节的成功。</p>
 <p>[点击此处关注我们，你将收获更多来自阿里一线工程师的技术实战技巧&amp;成长经历心得。另，不定期更新最新岗位招聘信息和简历内推通道，欢迎各位以最短路径加入我们。](</p>

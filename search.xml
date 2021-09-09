@@ -19,35 +19,6 @@
       </tags>
   </entry>
   <entry>
-    <title>office部署工具officeToolsPlus</title>
-    <url>/2021/09/06/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/</url>
-    <content><![CDATA[<h1 id="office安装-OFFICE-Tool-Plus-（8-2-43）"><a href="#office安装-OFFICE-Tool-Plus-（8-2-43）" class="headerlink" title="office安装 OFFICE Tool Plus （8.2.43）"></a>office安装 OFFICE Tool Plus （8.2.43）</h1><ol>
-<li><p>移除本地office 工具箱–》修复工具<img src="/images/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/image-20210903090325118.png" alt="image-20210903090325118"></p>
-</li>
-<li><p>部署office 2019 企业长期班 –》部署–》产品</p>
-<p><img src="/images/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/image-20210903090814572.png" alt="image-20210903090814572"></p>
-</li>
-<li><p>激活</p>
-<p><img src="/images/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/image-20210903101928660.png" alt="image-20210903101928660"></p>
-<p>​    首先安装许可证，安装完之后选择kms激活</p>
-<p>​        <img src="/images/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/image-20210903154827500.png" alt="image-20210903154827500"></p>
-</li>
-<li><p>officetoolplus：<a href="https://otp.landian.vip/zh-cn/">https://otp.landian.vip/zh-cn/</a><br>安装激活教程：<a href="https://www.ixigua.com/6822076425810477582?wid_try=1">https://www.ixigua.com/6822076425810477582?wid_try=1</a></p>
-</li>
-<li><h5 id="KMS服务器"><a href="#KMS服务器" class="headerlink" title="KMS服务器"></a>KMS服务器</h5><p>office激活：</p>
-<p>kms.03k.org</p>
-<p>kms.chinancce.com</p>
-<p>kms.lotro.cc</p>
-<p>cy2617.jios.org</p>
-<p>kms.shuax.com</p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>好用的软件</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>butterfly主题修改</title>
     <url>/2021/09/06/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/</url>
     <content><![CDATA[<h1 id="butterfly主题修改"><a href="#butterfly主题修改" class="headerlink" title="butterfly主题修改"></a>butterfly主题修改</h1><ol>
@@ -116,21 +87,6 @@
       </tags>
   </entry>
   <entry>
-    <title>解决 hexo+typeora 图片上传问题</title>
-    <url>/2021/09/01/hexo-typora-image/</url>
-    <content><![CDATA[<ol>
-<li><p>Typeora： 文件–&gt; 偏好设置 –&gt; 图像</p>
-<p><img src="/images/hexo-typora-image/image-20210901225715645.png" alt="image-20210901225715645"></p>
-</li>
-<li><p>设置图片根目录：格式 –&gt;图像 –&gt;设置图片根目录为 source文件夹</p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>打出网页中的特殊符号</title>
     <url>/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/</url>
     <content><![CDATA[<h1 id="网页特殊符号是怎么打出来的"><a href="#网页特殊符号是怎么打出来的" class="headerlink" title="网页特殊符号是怎么打出来的"></a>网页特殊符号是怎么打出来的</h1><p>△△□●☆§№☆★○◎●○★◇○●◆△→■※→△↑→※↓＠＠＼＾＠＼＿</p>
@@ -142,16 +98,6 @@
 ]]></content>
       <tags>
         <tag>html css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vscode无法从工作区外粘贴复制</title>
-    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
-<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
-]]></content>
-      <tags>
-        <tag>vscode</tag>
       </tags>
   </entry>
   <entry>
@@ -219,6 +165,124 @@
 </li>
 </ol>
 <p><img src="/images/%E6%89%A3%E4%B8%81%E5%AD%A6%E5%A0%82/image-20210823093517339-16309327650927.png" alt="image-20210823093517339"></p>
+]]></content>
+      <tags>
+        <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode无法从工作区外粘贴复制</title>
+    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
+<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
+]]></content>
+      <tags>
+        <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>office部署工具officeToolsPlus</title>
+    <url>/2021/09/06/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/</url>
+    <content><![CDATA[<h1 id="office安装-OFFICE-Tool-Plus-（8-2-43）"><a href="#office安装-OFFICE-Tool-Plus-（8-2-43）" class="headerlink" title="office安装 OFFICE Tool Plus （8.2.43）"></a>office安装 OFFICE Tool Plus （8.2.43）</h1><ol>
+<li><p>移除本地office 工具箱–》修复工具<img src="/images/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/image-20210903090325118.png" alt="image-20210903090325118"></p>
+</li>
+<li><p>部署office 2019 企业长期班 –》部署–》产品</p>
+<p><img src="/images/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/image-20210903090814572.png" alt="image-20210903090814572"></p>
+</li>
+<li><p>激活</p>
+<p><img src="/images/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/image-20210903101928660.png" alt="image-20210903101928660"></p>
+<p>​    首先安装许可证，安装完之后选择kms激活</p>
+<p>​        <img src="/images/office%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7officeToolsPlus/image-20210903154827500.png" alt="image-20210903154827500"></p>
+</li>
+<li><p>officetoolplus：<a href="https://otp.landian.vip/zh-cn/">https://otp.landian.vip/zh-cn/</a><br>安装激活教程：<a href="https://www.ixigua.com/6822076425810477582?wid_try=1">https://www.ixigua.com/6822076425810477582?wid_try=1</a></p>
+</li>
+<li><h5 id="KMS服务器"><a href="#KMS服务器" class="headerlink" title="KMS服务器"></a>KMS服务器</h5><p>office激活：</p>
+<p>kms.03k.org</p>
+<p>kms.chinancce.com</p>
+<p>kms.lotro.cc</p>
+<p>cy2617.jios.org</p>
+<p>kms.shuax.com</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>好用的软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 hexo+typeora 图片上传问题</title>
+    <url>/2021/09/01/hexo-typora-image/</url>
+    <content><![CDATA[<ol>
+<li><p>Typeora： 文件–&gt; 偏好设置 –&gt; 图像</p>
+<p><img src="/images/hexo-typora-image/image-20210901225715645.png" alt="image-20210901225715645"></p>
+</li>
+<li><p>设置图片根目录：格式 –&gt;图像 –&gt;设置图片根目录为 source文件夹</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>麦田国际首页布局</title>
+    <url>/2021/09/05/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<ol>
+<li><h1 id="麦田国际网站布局"><a href="#麦田国际网站布局" class="headerlink" title="麦田国际网站布局"></a>麦田国际网站布局</h1><ol>
+<li><p>战略合作板块</p>
+<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210905094154085-16308112057051.png" alt="image-20210905094154085"></p>
+<p>由图片可以看出 图片外圈有一个1px的小边框 和 背景颜色不一样，写出处理方法？</p>
+<ul>
+<li>table表格写法， 用border-collapse + td&gt;border 来合并表格边框（这里解释一下为什么不用 border-spacing 使用border-spacing两张图片之间的边框在网页上是叠加的效果， 这种情况下颜色会比其他非叠加的边框颜色深， 不好看.用表格的话 要设置 所有 td中的img 为block 不然会出现 td 中 图片下面有一条小空白</li>
+<li>div盒子 分为两排  每一行有一个大盒子包裹着其中的小盒子，小盒子添加右边框，大盒子设置外边框</li>
+<li>ul&gt;li 的方式 li相当于div</li>
+</ul>
+</li>
+<li><p>成功案例 板块</p>
+<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210905095349043-16308112057052.png" alt="image-20210905095349043"></p>
+<p>这种布局图片上下左右之间的距离一样，用什么方法布局？</p>
+<ul>
+<li><p>table border-spacing 可以控制 单元格之间的 距离</p>
+<p>需要注意：模块整体 的左边会多出来一个空白， 这个空白的大小是 border-spacing 的大小 ， 这个时候 整个板块的位置是偏左的， 需要 设置 transform ：translate；向左移动一段距离，让整个模块处于局中的位置</p>
+</li>
+<li><p>div 设置float 和 margin 来控制整体的布局</p>
+<ul>
+<li>每个盒子 都有左右外边距，整体向左移动 一个左边距的距离</li>
+<li>每个盒子设置右边距，浮动的时候 设置父元素的整体宽度最小大于子元素的大小和右边距的距离之和</li>
+</ul>
+</li>
+<li><p>为甚么不推荐 inline-block 的方式设置 整体的布局， 首先行内快圆度的 对齐方式不同不好调，如果在html 中行内块元素写完的情况下， 敲回车会出现 一个小白边 这个白边的距离为基线和底线之间的距离。解决办法 需要把vertical-algn：middle/text-top/text-bottom 给到 img元素才能起到向下对齐的作用。</p>
+</li>
+</ul>
+</li>
+<li><p>新闻板块</p>
+<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210905101405445-16308112057093.png" alt="image-20210905101405445"></p>
+<p>每个新闻板块划分为一个大板块，其中 标题一行，新闻内容一行， 链接跳转按钮一行 ， 新闻内容板块 分为左右两块，分别设置左右浮动，新闻内容条目 设置超出部分内容为显示 省略号</p>
+<ol>
+<li><p>页脚 板块</p>
+<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210906120310552.png" alt="image-20210906120310552"></p>
+<p>页脚导航栏模块实现方法：</p>
+<ul>
+<li><p>ul+li 设置float  li中设置 p+span（span作为中间的分隔符），</p>
+<p>这样做有一个弊端 就是edge浏览器渲染出来的分隔符宽度不一样，但是下面的chrome浏览器渲染就没有问题，</p>
+<p>分隔符与文字之间的距离用 float来实现。</p>
+</li>
+</ul>
+<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210906120323719.png" alt="image-20210906120323719"></p>
+<ul>
+<li>分割符用边框宽度来实现 这种情况下 不需要单独调整 分隔符与文字的距离 （文字是居中显示的，和li的边框有一定的距离。</li>
+<li>分隔符用 | 符号来实现，文字和分割符之间的距离用  &amp;nbsp；来实现</li>
+</ul>
+<h4 id="关于导航栏中-有分隔符边框-li设置float-ul设置宽度为所有-li-border-的值的和-但是在浏览器缩放的时候会出现-有的li被挤下去的情况-这种情况是什么引起的-如何解决-li在没有边框的情况下-缩放浏览器就不会出现这种问题-愿因-没有边框-中体大小不会因为-border的改变而受到影响"><a href="#关于导航栏中-有分隔符边框-li设置float-ul设置宽度为所有-li-border-的值的和-但是在浏览器缩放的时候会出现-有的li被挤下去的情况-这种情况是什么引起的-如何解决-li在没有边框的情况下-缩放浏览器就不会出现这种问题-愿因-没有边框-中体大小不会因为-border的改变而受到影响" class="headerlink" title="关于导航栏中 有分隔符边框 li设置float; ul设置宽度为所有 li+border 的值的和, 但是在浏览器缩放的时候会出现 有的li被挤下去的情况, 这种情况是什么引起的?如何解决?(li在没有边框的情况下 缩放浏览器就不会出现这种问题 愿因:没有边框, 中体大小不会因为 border的改变而受到影响)"></a>关于导航栏中 有分隔符边框 li设置float; ul设置宽度为所有 li+border 的值的和, 但是在浏览器缩放的时候会出现 有的li被挤下去的情况, 这种情况是什么引起的?如何解决?(li在没有边框的情况下 缩放浏览器就不会出现这种问题 愿因:没有边框, 中体大小不会因为 border的改变而受到影响)</h4><ul>
+<li>ul中的li设置 box-sizing: border-box; 这种情况下, 内容+border高宽为 设置li的高宽不需要再次计算li的高宽</li>
+<li>ul设置的宽度大于 li 的宽度(具体多少因情况而定), 只有ul足够的宽才能 防止li被挤到下面的情况.</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* border-box设置盒子模型为 边框盒子模型 */</span><span class="comment">/* 给 li的块元素为盒子模型的情况能够保证 缩放的情况下 li不会被挤下去 </span></span><br><span class="line"><span class="comment">观察到的现象是缩放过程中 border 从1px变成了4px, 同时内容部分 和 border相加 仍然为 69px*/</span></span><br><span class="line"><span class="comment">/* width: 69px; */</span></span><br><span class="line"><span class="comment">/* box-sizing: border-box; */</span></span><br><span class="line"><span class="attribute">width</span>: <span class="number">68px</span>;</span><br><span class="line"><span class="attribute">height</span>: <span class="number">13px</span>;</span><br><span class="line"><span class="attribute">line-height</span>: <span class="number">11px</span>;</span><br><span class="line"><span class="attribute">border-right</span>: <span class="number">1px</span> solid <span class="number">#727272</span>;</span><br><span class="line"><span class="comment">/* content-box为标准盒子模型 是默认值, 这种情况下 在缩小页面的情况下 ul中的li会被挤下去, 我观察到的现象是 边框变宽了,从设置的1px变成了 4px 在这个过程中 内容部分大小 仍然为68px  之间有时候会变成67.9px  这样相当与盒子整体 从69px 变成了 72px 每个小li 宽了3px */</span></span><br><span class="line"><span class="attribute">box-sizing</span>: content-box;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
 ]]></content>
       <tags>
         <tag>html css</tag>
@@ -295,70 +359,6 @@
 ]]></content>
       <tags>
         <tag>快乐时光</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>麦田国际首页布局</title>
-    <url>/2021/09/05/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/</url>
-    <content><![CDATA[<ol>
-<li><h1 id="麦田国际网站布局"><a href="#麦田国际网站布局" class="headerlink" title="麦田国际网站布局"></a>麦田国际网站布局</h1><ol>
-<li><p>战略合作板块</p>
-<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210905094154085-16308112057051.png" alt="image-20210905094154085"></p>
-<p>由图片可以看出 图片外圈有一个1px的小边框 和 背景颜色不一样，写出处理方法？</p>
-<ul>
-<li>table表格写法， 用border-collapse + td&gt;border 来合并表格边框（这里解释一下为什么不用 border-spacing 使用border-spacing两张图片之间的边框在网页上是叠加的效果， 这种情况下颜色会比其他非叠加的边框颜色深， 不好看.用表格的话 要设置 所有 td中的img 为block 不然会出现 td 中 图片下面有一条小空白</li>
-<li>div盒子 分为两排  每一行有一个大盒子包裹着其中的小盒子，小盒子添加右边框，大盒子设置外边框</li>
-<li>ul&gt;li 的方式 li相当于div</li>
-</ul>
-</li>
-<li><p>成功案例 板块</p>
-<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210905095349043-16308112057052.png" alt="image-20210905095349043"></p>
-<p>这种布局图片上下左右之间的距离一样，用什么方法布局？</p>
-<ul>
-<li><p>table border-spacing 可以控制 单元格之间的 距离</p>
-<p>需要注意：模块整体 的左边会多出来一个空白， 这个空白的大小是 border-spacing 的大小 ， 这个时候 整个板块的位置是偏左的， 需要 设置 transform ：translate；向左移动一段距离，让整个模块处于局中的位置</p>
-</li>
-<li><p>div 设置float 和 margin 来控制整体的布局</p>
-<ul>
-<li>每个盒子 都有左右外边距，整体向左移动 一个左边距的距离</li>
-<li>每个盒子设置右边距，浮动的时候 设置父元素的整体宽度最小大于子元素的大小和右边距的距离之和</li>
-</ul>
-</li>
-<li><p>为甚么不推荐 inline-block 的方式设置 整体的布局， 首先行内快圆度的 对齐方式不同不好调，如果在html 中行内块元素写完的情况下， 敲回车会出现 一个小白边 这个白边的距离为基线和底线之间的距离。解决办法 需要把vertical-algn：middle/text-top/text-bottom 给到 img元素才能起到向下对齐的作用。</p>
-</li>
-</ul>
-</li>
-<li><p>新闻板块</p>
-<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210905101405445-16308112057093.png" alt="image-20210905101405445"></p>
-<p>每个新闻板块划分为一个大板块，其中 标题一行，新闻内容一行， 链接跳转按钮一行 ， 新闻内容板块 分为左右两块，分别设置左右浮动，新闻内容条目 设置超出部分内容为显示 省略号</p>
-<ol>
-<li><p>页脚 板块</p>
-<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210906120310552.png" alt="image-20210906120310552"></p>
-<p>页脚导航栏模块实现方法：</p>
-<ul>
-<li><p>ul+li 设置float  li中设置 p+span（span作为中间的分隔符），</p>
-<p>这样做有一个弊端 就是edge浏览器渲染出来的分隔符宽度不一样，但是下面的chrome浏览器渲染就没有问题，</p>
-<p>分隔符与文字之间的距离用 float来实现。</p>
-</li>
-</ul>
-<p><img src="/images/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/image-20210906120323719.png" alt="image-20210906120323719"></p>
-<ul>
-<li>分割符用边框宽度来实现 这种情况下 不需要单独调整 分隔符与文字的距离 （文字是居中显示的，和li的边框有一定的距离。</li>
-<li>分隔符用 | 符号来实现，文字和分割符之间的距离用  &amp;nbsp；来实现</li>
-</ul>
-<h4 id="关于导航栏中-有分隔符边框-li设置float-ul设置宽度为所有-li-border-的值的和-但是在浏览器缩放的时候会出现-有的li被挤下去的情况-这种情况是什么引起的-如何解决-li在没有边框的情况下-缩放浏览器就不会出现这种问题-愿因-没有边框-中体大小不会因为-border的改变而受到影响"><a href="#关于导航栏中-有分隔符边框-li设置float-ul设置宽度为所有-li-border-的值的和-但是在浏览器缩放的时候会出现-有的li被挤下去的情况-这种情况是什么引起的-如何解决-li在没有边框的情况下-缩放浏览器就不会出现这种问题-愿因-没有边框-中体大小不会因为-border的改变而受到影响" class="headerlink" title="关于导航栏中 有分隔符边框 li设置float; ul设置宽度为所有 li+border 的值的和, 但是在浏览器缩放的时候会出现 有的li被挤下去的情况, 这种情况是什么引起的?如何解决?(li在没有边框的情况下 缩放浏览器就不会出现这种问题 愿因:没有边框, 中体大小不会因为 border的改变而受到影响)"></a>关于导航栏中 有分隔符边框 li设置float; ul设置宽度为所有 li+border 的值的和, 但是在浏览器缩放的时候会出现 有的li被挤下去的情况, 这种情况是什么引起的?如何解决?(li在没有边框的情况下 缩放浏览器就不会出现这种问题 愿因:没有边框, 中体大小不会因为 border的改变而受到影响)</h4><ul>
-<li>ul中的li设置 box-sizing: border-box; 这种情况下, 内容+border高宽为 设置li的高宽不需要再次计算li的高宽</li>
-<li>ul设置的宽度大于 li 的宽度(具体多少因情况而定), 只有ul足够的宽才能 防止li被挤到下面的情况.</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* border-box设置盒子模型为 边框盒子模型 */</span><span class="comment">/* 给 li的块元素为盒子模型的情况能够保证 缩放的情况下 li不会被挤下去 </span></span><br><span class="line"><span class="comment">观察到的现象是缩放过程中 border 从1px变成了4px, 同时内容部分 和 border相加 仍然为 69px*/</span></span><br><span class="line"><span class="comment">/* width: 69px; */</span></span><br><span class="line"><span class="comment">/* box-sizing: border-box; */</span></span><br><span class="line"><span class="attribute">width</span>: <span class="number">68px</span>;</span><br><span class="line"><span class="attribute">height</span>: <span class="number">13px</span>;</span><br><span class="line"><span class="attribute">line-height</span>: <span class="number">11px</span>;</span><br><span class="line"><span class="attribute">border-right</span>: <span class="number">1px</span> solid <span class="number">#727272</span>;</span><br><span class="line"><span class="comment">/* content-box为标准盒子模型 是默认值, 这种情况下 在缩小页面的情况下 ul中的li会被挤下去, 我观察到的现象是 边框变宽了,从设置的1px变成了 4px 在这个过程中 内容部分大小 仍然为68px  之间有时候会变成67.9px  这样相当与盒子整体 从69px 变成了 72px 每个小li 宽了3px */</span></span><br><span class="line"><span class="attribute">box-sizing</span>: content-box;</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>html css</tag>
       </tags>
   </entry>
   <entry>
@@ -455,7 +455,7 @@
 <p>针对改图降低CDN图片缓存命中率的问题，我们根据业务的特点，提前合成不同波段的图片，并预热到CDN，保障了源站的安全。</p>
 <p>目前，淘宝上用户看到的图片，都是提前合成好的。未来，我们考虑在用户访问图片时，实时合成图片。通过这项技术，可以实时感知业务更多的实时信息，可以根据这些信息，在图片上合成当前用户或者环境更匹配的文案/元素等内容，给用户带来更多的惊喜。</p>
 <p>当然，实时合图也会面临更多的挑战，如：计算能力、合图性能。此外，对于CDN而言，由于每次用户访问的内容是临时合成的，CDN的缓存策略也是一个很大的挑战。</p>
-<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#122;&#x68;&#x61;&#111;&#x6d;&#x69;&#x6e;&#103;&#46;&#x79;&#x77;&#116;&#x40;&#116;&#x61;&#111;&#x62;&#97;&#111;&#46;&#99;&#111;&#x6d;">&#122;&#x68;&#x61;&#111;&#x6d;&#x69;&#x6e;&#103;&#46;&#x79;&#x77;&#116;&#x40;&#116;&#x61;&#111;&#x62;&#97;&#111;&#46;&#99;&#111;&#x6d;</a> </p>
+<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#122;&#104;&#97;&#111;&#109;&#105;&#x6e;&#x67;&#46;&#121;&#x77;&#116;&#64;&#116;&#x61;&#111;&#98;&#97;&#111;&#46;&#x63;&#111;&#109;">&#122;&#104;&#97;&#111;&#109;&#105;&#x6e;&#x67;&#46;&#121;&#x77;&#116;&#64;&#116;&#x61;&#111;&#98;&#97;&#111;&#46;&#x63;&#111;&#109;</a> </p>
 <p>——————————————————————————————————————</p>
 <p>阿里巴巴集团淘系技术部官方账号。淘系技术部是阿里巴巴新零售技术的王牌军，支撑淘宝、天猫核心电商以及淘宝直播、闲鱼、躺平、阿里汽车、阿里房产等创新业务，服务9亿用户，赋能各行业1000万商家。我们打造了全球领先的线上新零售技术平台，并作为核心技术团队保障了11次双十一购物狂欢节的成功。</p>
 <p>[点击此处关注我们，你将收获更多来自阿里一线工程师的技术实战技巧&amp;成长经历心得。另，不定期更新最新岗位招聘信息和简历内推通道，欢迎各位以最短路径加入我们。](</p>

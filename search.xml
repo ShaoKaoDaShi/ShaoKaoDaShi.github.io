@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Ps图片内容测量标注脚本</title>
+    <url>/2021/09/05/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<h1 id="Ps图片内容测量标注脚本"><a href="#Ps图片内容测量标注脚本" class="headerlink" title="Ps图片内容测量标注脚本"></a>Ps图片内容测量标注脚本</h1><ol>
+<li>把脚本SizeMarks.jsx复制到PS的安装目录：\PhotoShopCs6\Presets\Scripts(具体可以右键ps查看属性，找到ps的安装位置)<img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902163719799.png" alt="image-20210902163719799"></li>
+<li>修改字体大小，用记事本打开脚本文件，搜索【txtLayerItem.font=”ArialMT”,】在这条语句后加上【txtLayerItem.size=”12px”,】字体大小可以自己调整 每次修改后ctrl+s保存就可以了 不用重启ps</li>
+<li>设置SizeMarks快捷键：编辑–》快捷键设置–》应用程序菜单–》文件–》一直往下滑找到脚本SizeMarks设置快捷键</li>
+</ol>
+<h1 id="PhotoShopCs6在windows10打不开解决办法"><a href="#PhotoShopCs6在windows10打不开解决办法" class="headerlink" title="PhotoShopCs6在windows10打不开解决办法"></a>PhotoShopCs6在windows10打不开解决办法</h1><ol>
+<li>以管理员身份运行</li>
+<li>通过右键cs6快捷方式–》属性–》兼容性–》win8</li>
+</ol>
+<p><img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902165922802.png" alt="image-20210902165922802"></p>
+]]></content>
+      <tags>
+        <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>butterfly主题修改</title>
     <url>/2021/09/06/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/</url>
     <content><![CDATA[<h1 id="butterfly主题修改"><a href="#butterfly主题修改" class="headerlink" title="butterfly主题修改"></a>butterfly主题修改</h1><ol>
@@ -69,21 +87,18 @@
       </tags>
   </entry>
   <entry>
-    <title>Ps图片内容测量标注脚本</title>
-    <url>/2021/09/05/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/</url>
-    <content><![CDATA[<h1 id="Ps图片内容测量标注脚本"><a href="#Ps图片内容测量标注脚本" class="headerlink" title="Ps图片内容测量标注脚本"></a>Ps图片内容测量标注脚本</h1><ol>
-<li>把脚本SizeMarks.jsx复制到PS的安装目录：\PhotoShopCs6\Presets\Scripts(具体可以右键ps查看属性，找到ps的安装位置)<img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902163719799.png" alt="image-20210902163719799"></li>
-<li>修改字体大小，用记事本打开脚本文件，搜索【txtLayerItem.font=”ArialMT”,】在这条语句后加上【txtLayerItem.size=”12px”,】字体大小可以自己调整 每次修改后ctrl+s保存就可以了 不用重启ps</li>
-<li>设置SizeMarks快捷键：编辑–》快捷键设置–》应用程序菜单–》文件–》一直往下滑找到脚本SizeMarks设置快捷键</li>
+    <title>解决 hexo+typeora 图片上传问题</title>
+    <url>/2021/09/01/hexo-typora-image/</url>
+    <content><![CDATA[<ol>
+<li><p>Typeora： 文件–&gt; 偏好设置 –&gt; 图像</p>
+<p><img src="/images/hexo-typora-image/image-20210901225715645.png" alt="image-20210901225715645"></p>
+</li>
+<li><p>设置图片根目录：格式 –&gt;图像 –&gt;设置图片根目录为 source文件夹</p>
+</li>
 </ol>
-<h1 id="PhotoShopCs6在windows10打不开解决办法"><a href="#PhotoShopCs6在windows10打不开解决办法" class="headerlink" title="PhotoShopCs6在windows10打不开解决办法"></a>PhotoShopCs6在windows10打不开解决办法</h1><ol>
-<li>以管理员身份运行</li>
-<li>通过右键cs6快捷方式–》属性–》兼容性–》win8</li>
-</ol>
-<p><img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902165922802.png" alt="image-20210902165922802"></p>
 ]]></content>
       <tags>
-        <tag>html css</tag>
+        <tag>博客搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -113,50 +128,6 @@
 ]]></content>
       <tags>
         <tag>好用的软件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决 hexo+typeora 图片上传问题</title>
-    <url>/2021/09/01/hexo-typora-image/</url>
-    <content><![CDATA[<ol>
-<li><p>Typeora： 文件–&gt; 偏好设置 –&gt; 图像</p>
-<p><img src="/images/hexo-typora-image/image-20210901225715645.png" alt="image-20210901225715645"></p>
-</li>
-<li><p>设置图片根目录：格式 –&gt;图像 –&gt;设置图片根目录为 source文件夹</p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>preload</title>
-    <url>/2021/09/09/preload/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>vscode无法从工作区外粘贴复制</title>
-    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
-<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
-]]></content>
-      <tags>
-        <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>打出网页中的特殊符号</title>
-    <url>/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/</url>
-    <content><![CDATA[<h1 id="网页特殊符号是怎么打出来的"><a href="#网页特殊符号是怎么打出来的" class="headerlink" title="网页特殊符号是怎么打出来的"></a>网页特殊符号是怎么打出来的</h1><p>△△□●☆§№☆★○◎●○★◇○●◆△→■※→△↑→※↓＠＠＼＾＠＼＿</p>
-<p>用输入法的软键盘, 选择特殊符号选项, 用哪个特殊符号直接打出来就ok</p>
-<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906114900157.png" alt="image-20210906114900157"></p>
-<p>↗↗↗↗↗↑←↓↙↓→㊥㊨۞曱☋↕㈱∷▏㊨▕▕██☒♂☾▇✚☂⊙✄▅▄▇</p>
-<p>用软键盘选择表情符号需要哪个直接点击</p>
-<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906115124680.png" alt="image-20210906115124680"></p>
-]]></content>
-      <tags>
-        <tag>html css</tag>
       </tags>
   </entry>
   <entry>
@@ -212,6 +183,108 @@
 ]]></content>
       <tags>
         <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>preload</title>
+    <url>/2021/09/09/preload/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>vscode无法从工作区外粘贴复制</title>
+    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
+<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
+]]></content>
+      <tags>
+        <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>打出网页中的特殊符号</title>
+    <url>/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/</url>
+    <content><![CDATA[<h1 id="网页特殊符号是怎么打出来的"><a href="#网页特殊符号是怎么打出来的" class="headerlink" title="网页特殊符号是怎么打出来的"></a>网页特殊符号是怎么打出来的</h1><p>△△□●☆§№☆★○◎●○★◇○●◆△→■※→△↑→※↓＠＠＼＾＠＼＿</p>
+<p>用输入法的软键盘, 选择特殊符号选项, 用哪个特殊符号直接打出来就ok</p>
+<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906114900157.png" alt="image-20210906114900157"></p>
+<p>↗↗↗↗↗↑←↓↙↓→㊥㊨۞曱☋↕㈱∷▏㊨▕▕██☒♂☾▇✚☂⊙✄▅▄▇</p>
+<p>用软键盘选择表情符号需要哪个直接点击</p>
+<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906115124680.png" alt="image-20210906115124680"></p>
+]]></content>
+      <tags>
+        <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>福星考试</title>
+    <url>/2021/09/04/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/</url>
+    <content><![CDATA[<h3 id="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"><a href="#全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！" class="headerlink" title="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"></a>全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！</h3><p> 今天通过福星的考试从新复习了一下sql语句同时完成考试，福星中午在食堂请我吃了一顿饭，我选的包子蘸料是醋和辣椒。</p>
+<p><img src="/images/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/d8f9d72a6059252d06aaf4b9a02c0c325ab5b90b-16307279093382.jpeg" alt="img"></p>
+<p>顺便记录一下今天图片上传没有显示， typeora图片根目录设置到source目录就可以了</p>
+]]></content>
+      <tags>
+        <tag>快乐时光</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网页加载速度优化</title>
+    <url>/2021/09/06/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h3 id="网页加载速度优化–图像加载："><a href="#网页加载速度优化–图像加载：" class="headerlink" title="网页加载速度优化–图像加载："></a>网页加载速度优化–图像加载：</h3><ol>
+<li><p>关于 通过 git + hexo 上传文件的问题， 每次改完主题，以本地服务器的显示为主 ， 向github 上传文本文件 github加载速度很快， 但是上传 图片需要等个10分钟左右才能加载出来，查看了一下文件大小，图片大小640*640 jpg文件小大概在 :20-80k， png文件图片大，大概在 300k-800k</p>
+</li>
+<li><p>网页加载速度取决于页面中元素内容的总大小， 一个文件html， 文件中加入了 大量的图片， 那么这些图片就会影响网页的加载速度， 所以尽量在保证质量的情况下， 减小图片的文件大小，jpg 格式的图片就比较合适，同时要考虑到 图片在网页上能够显示的最大面积， 从而合理优化图片的大小，让网页速度加载更加快速</p>
+</li>
+<li><p>关于html img中src=“ 网络图片地址/本地图片地址” 用户访问的时候有什么区别：</p>
+<ol>
+<li><p>网页中图片加载速度和什么有关：</p>
+<ol>
+<li>本机带宽的速度</li>
+<li>服务器带宽的速度</li>
+<li>图片大小</li>
+</ol>
+</li>
+<li><p>一张图片png 大小为1M，我有一台服务器 带宽为1M ，客户机带宽2M，同时我把图片存在百度图库中，百度图库服务器带宽100M，用两种 src用两种方式来加载， 一种时相对路径（服务器上)， 一种超链接的方式（图片在百度图库服务器中）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;http://baidu.com/hello.png&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这种情况下服务器 只需要加载 几个字节的问题，图片具体由百度图库服务器来传输</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;/img/hello.png&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>图片完全由自己的服务器传输， 如果自己的服务器带宽太小的话，整个网页的加载的速度就会变得很慢，文字可以先加载出来，但是图片要响应很长时间</p>
+</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="bit，byte，位，字节，汉字的关系："><a href="#bit，byte，位，字节，汉字的关系：" class="headerlink" title="bit，byte，位，字节，汉字的关系："></a>bit，byte，位，字节，汉字的关系：</h3><ol>
+<li>字节(Byte)：通常将可表示常用英文字符8位二进制称为一字节。<ul>
+<li>一个英文字母(不分大小写)占一个字节的空间</li>
+<li>一个中文汉字占两个字节的空间</li>
+<li>英文标点占一个字节</li>
+<li>中文标点占两个字节</li>
+</ul>
+</li>
+<li>位/比特(bit)：<ul>
+<li>二进制数系统中，每个0或1就是一个位(bit)，位是数据存储的最小单位。</li>
+<li>计算机中的CPU位数指的是CPU一次能处理的最大位数, 例如32位计算机的CPU一次最多能处理32位数据。</li>
+</ul>
+</li>
+<li>单位的换算为：<ul>
+<li>1TB = 1024GB</li>
+<li>1GB = 1024MB</li>
+<li>1MB = 1024KB</li>
+<li>1Byte = bit</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="图片大小计算方法："><a href="#图片大小计算方法：" class="headerlink" title="图片大小计算方法："></a>图片大小计算方法：</h3><ol>
+<li>假如手机分辨率是1920×1080，即有这么多个像素点，每个像素点采用RGB（三原色）三个数值记录该点颜色，三个数值大小范围涉及另一个概念色深。</li>
+<li>以24位色深为例，即RGB的每一个值用8位二进制数表示（8×3=24），即每一种颜色的范围为0～2的8次方。所以每一个像素点存储时要占24位，也就是3字节（8位1字节），所以</li>
+<li>图片理论上的存储大小就是图片的像素点数乘以每个像素点的所占存储空间</li>
+<li>不过实际图片用不了这么大存储空间，，因为各种格式的图片还涉及一个关键技术压缩，不同的压缩技术也就导致压缩后图片的存储大小不同。举个不太恰当的例子，用坐标表示每个像素位置，假如像素点（1，2）的颜色值是（12，13，14），像素点（1，3）的颜色值也是（12，13，14），存储的时候就只需要存储一组颜色值，另一个点的颜色值就“同上”，这样就节省了存储空间，压缩就是类似于这样的处理。肉眼观察你所截的图，也能很明显感觉到，画面越丰富，色彩越多，占空间就大，画面越单调，色彩越小，占空间就少。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>网站搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -282,79 +355,6 @@
 ]]></content>
       <tags>
         <tag>html css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网页加载速度优化</title>
-    <url>/2021/09/06/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h3 id="网页加载速度优化–图像加载："><a href="#网页加载速度优化–图像加载：" class="headerlink" title="网页加载速度优化–图像加载："></a>网页加载速度优化–图像加载：</h3><ol>
-<li><p>关于 通过 git + hexo 上传文件的问题， 每次改完主题，以本地服务器的显示为主 ， 向github 上传文本文件 github加载速度很快， 但是上传 图片需要等个10分钟左右才能加载出来，查看了一下文件大小，图片大小640*640 jpg文件小大概在 :20-80k， png文件图片大，大概在 300k-800k</p>
-</li>
-<li><p>网页加载速度取决于页面中元素内容的总大小， 一个文件html， 文件中加入了 大量的图片， 那么这些图片就会影响网页的加载速度， 所以尽量在保证质量的情况下， 减小图片的文件大小，jpg 格式的图片就比较合适，同时要考虑到 图片在网页上能够显示的最大面积， 从而合理优化图片的大小，让网页速度加载更加快速</p>
-</li>
-<li><p>关于html img中src=“ 网络图片地址/本地图片地址” 用户访问的时候有什么区别：</p>
-<ol>
-<li><p>网页中图片加载速度和什么有关：</p>
-<ol>
-<li>本机带宽的速度</li>
-<li>服务器带宽的速度</li>
-<li>图片大小</li>
-</ol>
-</li>
-<li><p>一张图片png 大小为1M，我有一台服务器 带宽为1M ，客户机带宽2M，同时我把图片存在百度图库中，百度图库服务器带宽100M，用两种 src用两种方式来加载， 一种时相对路径（服务器上)， 一种超链接的方式（图片在百度图库服务器中）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;http://baidu.com/hello.png&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这种情况下服务器 只需要加载 几个字节的问题，图片具体由百度图库服务器来传输</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;/img/hello.png&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>图片完全由自己的服务器传输， 如果自己的服务器带宽太小的话，整个网页的加载的速度就会变得很慢，文字可以先加载出来，但是图片要响应很长时间</p>
-</li>
-</ol>
-</li>
-</ol>
-<hr>
-<h3 id="bit，byte，位，字节，汉字的关系："><a href="#bit，byte，位，字节，汉字的关系：" class="headerlink" title="bit，byte，位，字节，汉字的关系："></a>bit，byte，位，字节，汉字的关系：</h3><ol>
-<li>字节(Byte)：通常将可表示常用英文字符8位二进制称为一字节。<ul>
-<li>一个英文字母(不分大小写)占一个字节的空间</li>
-<li>一个中文汉字占两个字节的空间</li>
-<li>英文标点占一个字节</li>
-<li>中文标点占两个字节</li>
-</ul>
-</li>
-<li>位/比特(bit)：<ul>
-<li>二进制数系统中，每个0或1就是一个位(bit)，位是数据存储的最小单位。</li>
-<li>计算机中的CPU位数指的是CPU一次能处理的最大位数, 例如32位计算机的CPU一次最多能处理32位数据。</li>
-</ul>
-</li>
-<li>单位的换算为：<ul>
-<li>1TB = 1024GB</li>
-<li>1GB = 1024MB</li>
-<li>1MB = 1024KB</li>
-<li>1Byte = bit</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="图片大小计算方法："><a href="#图片大小计算方法：" class="headerlink" title="图片大小计算方法："></a>图片大小计算方法：</h3><ol>
-<li>假如手机分辨率是1920×1080，即有这么多个像素点，每个像素点采用RGB（三原色）三个数值记录该点颜色，三个数值大小范围涉及另一个概念色深。</li>
-<li>以24位色深为例，即RGB的每一个值用8位二进制数表示（8×3=24），即每一种颜色的范围为0～2的8次方。所以每一个像素点存储时要占24位，也就是3字节（8位1字节），所以</li>
-<li>图片理论上的存储大小就是图片的像素点数乘以每个像素点的所占存储空间</li>
-<li>不过实际图片用不了这么大存储空间，，因为各种格式的图片还涉及一个关键技术压缩，不同的压缩技术也就导致压缩后图片的存储大小不同。举个不太恰当的例子，用坐标表示每个像素位置，假如像素点（1，2）的颜色值是（12，13，14），像素点（1，3）的颜色值也是（12，13，14），存储的时候就只需要存储一组颜色值，另一个点的颜色值就“同上”，这样就节省了存储空间，压缩就是类似于这样的处理。肉眼观察你所截的图，也能很明显感觉到，画面越丰富，色彩越多，占空间就大，画面越单调，色彩越小，占空间就少。</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>网站搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>福星考试</title>
-    <url>/2021/09/04/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/</url>
-    <content><![CDATA[<h3 id="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"><a href="#全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！" class="headerlink" title="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"></a>全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！</h3><p> 今天通过福星的考试从新复习了一下sql语句同时完成考试，福星中午在食堂请我吃了一顿饭，我选的包子蘸料是醋和辣椒。</p>
-<p><img src="/images/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/d8f9d72a6059252d06aaf4b9a02c0c325ab5b90b-16307279093382.jpeg" alt="img"></p>
-<p>顺便记录一下今天图片上传没有显示， typeora图片根目录设置到source目录就可以了</p>
-]]></content>
-      <tags>
-        <tag>快乐时光</tag>
       </tags>
   </entry>
   <entry>
@@ -515,7 +515,7 @@
 <p>针对改图降低CDN图片缓存命中率的问题，我们根据业务的特点，提前合成不同波段的图片，并预热到CDN，保障了源站的安全。</p>
 <p>目前，淘宝上用户看到的图片，都是提前合成好的。未来，我们考虑在用户访问图片时，实时合成图片。通过这项技术，可以实时感知业务更多的实时信息，可以根据这些信息，在图片上合成当前用户或者环境更匹配的文案/元素等内容，给用户带来更多的惊喜。</p>
 <p>当然，实时合图也会面临更多的挑战，如：计算能力、合图性能。此外，对于CDN而言，由于每次用户访问的内容是临时合成的，CDN的缓存策略也是一个很大的挑战。</p>
-<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#122;&#x68;&#x61;&#x6f;&#x6d;&#105;&#110;&#103;&#x2e;&#121;&#x77;&#x74;&#64;&#x74;&#97;&#x6f;&#x62;&#97;&#111;&#46;&#99;&#111;&#x6d;">&#122;&#x68;&#x61;&#x6f;&#x6d;&#105;&#110;&#103;&#x2e;&#121;&#x77;&#x74;&#64;&#x74;&#97;&#x6f;&#x62;&#97;&#111;&#46;&#99;&#111;&#x6d;</a> </p>
+<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#x7a;&#104;&#97;&#x6f;&#109;&#x69;&#x6e;&#103;&#x2e;&#121;&#x77;&#116;&#x40;&#116;&#x61;&#111;&#x62;&#97;&#111;&#x2e;&#99;&#111;&#109;">&#x7a;&#104;&#97;&#x6f;&#109;&#x69;&#x6e;&#103;&#x2e;&#121;&#x77;&#116;&#x40;&#116;&#x61;&#111;&#x62;&#97;&#111;&#x2e;&#99;&#111;&#109;</a> </p>
 <p>——————————————————————————————————————</p>
 <p>阿里巴巴集团淘系技术部官方账号。淘系技术部是阿里巴巴新零售技术的王牌军，支撑淘宝、天猫核心电商以及淘宝直播、闲鱼、躺平、阿里汽车、阿里房产等创新业务，服务9亿用户，赋能各行业1000万商家。我们打造了全球领先的线上新零售技术平台，并作为核心技术团队保障了11次双十一购物狂欢节的成功。</p>
 <p>[点击此处关注我们，你将收获更多来自阿里一线工程师的技术实战技巧&amp;成长经历心得。另，不定期更新最新岗位招聘信息和简历内推通道，欢迎各位以最短路径加入我们。](</p>

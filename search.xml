@@ -146,13 +146,60 @@
       </tags>
   </entry>
   <entry>
-    <title>vscode无法从工作区外粘贴复制</title>
-    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
-<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
+    <title>preload</title>
+    <url>/2021/09/09/preload/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>windows10任务栏搜索框不能用解决办法</title>
+    <url>/2021/09/11/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="Win10系统任务栏搜索框无法使用怎么办"><a href="#Win10系统任务栏搜索框无法使用怎么办" class="headerlink" title="Win10系统任务栏搜索框无法使用怎么办?"></a>Win10系统任务栏搜索框无法使用怎么办?</h1><p>在使用win10系统的时候，我们可以通过任务栏的搜索框，来进行电脑文件以及设置的搜索，十分的实用。</p>
+<p>但是，有部分朋友升级win10系统之后，发现搜索框呈现灰色，根本无法使用，不知道如何解决。</p>
+<p>下面就来看一下Win10系统搜索框无法使用的解决方法!</p>
+<p>1、按Win+R键调出运行，输入regedit后按回车键进入注册表编辑器;</p>
+<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/865317528121486a89021c6b894ca6e1.png" alt="img"></p>
+<p>2、定位到：</p>
+<p>【HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes{ef87b4cb-f2ce-4785-8658-4ca6c63e38c6}\TopViews{00000000-0000-0000-0000-000000000000}】</p>
+<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/5fd4f96bc5164dd494a244e4107da3b8.png" alt="img"></p>
+<p>3、在{00000000-0000-0000-0000-000000000000}上单击右键，选择“删除”;</p>
+<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/0e794e052dcb48739bd5fb8b369e2356.png" alt="img"></p>
+<p>4、注意：64位系统还要定位到如下位置，并删除{00000000-0000-0000-0000-000000000000}，删除之后重启电脑问题就会解决。</p>
+<p>【HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes{ef87b4cb-f2ce-4785-8658-4ca6c63e38c6}\TopViews{00000000-0000-0000-0000-000000000000}】</p>
+<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/8b9d398857d84caeb53709fc260b9ef0.png" alt="img"></p>
+<p>转载自:<a href="https://www.sohu.com/a/359572355_120441352">Win10系统任务栏搜索框无法使用怎么办?_win (sohu.com)</a></p>
 ]]></content>
       <tags>
-        <tag>vscode</tag>
+        <tag>windows系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>打出网页中的特殊符号</title>
+    <url>/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/</url>
+    <content><![CDATA[<h1 id="网页特殊符号是怎么打出来的"><a href="#网页特殊符号是怎么打出来的" class="headerlink" title="网页特殊符号是怎么打出来的"></a>网页特殊符号是怎么打出来的</h1><p>△△□●☆§№☆★○◎●○★◇○●◆△→■※→△↑→※↓＠＠＼＾＠＼＿</p>
+<p>用输入法的软键盘, 选择特殊符号选项, 用哪个特殊符号直接打出来就ok</p>
+<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906114900157.png" alt="image-20210906114900157"></p>
+<p>↗↗↗↗↗↑←↓↙↓→㊥㊨۞曱☋↕㈱∷▏㊨▕▕██☒♂☾▇✚☂⊙✄▅▄▇</p>
+<p>用软键盘选择表情符号需要哪个直接点击</p>
+<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906115124680.png" alt="image-20210906115124680"></p>
+]]></content>
+      <tags>
+        <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有道词典如何更便捷的使用</title>
+    <url>/2021/09/11/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8%E5%A6%82%E4%BD%95%E6%9B%B4%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h3 id="有道词典"><a href="#有道词典" class="headerlink" title="有道词典"></a>有道词典</h3><h4 id="使用过程中的小心得"><a href="#使用过程中的小心得" class="headerlink" title="使用过程中的小心得:"></a>使用过程中的小心得:</h4><ol>
+<li>开启划词,在网页上总是会不小心点到, 翻译速度慢</li>
+<li>每次点击有道词典 有点麻烦</li>
+</ol>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法:"></a>解决办法:</h4><ol>
+<li>开启mini模式, 固定在屏幕上, 关闭划词, 需要的时候直接搜索</li>
+</ol>
+<p><img src="/images/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8%E5%A6%82%E4%BD%95%E6%9B%B4%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8/image-20210911091928929.png" alt="image-20210911091928929"></p>
+]]></content>
+      <tags>
+        <tag>好用的软件</tag>
       </tags>
   </entry>
   <entry>
@@ -205,47 +252,6 @@
 <li><code>preload=&quot;auto&quot;</code>: not really commended unless really have to.</li>
 <li><code>preload=&quot;none&quot;</code>: fastest, but most work to make it look good.</li>
 </ul>
-]]></content>
-      <tags>
-        <tag>html css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>preload</title>
-    <url>/2021/09/09/preload/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>windows10任务栏搜索框不能用解决办法</title>
-    <url>/2021/09/11/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="Win10系统任务栏搜索框无法使用怎么办"><a href="#Win10系统任务栏搜索框无法使用怎么办" class="headerlink" title="Win10系统任务栏搜索框无法使用怎么办?"></a>Win10系统任务栏搜索框无法使用怎么办?</h1><p>在使用win10系统的时候，我们可以通过任务栏的搜索框，来进行电脑文件以及设置的搜索，十分的实用。</p>
-<p>但是，有部分朋友升级win10系统之后，发现搜索框呈现灰色，根本无法使用，不知道如何解决。</p>
-<p>下面就来看一下Win10系统搜索框无法使用的解决方法!</p>
-<p>1、按Win+R键调出运行，输入regedit后按回车键进入注册表编辑器;</p>
-<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/865317528121486a89021c6b894ca6e1.png" alt="img"></p>
-<p>2、定位到：</p>
-<p>【HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes{ef87b4cb-f2ce-4785-8658-4ca6c63e38c6}\TopViews{00000000-0000-0000-0000-000000000000}】</p>
-<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/5fd4f96bc5164dd494a244e4107da3b8.png" alt="img"></p>
-<p>3、在{00000000-0000-0000-0000-000000000000}上单击右键，选择“删除”;</p>
-<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/0e794e052dcb48739bd5fb8b369e2356.png" alt="img"></p>
-<p>4、注意：64位系统还要定位到如下位置，并删除{00000000-0000-0000-0000-000000000000}，删除之后重启电脑问题就会解决。</p>
-<p>【HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes{ef87b4cb-f2ce-4785-8658-4ca6c63e38c6}\TopViews{00000000-0000-0000-0000-000000000000}】</p>
-<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/8b9d398857d84caeb53709fc260b9ef0.png" alt="img"></p>
-<p>转载自:<a href="https://www.sohu.com/a/359572355_120441352">Win10系统任务栏搜索框无法使用怎么办?_win (sohu.com)</a></p>
-]]></content>
-      <tags>
-        <tag>windows系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>打出网页中的特殊符号</title>
-    <url>/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/</url>
-    <content><![CDATA[<h1 id="网页特殊符号是怎么打出来的"><a href="#网页特殊符号是怎么打出来的" class="headerlink" title="网页特殊符号是怎么打出来的"></a>网页特殊符号是怎么打出来的</h1><p>△△□●☆§№☆★○◎●○★◇○●◆△→■※→△↑→※↓＠＠＼＾＠＼＿</p>
-<p>用输入法的软键盘, 选择特殊符号选项, 用哪个特殊符号直接打出来就ok</p>
-<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906114900157.png" alt="image-20210906114900157"></p>
-<p>↗↗↗↗↗↑←↓↙↓→㊥㊨۞曱☋↕㈱∷▏㊨▕▕██☒♂☾▇✚☂⊙✄▅▄▇</p>
-<p>用软键盘选择表情符号需要哪个直接点击</p>
-<p><img src="/images/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/image-20210906115124680.png" alt="image-20210906115124680"></p>
 ]]></content>
       <tags>
         <tag>html css</tag>
@@ -322,22 +328,6 @@
       </tags>
   </entry>
   <entry>
-    <title>有道词典如何更便捷的使用</title>
-    <url>/2021/09/11/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8%E5%A6%82%E4%BD%95%E6%9B%B4%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h3 id="有道词典"><a href="#有道词典" class="headerlink" title="有道词典"></a>有道词典</h3><h4 id="使用过程中的小心得"><a href="#使用过程中的小心得" class="headerlink" title="使用过程中的小心得:"></a>使用过程中的小心得:</h4><ol>
-<li>开启划词,在网页上总是会不小心点到, 翻译速度慢</li>
-<li>每次点击有道词典 有点麻烦</li>
-</ol>
-<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法:"></a>解决办法:</h4><ol>
-<li>开启mini模式, 固定在屏幕上, 关闭划词, 需要的时候直接搜索</li>
-</ol>
-<p><img src="/images/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8%E5%A6%82%E4%BD%95%E6%9B%B4%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8/image-20210911091928929.png" alt="image-20210911091928929"></p>
-]]></content>
-      <tags>
-        <tag>好用的软件</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>福星考试</title>
     <url>/2021/09/04/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/</url>
     <content><![CDATA[<h3 id="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"><a href="#全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！" class="headerlink" title="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"></a>全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！</h3><p> 今天通过福星的考试从新复习了一下sql语句同时完成考试，福星中午在食堂请我吃了一顿饭，我选的包子蘸料是醋和辣椒。</p>
@@ -346,68 +336,6 @@
 ]]></content>
       <tags>
         <tag>快乐时光</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网页加载速度优化</title>
-    <url>/2021/09/06/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h3 id="网页加载速度优化–图像加载："><a href="#网页加载速度优化–图像加载：" class="headerlink" title="网页加载速度优化–图像加载："></a>网页加载速度优化–图像加载：</h3><ol>
-<li><p>关于 通过 git + hexo 上传文件的问题， 每次改完主题，以本地服务器的显示为主 ， 向github 上传文本文件 github加载速度很快， 但是上传 图片需要等个10分钟左右才能加载出来，查看了一下文件大小，图片大小640*640 jpg文件小大概在 :20-80k， png文件图片大，大概在 300k-800k</p>
-</li>
-<li><p>网页加载速度取决于页面中元素内容的总大小， 一个文件html， 文件中加入了 大量的图片， 那么这些图片就会影响网页的加载速度， 所以尽量在保证质量的情况下， 减小图片的文件大小，jpg 格式的图片就比较合适，同时要考虑到 图片在网页上能够显示的最大面积， 从而合理优化图片的大小，让网页速度加载更加快速</p>
-</li>
-<li><p>关于html img中src=“ 网络图片地址/本地图片地址” 用户访问的时候有什么区别：</p>
-<ol>
-<li><p>网页中图片加载速度和什么有关：</p>
-<ol>
-<li>本机带宽的速度</li>
-<li>服务器带宽的速度</li>
-<li>图片大小</li>
-</ol>
-</li>
-<li><p>一张图片png 大小为1M，我有一台服务器 带宽为1M ，客户机带宽2M，同时我把图片存在百度图库中，百度图库服务器带宽100M，用两种 src用两种方式来加载， 一种时相对路径（服务器上)， 一种超链接的方式（图片在百度图库服务器中）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;http://baidu.com/hello.png&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这种情况下服务器 只需要加载 几个字节的问题，图片具体由百度图库服务器来传输</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;/img/hello.png&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>图片完全由自己的服务器传输， 如果自己的服务器带宽太小的话，整个网页的加载的速度就会变得很慢，文字可以先加载出来，但是图片要响应很长时间</p>
-</li>
-</ol>
-</li>
-</ol>
-<hr>
-<h3 id="bit，byte，位，字节，汉字的关系："><a href="#bit，byte，位，字节，汉字的关系：" class="headerlink" title="bit，byte，位，字节，汉字的关系："></a>bit，byte，位，字节，汉字的关系：</h3><ol>
-<li>字节(Byte)：通常将可表示常用英文字符8位二进制称为一字节。<ul>
-<li>一个英文字母(不分大小写)占一个字节的空间</li>
-<li>一个中文汉字占两个字节的空间</li>
-<li>英文标点占一个字节</li>
-<li>中文标点占两个字节</li>
-</ul>
-</li>
-<li>位/比特(bit)：<ul>
-<li>二进制数系统中，每个0或1就是一个位(bit)，位是数据存储的最小单位。</li>
-<li>计算机中的CPU位数指的是CPU一次能处理的最大位数, 例如32位计算机的CPU一次最多能处理32位数据。</li>
-</ul>
-</li>
-<li>单位的换算为：<ul>
-<li>1TB = 1024GB</li>
-<li>1GB = 1024MB</li>
-<li>1MB = 1024KB</li>
-<li>1Byte = bit</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="图片大小计算方法："><a href="#图片大小计算方法：" class="headerlink" title="图片大小计算方法："></a>图片大小计算方法：</h3><ol>
-<li>假如手机分辨率是1920×1080，即有这么多个像素点，每个像素点采用RGB（三原色）三个数值记录该点颜色，三个数值大小范围涉及另一个概念色深。</li>
-<li>以24位色深为例，即RGB的每一个值用8位二进制数表示（8×3=24），即每一种颜色的范围为0～2的8次方。所以每一个像素点存储时要占24位，也就是3字节（8位1字节），所以</li>
-<li>图片理论上的存储大小就是图片的像素点数乘以每个像素点的所占存储空间</li>
-<li>不过实际图片用不了这么大存储空间，，因为各种格式的图片还涉及一个关键技术压缩，不同的压缩技术也就导致压缩后图片的存储大小不同。举个不太恰当的例子，用坐标表示每个像素位置，假如像素点（1，2）的颜色值是（12，13，14），像素点（1，3）的颜色值也是（12，13，14），存储的时候就只需要存储一组颜色值，另一个点的颜色值就“同上”，这样就节省了存储空间，压缩就是类似于这样的处理。肉眼观察你所截的图，也能很明显感觉到，画面越丰富，色彩越多，占空间就大，画面越单调，色彩越小，占空间就少。</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>网站搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -472,6 +400,78 @@
 ]]></content>
       <tags>
         <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode无法从工作区外粘贴复制</title>
+    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
+<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
+]]></content>
+      <tags>
+        <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网页加载速度优化</title>
+    <url>/2021/09/06/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h3 id="网页加载速度优化–图像加载："><a href="#网页加载速度优化–图像加载：" class="headerlink" title="网页加载速度优化–图像加载："></a>网页加载速度优化–图像加载：</h3><ol>
+<li><p>关于 通过 git + hexo 上传文件的问题， 每次改完主题，以本地服务器的显示为主 ， 向github 上传文本文件 github加载速度很快， 但是上传 图片需要等个10分钟左右才能加载出来，查看了一下文件大小，图片大小640*640 jpg文件小大概在 :20-80k， png文件图片大，大概在 300k-800k</p>
+</li>
+<li><p>网页加载速度取决于页面中元素内容的总大小， 一个文件html， 文件中加入了 大量的图片， 那么这些图片就会影响网页的加载速度， 所以尽量在保证质量的情况下， 减小图片的文件大小，jpg 格式的图片就比较合适，同时要考虑到 图片在网页上能够显示的最大面积， 从而合理优化图片的大小，让网页速度加载更加快速</p>
+</li>
+<li><p>关于html img中src=“ 网络图片地址/本地图片地址” 用户访问的时候有什么区别：</p>
+<ol>
+<li><p>网页中图片加载速度和什么有关：</p>
+<ol>
+<li>本机带宽的速度</li>
+<li>服务器带宽的速度</li>
+<li>图片大小</li>
+</ol>
+</li>
+<li><p>一张图片png 大小为1M，我有一台服务器 带宽为1M ，客户机带宽2M，同时我把图片存在百度图库中，百度图库服务器带宽100M，用两种 src用两种方式来加载， 一种时相对路径（服务器上)， 一种超链接的方式（图片在百度图库服务器中）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;http://baidu.com/hello.png&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这种情况下服务器 只需要加载 几个字节的问题，图片具体由百度图库服务器来传输</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;/img/hello.png&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>图片完全由自己的服务器传输， 如果自己的服务器带宽太小的话，整个网页的加载的速度就会变得很慢，文字可以先加载出来，但是图片要响应很长时间</p>
+</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="bit，byte，位，字节，汉字的关系："><a href="#bit，byte，位，字节，汉字的关系：" class="headerlink" title="bit，byte，位，字节，汉字的关系："></a>bit，byte，位，字节，汉字的关系：</h3><ol>
+<li>字节(Byte)：通常将可表示常用英文字符8位二进制称为一字节。<ul>
+<li>一个英文字母(不分大小写)占一个字节的空间</li>
+<li>一个中文汉字占两个字节的空间</li>
+<li>英文标点占一个字节</li>
+<li>中文标点占两个字节</li>
+</ul>
+</li>
+<li>位/比特(bit)：<ul>
+<li>二进制数系统中，每个0或1就是一个位(bit)，位是数据存储的最小单位。</li>
+<li>计算机中的CPU位数指的是CPU一次能处理的最大位数, 例如32位计算机的CPU一次最多能处理32位数据。</li>
+</ul>
+</li>
+<li>单位的换算为：<ul>
+<li>1TB = 1024GB</li>
+<li>1GB = 1024MB</li>
+<li>1MB = 1024KB</li>
+<li>1Byte = bit</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="图片大小计算方法："><a href="#图片大小计算方法：" class="headerlink" title="图片大小计算方法："></a>图片大小计算方法：</h3><ol>
+<li>假如手机分辨率是1920×1080，即有这么多个像素点，每个像素点采用RGB（三原色）三个数值记录该点颜色，三个数值大小范围涉及另一个概念色深。</li>
+<li>以24位色深为例，即RGB的每一个值用8位二进制数表示（8×3=24），即每一种颜色的范围为0～2的8次方。所以每一个像素点存储时要占24位，也就是3字节（8位1字节），所以</li>
+<li>图片理论上的存储大小就是图片的像素点数乘以每个像素点的所占存储空间</li>
+<li>不过实际图片用不了这么大存储空间，，因为各种格式的图片还涉及一个关键技术压缩，不同的压缩技术也就导致压缩后图片的存储大小不同。举个不太恰当的例子，用坐标表示每个像素位置，假如像素点（1，2）的颜色值是（12，13，14），像素点（1，3）的颜色值也是（12，13，14），存储的时候就只需要存储一组颜色值，另一个点的颜色值就“同上”，这样就节省了存储空间，压缩就是类似于这样的处理。肉眼观察你所截的图，也能很明显感觉到，画面越丰富，色彩越多，占空间就大，画面越单调，色彩越小，占空间就少。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>网站搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -568,7 +568,7 @@
 <p>针对改图降低CDN图片缓存命中率的问题，我们根据业务的特点，提前合成不同波段的图片，并预热到CDN，保障了源站的安全。</p>
 <p>目前，淘宝上用户看到的图片，都是提前合成好的。未来，我们考虑在用户访问图片时，实时合成图片。通过这项技术，可以实时感知业务更多的实时信息，可以根据这些信息，在图片上合成当前用户或者环境更匹配的文案/元素等内容，给用户带来更多的惊喜。</p>
 <p>当然，实时合图也会面临更多的挑战，如：计算能力、合图性能。此外，对于CDN而言，由于每次用户访问的内容是临时合成的，CDN的缓存策略也是一个很大的挑战。</p>
-<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#x7a;&#x68;&#x61;&#x6f;&#109;&#x69;&#110;&#103;&#46;&#x79;&#x77;&#x74;&#x40;&#x74;&#97;&#x6f;&#x62;&#x61;&#111;&#x2e;&#99;&#111;&#109;">&#x7a;&#x68;&#x61;&#x6f;&#109;&#x69;&#110;&#103;&#46;&#x79;&#x77;&#x74;&#x40;&#x74;&#97;&#x6f;&#x62;&#x61;&#111;&#x2e;&#99;&#111;&#109;</a> </p>
+<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#122;&#104;&#x61;&#x6f;&#109;&#105;&#x6e;&#x67;&#46;&#121;&#x77;&#x74;&#x40;&#x74;&#x61;&#x6f;&#98;&#x61;&#111;&#x2e;&#99;&#x6f;&#109;">&#122;&#104;&#x61;&#x6f;&#109;&#105;&#x6e;&#x67;&#46;&#121;&#x77;&#x74;&#x40;&#x74;&#x61;&#x6f;&#98;&#x61;&#111;&#x2e;&#99;&#x6f;&#109;</a> </p>
 <p>——————————————————————————————————————</p>
 <p>阿里巴巴集团淘系技术部官方账号。淘系技术部是阿里巴巴新零售技术的王牌军，支撑淘宝、天猫核心电商以及淘宝直播、闲鱼、躺平、阿里汽车、阿里房产等创新业务，服务9亿用户，赋能各行业1000万商家。我们打造了全球领先的线上新零售技术平台，并作为核心技术团队保障了11次双十一购物狂欢节的成功。</p>
 <p>[点击此处关注我们，你将收获更多来自阿里一线工程师的技术实战技巧&amp;成长经历心得。另，不定期更新最新岗位招聘信息和简历内推通道，欢迎各位以最短路径加入我们。](</p>

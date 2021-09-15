@@ -1,16 +1,16 @@
 {
-  "_from": "live2d-widget-model-z16",
-  "_id": "live2d-widget-model-z16@1.0.5",
+  "_from": "live2d-widget-model-unitychan",
+  "_id": "live2d-widget-model-unitychan@1.0.5",
   "_inBundle": false,
-  "_integrity": "sha512-1CUY6iOWakrJQdShWOJwzYvM0rj0Ok71B5qbKT03/ATPKUYmDLgSIy4QiH9CDZkXSwlQtIEG7CUqqaUzFZTB4w==",
-  "_location": "/live2d-widget-model-z16",
+  "_integrity": "sha512-7mkTW/VFYdBqA8vjCpn2x3mZoqcdx35LqSEAVmsr/pDnEOhmm8GFOCNpwYOybvg+oBbB3fXeKdLHtv0q7SU9pA==",
+  "_location": "/live2d-widget-model-unitychan",
   "_phantomChildren": {},
   "_requested": {
     "type": "tag",
     "registry": true,
-    "raw": "live2d-widget-model-z16",
-    "name": "live2d-widget-model-z16",
-    "escapedName": "live2d-widget-model-z16",
+    "raw": "live2d-widget-model-unitychan",
+    "name": "live2d-widget-model-unitychan",
+    "escapedName": "live2d-widget-model-unitychan",
     "rawSpec": "",
     "saveSpec": null,
     "fetchSpec": "latest"
@@ -19,19 +19,19 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/live2d-widget-model-z16/-/live2d-widget-model-z16-1.0.5.tgz",
-  "_shasum": "7604025e733d6fc6b24a60c3231e5b62d5e532a1",
-  "_spec": "live2d-widget-model-z16",
+  "_resolved": "https://registry.npmjs.org/live2d-widget-model-unitychan/-/live2d-widget-model-unitychan-1.0.5.tgz",
+  "_shasum": "fdf0ad303eaca04d42dec05c45a82a24184b7953",
+  "_spec": "live2d-widget-model-unitychan",
   "_where": "D:\\MyBlog",
   "bugs": {
     "url": "https://github.com/xiazeyu/live2d-widget-models/issues"
   },
   "bundleDependencies": false,
   "deprecated": false,
-  "description": "z16 live2d model for live2d-widget.js",
+  "description": "unitychan live2d model for live2d-widget.js",
   "homepage": "https://github.com/xiazeyu/live2d-widget-models#readme",
   "license": "GPL-2.0",
-  "name": "live2d-widget-model-z16",
+  "name": "live2d-widget-model-unitychan",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xiazeyu/live2d-widget-models.git"

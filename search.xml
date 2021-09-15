@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Ps图片内容测量标注脚本</title>
+    <url>/2021/09/05/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<h1 id="Ps图片内容测量标注脚本"><a href="#Ps图片内容测量标注脚本" class="headerlink" title="Ps图片内容测量标注脚本"></a>Ps图片内容测量标注脚本</h1><ol>
+<li>把脚本SizeMarks.jsx复制到PS的安装目录：\PhotoShopCs6\Presets\Scripts(具体可以右键ps查看属性，找到ps的安装位置)<img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902163719799.png" alt="image-20210902163719799"></li>
+<li>修改字体大小，用记事本打开脚本文件，搜索【txtLayerItem.font=”ArialMT”,】在这条语句后加上【txtLayerItem.size=”12px”,】字体大小可以自己调整 每次修改后ctrl+s保存就可以了 不用重启ps</li>
+<li>设置SizeMarks快捷键：编辑–》快捷键设置–》应用程序菜单–》文件–》一直往下滑找到脚本SizeMarks设置快捷键</li>
+</ol>
+<h1 id="PhotoShopCs6在windows10打不开解决办法"><a href="#PhotoShopCs6在windows10打不开解决办法" class="headerlink" title="PhotoShopCs6在windows10打不开解决办法"></a>PhotoShopCs6在windows10打不开解决办法</h1><ol>
+<li>以管理员身份运行</li>
+<li>通过右键cs6快捷方式–》属性–》兼容性–》win8</li>
+</ol>
+<p><img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902165922802.png" alt="image-20210902165922802"></p>
+]]></content>
+      <tags>
+        <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode无法从工作区外粘贴复制</title>
+    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
+<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
+]]></content>
+      <tags>
+        <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>butterfly主题修改</title>
     <url>/2021/09/06/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/</url>
     <content><![CDATA[<h1 id="butterfly主题修改"><a href="#butterfly主题修改" class="headerlink" title="butterfly主题修改"></a>butterfly主题修改</h1><ol>
@@ -84,36 +112,25 @@
       </tags>
   </entry>
   <entry>
-    <title>Ps图片内容测量标注脚本</title>
-    <url>/2021/09/05/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/</url>
-    <content><![CDATA[<h1 id="Ps图片内容测量标注脚本"><a href="#Ps图片内容测量标注脚本" class="headerlink" title="Ps图片内容测量标注脚本"></a>Ps图片内容测量标注脚本</h1><ol>
-<li>把脚本SizeMarks.jsx复制到PS的安装目录：\PhotoShopCs6\Presets\Scripts(具体可以右键ps查看属性，找到ps的安装位置)<img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902163719799.png" alt="image-20210902163719799"></li>
-<li>修改字体大小，用记事本打开脚本文件，搜索【txtLayerItem.font=”ArialMT”,】在这条语句后加上【txtLayerItem.size=”12px”,】字体大小可以自己调整 每次修改后ctrl+s保存就可以了 不用重启ps</li>
-<li>设置SizeMarks快捷键：编辑–》快捷键设置–》应用程序菜单–》文件–》一直往下滑找到脚本SizeMarks设置快捷键</li>
-</ol>
-<h1 id="PhotoShopCs6在windows10打不开解决办法"><a href="#PhotoShopCs6在windows10打不开解决办法" class="headerlink" title="PhotoShopCs6在windows10打不开解决办法"></a>PhotoShopCs6在windows10打不开解决办法</h1><ol>
-<li>以管理员身份运行</li>
-<li>通过右键cs6快捷方式–》属性–》兼容性–》win8</li>
-</ol>
-<p><img src="/images/Ps%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9%E6%B5%8B%E9%87%8F%E6%A0%87%E6%B3%A8%E8%84%9A%E6%9C%AC/image-20210902165922802.png" alt="image-20210902165922802"></p>
+    <title>windows10任务栏搜索框不能用解决办法</title>
+    <url>/2021/09/11/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="Win10系统任务栏搜索框无法使用怎么办"><a href="#Win10系统任务栏搜索框无法使用怎么办" class="headerlink" title="Win10系统任务栏搜索框无法使用怎么办?"></a>Win10系统任务栏搜索框无法使用怎么办?</h1><p>在使用win10系统的时候，我们可以通过任务栏的搜索框，来进行电脑文件以及设置的搜索，十分的实用。</p>
+<p>但是，有部分朋友升级win10系统之后，发现搜索框呈现灰色，根本无法使用，不知道如何解决。</p>
+<p>下面就来看一下Win10系统搜索框无法使用的解决方法!</p>
+<p>1、按Win+R键调出运行，输入regedit后按回车键进入注册表编辑器;</p>
+<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/865317528121486a89021c6b894ca6e1.png" alt="img"></p>
+<p>2、定位到：</p>
+<p>【HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes{ef87b4cb-f2ce-4785-8658-4ca6c63e38c6}\TopViews{00000000-0000-0000-0000-000000000000}】</p>
+<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/5fd4f96bc5164dd494a244e4107da3b8.png" alt="img"></p>
+<p>3、在{00000000-0000-0000-0000-000000000000}上单击右键，选择“删除”;</p>
+<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/0e794e052dcb48739bd5fb8b369e2356.png" alt="img"></p>
+<p>4、注意：64位系统还要定位到如下位置，并删除{00000000-0000-0000-0000-000000000000}，删除之后重启电脑问题就会解决。</p>
+<p>【HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes{ef87b4cb-f2ce-4785-8658-4ca6c63e38c6}\TopViews{00000000-0000-0000-0000-000000000000}】</p>
+<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/8b9d398857d84caeb53709fc260b9ef0.png" alt="img"></p>
+<p>转载自:<a href="https://www.sohu.com/a/359572355_120441352">Win10系统任务栏搜索框无法使用怎么办?_win (sohu.com)</a></p>
 ]]></content>
       <tags>
-        <tag>html css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决 hexo+typeora 图片上传问题</title>
-    <url>/2021/09/01/hexo-typora-image/</url>
-    <content><![CDATA[<ol>
-<li><p>Typeora： 文件–&gt; 偏好设置 –&gt; 图像</p>
-<p><img src="/images/hexo-typora-image/image-20210901225715645.png" alt="image-20210901225715645"></p>
-</li>
-<li><p>设置图片根目录：格式 –&gt;图像 –&gt;设置图片根目录为 source文件夹</p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>博客搭建</tag>
+        <tag>windows系统</tag>
       </tags>
   </entry>
   <entry>
@@ -146,33 +163,6 @@
       </tags>
   </entry>
   <entry>
-    <title>preload</title>
-    <url>/2021/09/09/preload/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>windows10任务栏搜索框不能用解决办法</title>
-    <url>/2021/09/11/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="Win10系统任务栏搜索框无法使用怎么办"><a href="#Win10系统任务栏搜索框无法使用怎么办" class="headerlink" title="Win10系统任务栏搜索框无法使用怎么办?"></a>Win10系统任务栏搜索框无法使用怎么办?</h1><p>在使用win10系统的时候，我们可以通过任务栏的搜索框，来进行电脑文件以及设置的搜索，十分的实用。</p>
-<p>但是，有部分朋友升级win10系统之后，发现搜索框呈现灰色，根本无法使用，不知道如何解决。</p>
-<p>下面就来看一下Win10系统搜索框无法使用的解决方法!</p>
-<p>1、按Win+R键调出运行，输入regedit后按回车键进入注册表编辑器;</p>
-<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/865317528121486a89021c6b894ca6e1.png" alt="img"></p>
-<p>2、定位到：</p>
-<p>【HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes{ef87b4cb-f2ce-4785-8658-4ca6c63e38c6}\TopViews{00000000-0000-0000-0000-000000000000}】</p>
-<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/5fd4f96bc5164dd494a244e4107da3b8.png" alt="img"></p>
-<p>3、在{00000000-0000-0000-0000-000000000000}上单击右键，选择“删除”;</p>
-<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/0e794e052dcb48739bd5fb8b369e2356.png" alt="img"></p>
-<p>4、注意：64位系统还要定位到如下位置，并删除{00000000-0000-0000-0000-000000000000}，删除之后重启电脑问题就会解决。</p>
-<p>【HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes{ef87b4cb-f2ce-4785-8658-4ca6c63e38c6}\TopViews{00000000-0000-0000-0000-000000000000}】</p>
-<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/8b9d398857d84caeb53709fc260b9ef0.png" alt="img"></p>
-<p>转载自:<a href="https://www.sohu.com/a/359572355_120441352">Win10系统任务栏搜索框无法使用怎么办?_win (sohu.com)</a></p>
-]]></content>
-      <tags>
-        <tag>windows系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>打出网页中的特殊符号</title>
     <url>/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/</url>
     <content><![CDATA[<h1 id="网页特殊符号是怎么打出来的"><a href="#网页特殊符号是怎么打出来的" class="headerlink" title="网页特殊符号是怎么打出来的"></a>网页特殊符号是怎么打出来的</h1><p>△△□●☆§№☆★○◎●○★◇○●◆△→■※→△↑→※↓＠＠＼＾＠＼＿</p>
@@ -184,22 +174,6 @@
 ]]></content>
       <tags>
         <tag>html css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>有道词典如何更便捷的使用</title>
-    <url>/2021/09/11/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8%E5%A6%82%E4%BD%95%E6%9B%B4%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h3 id="有道词典"><a href="#有道词典" class="headerlink" title="有道词典"></a>有道词典</h3><h4 id="使用过程中的小心得"><a href="#使用过程中的小心得" class="headerlink" title="使用过程中的小心得:"></a>使用过程中的小心得:</h4><ol>
-<li>开启划词,在网页上总是会不小心点到, 翻译速度慢</li>
-<li>每次点击有道词典 有点麻烦</li>
-</ol>
-<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法:"></a>解决办法:</h4><ol>
-<li>开启mini模式, 固定在屏幕上, 关闭划词, 需要的时候直接搜索</li>
-</ol>
-<p><img src="/images/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8%E5%A6%82%E4%BD%95%E6%9B%B4%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8/image-20210911091928929.png" alt="image-20210911091928929"></p>
-]]></content>
-      <tags>
-        <tag>好用的软件</tag>
       </tags>
   </entry>
   <entry>
@@ -255,6 +229,21 @@
 ]]></content>
       <tags>
         <tag>html css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 hexo+typeora 图片上传问题</title>
+    <url>/2021/09/01/hexo-typora-image/</url>
+    <content><![CDATA[<ol>
+<li><p>Typeora： 文件–&gt; 偏好设置 –&gt; 图像</p>
+<p><img src="/images/hexo-typora-image/image-20210901225715645.png" alt="image-20210901225715645"></p>
+</li>
+<li><p>设置图片根目录：格式 –&gt;图像 –&gt;设置图片根目录为 source文件夹</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>博客搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -339,6 +328,22 @@
       </tags>
   </entry>
   <entry>
+    <title>有道词典如何更便捷的使用</title>
+    <url>/2021/09/11/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8%E5%A6%82%E4%BD%95%E6%9B%B4%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h3 id="有道词典"><a href="#有道词典" class="headerlink" title="有道词典"></a>有道词典</h3><h4 id="使用过程中的小心得"><a href="#使用过程中的小心得" class="headerlink" title="使用过程中的小心得:"></a>使用过程中的小心得:</h4><ol>
+<li>开启划词,在网页上总是会不小心点到, 翻译速度慢</li>
+<li>每次点击有道词典 有点麻烦</li>
+</ol>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法:"></a>解决办法:</h4><ol>
+<li>开启mini模式, 固定在屏幕上, 关闭划词, 需要的时候直接搜索</li>
+</ol>
+<p><img src="/images/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8%E5%A6%82%E4%BD%95%E6%9B%B4%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8/image-20210911091928929.png" alt="image-20210911091928929"></p>
+]]></content>
+      <tags>
+        <tag>好用的软件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>麦田国际首页布局</title>
     <url>/2021/09/05/%E9%BA%A6%E7%94%B0%E5%9B%BD%E9%99%85%E9%A6%96%E9%A1%B5%E5%B8%83%E5%B1%80/</url>
     <content><![CDATA[<ol>
@@ -400,16 +405,6 @@
 ]]></content>
       <tags>
         <tag>html css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vscode无法从工作区外粘贴复制</title>
-    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
-<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
-]]></content>
-      <tags>
-        <tag>vscode</tag>
       </tags>
   </entry>
   <entry>
@@ -568,7 +563,7 @@
 <p>针对改图降低CDN图片缓存命中率的问题，我们根据业务的特点，提前合成不同波段的图片，并预热到CDN，保障了源站的安全。</p>
 <p>目前，淘宝上用户看到的图片，都是提前合成好的。未来，我们考虑在用户访问图片时，实时合成图片。通过这项技术，可以实时感知业务更多的实时信息，可以根据这些信息，在图片上合成当前用户或者环境更匹配的文案/元素等内容，给用户带来更多的惊喜。</p>
 <p>当然，实时合图也会面临更多的挑战，如：计算能力、合图性能。此外，对于CDN而言，由于每次用户访问的内容是临时合成的，CDN的缓存策略也是一个很大的挑战。</p>
-<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#122;&#104;&#x61;&#x6f;&#109;&#105;&#x6e;&#x67;&#46;&#121;&#x77;&#x74;&#x40;&#x74;&#x61;&#x6f;&#98;&#x61;&#111;&#x2e;&#99;&#x6f;&#109;">&#122;&#104;&#x61;&#x6f;&#109;&#105;&#x6e;&#x67;&#46;&#121;&#x77;&#x74;&#x40;&#x74;&#x61;&#x6f;&#98;&#x61;&#111;&#x2e;&#99;&#x6f;&#109;</a> </p>
+<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#122;&#x68;&#97;&#111;&#x6d;&#x69;&#x6e;&#103;&#x2e;&#121;&#119;&#x74;&#64;&#x74;&#97;&#x6f;&#x62;&#x61;&#x6f;&#x2e;&#x63;&#x6f;&#109;">&#122;&#x68;&#97;&#111;&#x6d;&#x69;&#x6e;&#103;&#x2e;&#121;&#119;&#x74;&#64;&#x74;&#97;&#x6f;&#x62;&#x61;&#x6f;&#x2e;&#x63;&#x6f;&#109;</a> </p>
 <p>——————————————————————————————————————</p>
 <p>阿里巴巴集团淘系技术部官方账号。淘系技术部是阿里巴巴新零售技术的王牌军，支撑淘宝、天猫核心电商以及淘宝直播、闲鱼、躺平、阿里汽车、阿里房产等创新业务，服务9亿用户，赋能各行业1000万商家。我们打造了全球领先的线上新零售技术平台，并作为核心技术团队保障了11次双十一购物狂欢节的成功。</p>
 <p>[点击此处关注我们，你将收获更多来自阿里一线工程师的技术实战技巧&amp;成长经历心得。另，不定期更新最新岗位招聘信息和简历内推通道，欢迎各位以最短路径加入我们。](</p>

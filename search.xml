@@ -48,6 +48,16 @@
       </tags>
   </entry>
   <entry>
+    <title>vscode无法从工作区外粘贴复制</title>
+    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
+<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
+]]></content>
+      <tags>
+        <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解决 hexo+typeora 图片上传问题</title>
     <url>/2021/09/01/hexo-typora-image/</url>
     <content><![CDATA[<ol>
@@ -63,6 +73,122 @@
       </tags>
   </entry>
   <entry>
+    <title>windows10任务栏搜索框不能用解决办法</title>
+    <url>/2021/09/11/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="Win10系统任务栏搜索框无法使用怎么办"><a href="#Win10系统任务栏搜索框无法使用怎么办" class="headerlink" title="Win10系统任务栏搜索框无法使用怎么办?"></a>Win10系统任务栏搜索框无法使用怎么办?</h1><p>在使用win10系统的时候，我们可以通过任务栏的搜索框，来进行电脑文件以及设置的搜索，十分的实用。</p>
+<p>但是，有部分朋友升级win10系统之后，发现搜索框呈现灰色，根本无法使用，不知道如何解决。</p>
+<p>下面就来看一下Win10系统搜索框无法使用的解决方法!</p>
+<p>1、按Win+R键调出运行，输入regedit后按回车键进入注册表编辑器;</p>
+<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/865317528121486a89021c6b894ca6e1.png" alt="img"></p>
+<p>2、定位到：</p>
+<p>【HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes{ef87b4cb-f2ce-4785-8658-4ca6c63e38c6}\TopViews{00000000-0000-0000-0000-000000000000}】</p>
+<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/5fd4f96bc5164dd494a244e4107da3b8.png" alt="img"></p>
+<p>3、在{00000000-0000-0000-0000-000000000000}上单击右键，选择“删除”;</p>
+<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/0e794e052dcb48739bd5fb8b369e2356.png" alt="img"></p>
+<p>4、注意：64位系统还要定位到如下位置，并删除{00000000-0000-0000-0000-000000000000}，删除之后重启电脑问题就会解决。</p>
+<p>【HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes{ef87b4cb-f2ce-4785-8658-4ca6c63e38c6}\TopViews{00000000-0000-0000-0000-000000000000}】</p>
+<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/8b9d398857d84caeb53709fc260b9ef0.png" alt="img"></p>
+<p>转载自:<a href="https://www.sohu.com/a/359572355_120441352">Win10系统任务栏搜索框无法使用怎么办?_win (sohu.com)</a></p>
+]]></content>
+      <tags>
+        <tag>windows系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>butterfly主题修改</title>
+    <url>/2021/09/06/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/</url>
+    <content><![CDATA[<h1 id="butterfly主题修改"><a href="#butterfly主题修改" class="headerlink" title="butterfly主题修改"></a>butterfly主题修改</h1><ol>
+<li><p>背景特效 canvas动画</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">canvas_ribbon:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">size:</span> <span class="number">150</span></span><br><span class="line">  <span class="attr">alpha:</span> <span class="number">0.6</span></span><br><span class="line">  <span class="attr">zIndex:</span> <span class="number">-1</span></span><br><span class="line">  <span class="attr">click_to_change:</span> <span class="literal">false</span>  <span class="comment">#設置是否每次點擊都更換綵帶</span></span><br><span class="line">  <span class="attr">mobile:</span> <span class="literal">false</span> <span class="comment"># false 手機端不顯示 true 手機端顯示</span></span><br></pre></td></tr></table></figure></li>
+<li><p>鼠标点击效果</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">fireworks:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">zIndex:</span> <span class="number">9999</span> <span class="comment"># -1 or 9999</span></span><br><span class="line">  <span class="attr">mobile:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
+<li><p>网站副标题 （打字效果）</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 主頁subtitle</span></span><br><span class="line"><span class="attr">subtitle:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 打字效果</span></span><br><span class="line">  <span class="attr">effect:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 循環或者只打字一次</span></span><br><span class="line">  <span class="attr">loop:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># source調用第三方服務</span></span><br><span class="line">  <span class="comment"># source: false 關閉調用</span></span><br><span class="line">  <span class="comment"># source: 1  調用搏天api的隨機語錄（簡體） </span></span><br><span class="line">  <span class="comment"># source: 2  調用一言網的一句話（簡體） </span></span><br><span class="line">  <span class="comment"># source: 3  調用一句網（簡體） </span></span><br><span class="line">  <span class="comment"># source: 4  調用今日詩詞（簡體</span></span><br><span class="line">  <span class="comment"># subtitle 會先顯示 source , 再顯示 sub 的內容</span></span><br><span class="line">  <span class="attr">source:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># 如果有英文逗號&#x27; , &#x27;,請使用轉義字元 &amp;#44;</span></span><br><span class="line">  <span class="comment"># 如果有英文雙引號&#x27; &quot; &#x27;,請使用轉義字元 &amp;quot;</span></span><br><span class="line">  <span class="comment"># 開頭不允許轉義字元，如需要，請把整個句子用雙引號包住</span></span><br><span class="line">  <span class="comment"># 例如 ”&amp;quotNever put off till tomorrow what you can do today&amp;quot&quot;</span></span><br><span class="line">  <span class="comment"># 如果關閉打字效果，subtitle只會顯示sub的第一行文字</span></span><br><span class="line">  <span class="attr">sub:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">今日事&amp;#44;今日畢</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">Never</span> <span class="string">put</span> <span class="string">off</span> <span class="string">till</span> <span class="string">tomorrow</span> <span class="string">what</span> <span class="string">you</span> <span class="string">can</span> <span class="string">do</span> <span class="string">today</span></span><br></pre></td></tr></table></figure></li>
+<li><p>页面加载动画</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 加載動畫 Loading Animation</span></span><br><span class="line"><span class="attr">preloader:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
+<li><p>代码高亮</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight_theme:</span> <span class="string">light</span></span><br></pre></td></tr></table></figure></li>
+<li><p>顶部图</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Disable all banner image</span></span><br><span class="line"><span class="attr">disable_top_img:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The banner image of home page</span></span><br><span class="line"><span class="attr">index_img:</span> <span class="string">orange</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If the banner of page not setting, it will show the top_img 文章标题，文章预览标题， </span></span><br><span class="line"><span class="attr">default_top_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The banner image of archive page</span></span><br><span class="line"><span class="attr">archive_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If the banner of tag page not setting, it will show the top_img</span></span><br><span class="line"><span class="comment"># <span class="doctag">note:</span> tag page, not tags page (子標籤頁面的 top_img)</span></span><br><span class="line"><span class="attr">tag_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The banner image of tag page</span></span><br><span class="line"><span class="comment"># format:</span></span><br><span class="line"><span class="comment">#  - tag name: xxxxx</span></span><br><span class="line"><span class="attr">tag_per_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If the banner of category page not setting, it will show the top_img</span></span><br><span class="line"><span class="comment"># <span class="doctag">note:</span> category page, not categories page (子分類頁面的 top_img)</span></span><br><span class="line"><span class="attr">category_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The banner image of category page</span></span><br><span class="line"><span class="comment"># format:</span></span><br><span class="line"><span class="comment">#  - category name: xxxxx</span></span><br><span class="line"><span class="attr">category_per_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#渐变色： &#x27;linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347)&#x27;目前用不了</span></span><br></pre></td></tr></table></figure></li>
+<li><p>头像</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="attr">img:</span> <span class="string">/img/avatar.png</span></span><br><span class="line">  <span class="attr">effect:</span> <span class="literal">true</span> <span class="comment"># 頭像會一直轉圈</span></span><br></pre></td></tr></table></figure></li>
+<li><p>夜间模式切换</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># dark mode</span></span><br><span class="line"><span class="attr">darkmode:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># dark mode和 light mode切換按鈕</span></span><br><span class="line">  <span class="attr">button:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">autoChangeMode:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
+<li><p>阅读模式</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">readmode:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
+<li><p>侧边排版</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">aside:</span></span><br></pre></td></tr></table></figure></li>
+<li><p>网站背景</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">background:</span> <span class="string">url(https://i.loli.net/2019/09/09/5oDRkWVKctx2b6A.png)</span></span><br></pre></td></tr></table></figure></li>
+<li><p>footer背景</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">footer_bg:</span> <span class="literal">true</span> <span class="comment">#跟top_img 一样</span></span><br><span class="line"><span class="comment">#值： img/ 颜色/true</span></span><br></pre></td></tr></table></figure></li>
+<li><p>图片存储网站获取图片链接 –》imageurl</p>
+<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/image-20210902215339903.png" alt="image-20210902215339903"></p>
+</li>
+<li><p>cdn jsdelivr 加速博客访问速度</p>
+<p>首先上传文件到github仓库， 然后通过国内cdn镜像访问 访问连接</p>
+</li>
+<li><p>修改 导航栏显示标签时候, 需要把创建 一个 tags页面, hexo new page tags, </p>
+</li>
+<li><p>标签页：</p>
+<p>命令行输入：hexo new page tags</p>
+<p>修改：<code>source/tags/index.md</code>文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标籤</span><br><span class="line">date: 2018-01-05 00:00:00</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>截图：</p>
+<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzM1MDA1MQ==,size_16,color_FFFFFF,t_70.png" alt="img"></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/ldu-xingjiahui/p/12594024.html">短短1天我学会了如何修改Butterfly的配置文件 - XJHui - 博客园 (cnblogs.com)</a></p>
+</li>
+</ol>
+<h3 id="添加搜索框"><a href="#添加搜索框" class="headerlink" title="添加搜索框"></a>添加搜索框</h3><p><strong>说明：</strong></p>
+<p>①添加后效果：</p>
+<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzM1MDA1MQ==,size_16,color_FFFFFF,t_70.png" alt="img"></p>
+<p>图源：<a href="https://www.shawnlin.cn/">Shawn’s Blog</a> </p>
+<p>②作用：键入任意关键字找到包含这些关键字的文章。</p>
+<p><strong>安装方法：</strong></p>
+<p>1、安装 hexo-generator-searchdb 搜索插件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+
+<p>2、修改配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim source/_data/butterfly.yml</span><br></pre></td></tr></table></figure>
+
+<p>找到local_search将enable修改为true： </p>
+<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzM1MDA1MQ==,size_16,color_FFFFFF,t_70.png" alt="img"></p>
+<p>更新后即可看到 “搜索” 自动添加到了上方：</p>
+<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/20200317180818426.png" alt="img"></p>
+<h4 id="添加看板娘"><a href="#添加看板娘" class="headerlink" title="添加看板娘"></a>添加看板娘</h4><ol>
+<li><p>首先安装 hexo-helper-live2d 动画</p>
+</li>
+<li><p>在站点配置文件中/主题配置文件也可以添加下面的代码</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Live2D</span></span><br><span class="line"><span class="comment">## https://github.com/EYHN/hexo-helper-live2d</span></span><br><span class="line"><span class="attr">live2d:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># enable: false</span></span><br><span class="line">  <span class="attr">scriptFrom:</span> <span class="string">local</span> <span class="comment"># 默认</span></span><br><span class="line">  <span class="attr">pluginRootPath:</span> <span class="string">live2dw/</span> <span class="comment"># 插件在站点上的根目录(相对路径)</span></span><br><span class="line">  <span class="attr">pluginJsPath:</span> <span class="string">lib/</span> <span class="comment"># 脚本文件相对与插件根目录路径</span></span><br><span class="line">  <span class="attr">pluginModelPath:</span> <span class="string">assets/</span> <span class="comment"># 模型文件相对与插件根目录路径</span></span><br><span class="line">  <span class="comment"># scriptFrom: jsdelivr # jsdelivr CDN</span></span><br><span class="line">  <span class="comment"># scriptFrom: unpkg # unpkg CDN</span></span><br><span class="line">  <span class="comment"># scriptFrom: https://cdn.jsdelivr.net/npm/live2d-widget@3.x/lib/L2Dwidget.min.js # 你的自定义 url</span></span><br><span class="line">  <span class="attr">tagMode:</span> <span class="literal">false</span> <span class="comment"># 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中</span></span><br><span class="line">  <span class="attr">debug:</span> <span class="literal">false</span> <span class="comment"># 调试, 是否在控制台输出日志</span></span><br><span class="line">  <span class="attr">model:</span></span><br><span class="line">    <span class="attr">use:</span> <span class="string">live2d-widget-model-wanko</span> <span class="comment"># npm-module package name</span></span><br><span class="line">    <span class="comment"># use: wanko # 博客根目录/live2d_models/ 下的目录名</span></span><br><span class="line">    <span class="comment"># use: ./wives/wanko # 相对于博客根目录的路径</span></span><br><span class="line">    <span class="comment"># use: https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json # 你的自定义 url</span></span><br><span class="line">  <span class="attr">display:</span></span><br><span class="line">    <span class="attr">position:</span> <span class="string">right</span></span><br><span class="line">    <span class="attr">width:</span> <span class="number">150</span></span><br><span class="line">    <span class="attr">height:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">mobile:</span></span><br><span class="line">    <span class="attr">show:</span> <span class="literal">true</span> <span class="comment"># 手机中是否展示</span></span><br></pre></td></tr></table></figure></li>
+<li><p>下载自己喜欢的模型</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">live2d-widget-model-chitose</span><br><span class="line">live2d-widget-model-epsilon2_1</span><br><span class="line">live2d-widget-model-gf</span><br><span class="line">live2d-widget-model-haru/01 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haru/02 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haruto</span><br><span class="line">live2d-widget-model-hibiki</span><br><span class="line">live2d-widget-model-hijiki</span><br><span class="line">live2d-widget-model-izumi</span><br><span class="line">live2d-widget-model-koharu</span><br><span class="line">live2d-widget-model-miku</span><br><span class="line">live2d-widget-model-ni-j</span><br><span class="line">live2d-widget-model-nico</span><br><span class="line">live2d-widget-model-nietzsche</span><br><span class="line">live2d-widget-model-nipsilon</span><br><span class="line">live2d-widget-model-nito</span><br><span class="line">live2d-widget-model-shizuku</span><br><span class="line">live2d-widget-model-tororo</span><br><span class="line">live2d-widget-model-tsumiki</span><br><span class="line">live2d-widget-model-unitychan</span><br><span class="line">live2d-widget-model-wanko</span><br><span class="line">live2d-widget-model-z16</span><br></pre></td></tr></table></figure></li>
+<li><p>在根目录下创建 live2d_models文件夹, 在根目录的 node_modules目录下找到下载的模型文件 live2d-widget开头的文件夹, 复制, 粘贴到新建的文件夹live2d_models中</p>
+</li>
+<li><p>在配置文件中配置自己下载的模型</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">model:</span></span><br><span class="line">    <span class="attr">use:</span> <span class="string">live2d-widget</span>  <span class="comment">## 模型文件</span></span><br></pre></td></tr></table></figure></li>
+<li><p>启动服务器, 打开网站就显示在博客上了</p>
+<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/image-20210910200246083.png" alt="image-20210910200246083"></p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>福星考试</title>
+    <url>/2021/09/04/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/</url>
+    <content><![CDATA[<h3 id="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"><a href="#全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！" class="headerlink" title="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"></a>全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！</h3><p> 今天通过福星的考试从新复习了一下sql语句同时完成考试，福星中午在食堂请我吃了一顿饭，我选的包子蘸料是醋和辣椒。</p>
+<p><img src="/images/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/d8f9d72a6059252d06aaf4b9a02c0c325ab5b90b-16307279093382.jpeg" alt="img"></p>
+<p>顺便记录一下今天图片上传没有显示， typeora图片根目录设置到source目录就可以了</p>
+]]></content>
+      <tags>
+        <tag>快乐时光</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>打出网页中的特殊符号</title>
     <url>/2021/09/06/%E6%89%93%E5%87%BA%E7%BD%91%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/</url>
     <content><![CDATA[<h1 id="网页特殊符号是怎么打出来的"><a href="#网页特殊符号是怎么打出来的" class="headerlink" title="网页特殊符号是怎么打出来的"></a>网页特殊符号是怎么打出来的</h1><p>△△□●☆§№☆★○◎●○★◇○●◆△→■※→△↑→※↓＠＠＼＾＠＼＿</p>
@@ -74,16 +200,6 @@
 ]]></content>
       <tags>
         <tag>html css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vscode无法从工作区外粘贴复制</title>
-    <url>/2021/09/05/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<p> <img src="/images/vscode%E6%97%A0%E6%B3%95%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%A4%96%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6/image-20210905111919605.png" alt="image-20210905111919605"></p>
-<p>安装windwos system版本的 vscode， 默认的情况下下载的是 user版本的</p>
-]]></content>
-      <tags>
-        <tag>vscode</tag>
       </tags>
   </entry>
   <entry>
@@ -212,28 +328,6 @@
       </tags>
   </entry>
   <entry>
-    <title>windows10任务栏搜索框不能用解决办法</title>
-    <url>/2021/09/11/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="Win10系统任务栏搜索框无法使用怎么办"><a href="#Win10系统任务栏搜索框无法使用怎么办" class="headerlink" title="Win10系统任务栏搜索框无法使用怎么办?"></a>Win10系统任务栏搜索框无法使用怎么办?</h1><p>在使用win10系统的时候，我们可以通过任务栏的搜索框，来进行电脑文件以及设置的搜索，十分的实用。</p>
-<p>但是，有部分朋友升级win10系统之后，发现搜索框呈现灰色，根本无法使用，不知道如何解决。</p>
-<p>下面就来看一下Win10系统搜索框无法使用的解决方法!</p>
-<p>1、按Win+R键调出运行，输入regedit后按回车键进入注册表编辑器;</p>
-<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/865317528121486a89021c6b894ca6e1.png" alt="img"></p>
-<p>2、定位到：</p>
-<p>【HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes{ef87b4cb-f2ce-4785-8658-4ca6c63e38c6}\TopViews{00000000-0000-0000-0000-000000000000}】</p>
-<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/5fd4f96bc5164dd494a244e4107da3b8.png" alt="img"></p>
-<p>3、在{00000000-0000-0000-0000-000000000000}上单击右键，选择“删除”;</p>
-<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/0e794e052dcb48739bd5fb8b369e2356.png" alt="img"></p>
-<p>4、注意：64位系统还要定位到如下位置，并删除{00000000-0000-0000-0000-000000000000}，删除之后重启电脑问题就会解决。</p>
-<p>【HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes{ef87b4cb-f2ce-4785-8658-4ca6c63e38c6}\TopViews{00000000-0000-0000-0000-000000000000}】</p>
-<p><img src="/images/windows10%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%8D%E8%83%BD%E7%94%A8%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/8b9d398857d84caeb53709fc260b9ef0.png" alt="img"></p>
-<p>转载自:<a href="https://www.sohu.com/a/359572355_120441352">Win10系统任务栏搜索框无法使用怎么办?_win (sohu.com)</a></p>
-]]></content>
-      <tags>
-        <tag>windows系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>有道词典如何更便捷的使用</title>
     <url>/2021/09/11/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8%E5%A6%82%E4%BD%95%E6%9B%B4%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h3 id="有道词典"><a href="#有道词典" class="headerlink" title="有道词典"></a>有道词典</h3><h4 id="使用过程中的小心得"><a href="#使用过程中的小心得" class="headerlink" title="使用过程中的小心得:"></a>使用过程中的小心得:</h4><ol>
@@ -247,100 +341,6 @@
 ]]></content>
       <tags>
         <tag>好用的软件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>butterfly主题修改</title>
-    <url>/2021/09/06/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/</url>
-    <content><![CDATA[<h1 id="butterfly主题修改"><a href="#butterfly主题修改" class="headerlink" title="butterfly主题修改"></a>butterfly主题修改</h1><ol>
-<li><p>背景特效 canvas动画</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">canvas_ribbon:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">size:</span> <span class="number">150</span></span><br><span class="line">  <span class="attr">alpha:</span> <span class="number">0.6</span></span><br><span class="line">  <span class="attr">zIndex:</span> <span class="number">-1</span></span><br><span class="line">  <span class="attr">click_to_change:</span> <span class="literal">false</span>  <span class="comment">#設置是否每次點擊都更換綵帶</span></span><br><span class="line">  <span class="attr">mobile:</span> <span class="literal">false</span> <span class="comment"># false 手機端不顯示 true 手機端顯示</span></span><br></pre></td></tr></table></figure></li>
-<li><p>鼠标点击效果</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">fireworks:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">zIndex:</span> <span class="number">9999</span> <span class="comment"># -1 or 9999</span></span><br><span class="line">  <span class="attr">mobile:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
-<li><p>网站副标题 （打字效果）</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 主頁subtitle</span></span><br><span class="line"><span class="attr">subtitle:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 打字效果</span></span><br><span class="line">  <span class="attr">effect:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 循環或者只打字一次</span></span><br><span class="line">  <span class="attr">loop:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># source調用第三方服務</span></span><br><span class="line">  <span class="comment"># source: false 關閉調用</span></span><br><span class="line">  <span class="comment"># source: 1  調用搏天api的隨機語錄（簡體） </span></span><br><span class="line">  <span class="comment"># source: 2  調用一言網的一句話（簡體） </span></span><br><span class="line">  <span class="comment"># source: 3  調用一句網（簡體） </span></span><br><span class="line">  <span class="comment"># source: 4  調用今日詩詞（簡體</span></span><br><span class="line">  <span class="comment"># subtitle 會先顯示 source , 再顯示 sub 的內容</span></span><br><span class="line">  <span class="attr">source:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># 如果有英文逗號&#x27; , &#x27;,請使用轉義字元 &amp;#44;</span></span><br><span class="line">  <span class="comment"># 如果有英文雙引號&#x27; &quot; &#x27;,請使用轉義字元 &amp;quot;</span></span><br><span class="line">  <span class="comment"># 開頭不允許轉義字元，如需要，請把整個句子用雙引號包住</span></span><br><span class="line">  <span class="comment"># 例如 ”&amp;quotNever put off till tomorrow what you can do today&amp;quot&quot;</span></span><br><span class="line">  <span class="comment"># 如果關閉打字效果，subtitle只會顯示sub的第一行文字</span></span><br><span class="line">  <span class="attr">sub:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">今日事&amp;#44;今日畢</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">Never</span> <span class="string">put</span> <span class="string">off</span> <span class="string">till</span> <span class="string">tomorrow</span> <span class="string">what</span> <span class="string">you</span> <span class="string">can</span> <span class="string">do</span> <span class="string">today</span></span><br></pre></td></tr></table></figure></li>
-<li><p>页面加载动画</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 加載動畫 Loading Animation</span></span><br><span class="line"><span class="attr">preloader:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
-<li><p>代码高亮</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight_theme:</span> <span class="string">light</span></span><br></pre></td></tr></table></figure></li>
-<li><p>顶部图</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Disable all banner image</span></span><br><span class="line"><span class="attr">disable_top_img:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The banner image of home page</span></span><br><span class="line"><span class="attr">index_img:</span> <span class="string">orange</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If the banner of page not setting, it will show the top_img 文章标题，文章预览标题， </span></span><br><span class="line"><span class="attr">default_top_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The banner image of archive page</span></span><br><span class="line"><span class="attr">archive_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If the banner of tag page not setting, it will show the top_img</span></span><br><span class="line"><span class="comment"># <span class="doctag">note:</span> tag page, not tags page (子標籤頁面的 top_img)</span></span><br><span class="line"><span class="attr">tag_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The banner image of tag page</span></span><br><span class="line"><span class="comment"># format:</span></span><br><span class="line"><span class="comment">#  - tag name: xxxxx</span></span><br><span class="line"><span class="attr">tag_per_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If the banner of category page not setting, it will show the top_img</span></span><br><span class="line"><span class="comment"># <span class="doctag">note:</span> category page, not categories page (子分類頁面的 top_img)</span></span><br><span class="line"><span class="attr">category_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The banner image of category page</span></span><br><span class="line"><span class="comment"># format:</span></span><br><span class="line"><span class="comment">#  - category name: xxxxx</span></span><br><span class="line"><span class="attr">category_per_img:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#渐变色： &#x27;linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347)&#x27;目前用不了</span></span><br></pre></td></tr></table></figure></li>
-<li><p>头像</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="attr">img:</span> <span class="string">/img/avatar.png</span></span><br><span class="line">  <span class="attr">effect:</span> <span class="literal">true</span> <span class="comment"># 頭像會一直轉圈</span></span><br></pre></td></tr></table></figure></li>
-<li><p>夜间模式切换</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># dark mode</span></span><br><span class="line"><span class="attr">darkmode:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># dark mode和 light mode切換按鈕</span></span><br><span class="line">  <span class="attr">button:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">autoChangeMode:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
-<li><p>阅读模式</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">readmode:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
-<li><p>侧边排版</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">aside:</span></span><br></pre></td></tr></table></figure></li>
-<li><p>网站背景</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">background:</span> <span class="string">url(https://i.loli.net/2019/09/09/5oDRkWVKctx2b6A.png)</span></span><br></pre></td></tr></table></figure></li>
-<li><p>footer背景</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">footer_bg:</span> <span class="literal">true</span> <span class="comment">#跟top_img 一样</span></span><br><span class="line"><span class="comment">#值： img/ 颜色/true</span></span><br></pre></td></tr></table></figure></li>
-<li><p>图片存储网站获取图片链接 –》imageurl</p>
-<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/image-20210902215339903.png" alt="image-20210902215339903"></p>
-</li>
-<li><p>cdn jsdelivr 加速博客访问速度</p>
-<p>首先上传文件到github仓库， 然后通过国内cdn镜像访问 访问连接</p>
-</li>
-<li><p>修改 导航栏显示标签时候, 需要把创建 一个 tags页面, hexo new page tags, </p>
-</li>
-<li><p>标签页：</p>
-<p>命令行输入：hexo new page tags</p>
-<p>修改：<code>source/tags/index.md</code>文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标籤</span><br><span class="line">date: 2018-01-05 00:00:00</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<p>截图：</p>
-<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzM1MDA1MQ==,size_16,color_FFFFFF,t_70.png" alt="img"></p>
-</li>
-<li><p><a href="https://www.cnblogs.com/ldu-xingjiahui/p/12594024.html">短短1天我学会了如何修改Butterfly的配置文件 - XJHui - 博客园 (cnblogs.com)</a></p>
-</li>
-</ol>
-<h3 id="添加搜索框"><a href="#添加搜索框" class="headerlink" title="添加搜索框"></a>添加搜索框</h3><p><strong>说明：</strong></p>
-<p>①添加后效果：</p>
-<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzM1MDA1MQ==,size_16,color_FFFFFF,t_70.png" alt="img"></p>
-<p>图源：<a href="https://www.shawnlin.cn/">Shawn’s Blog</a> </p>
-<p>②作用：键入任意关键字找到包含这些关键字的文章。</p>
-<p><strong>安装方法：</strong></p>
-<p>1、安装 hexo-generator-searchdb 搜索插件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-
-<p>2、修改配置文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim source/_data/butterfly.yml</span><br></pre></td></tr></table></figure>
-
-<p>找到local_search将enable修改为true： </p>
-<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzM1MDA1MQ==,size_16,color_FFFFFF,t_70.png" alt="img"></p>
-<p>更新后即可看到 “搜索” 自动添加到了上方：</p>
-<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/20200317180818426.png" alt="img"></p>
-<h4 id="添加看板娘"><a href="#添加看板娘" class="headerlink" title="添加看板娘"></a>添加看板娘</h4><ol>
-<li><p>首先安装 hexo-helper-live2d 动画</p>
-</li>
-<li><p>在站点配置文件中/主题配置文件也可以添加下面的代码</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Live2D</span></span><br><span class="line"><span class="comment">## https://github.com/EYHN/hexo-helper-live2d</span></span><br><span class="line"><span class="attr">live2d:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># enable: false</span></span><br><span class="line">  <span class="attr">scriptFrom:</span> <span class="string">local</span> <span class="comment"># 默认</span></span><br><span class="line">  <span class="attr">pluginRootPath:</span> <span class="string">live2dw/</span> <span class="comment"># 插件在站点上的根目录(相对路径)</span></span><br><span class="line">  <span class="attr">pluginJsPath:</span> <span class="string">lib/</span> <span class="comment"># 脚本文件相对与插件根目录路径</span></span><br><span class="line">  <span class="attr">pluginModelPath:</span> <span class="string">assets/</span> <span class="comment"># 模型文件相对与插件根目录路径</span></span><br><span class="line">  <span class="comment"># scriptFrom: jsdelivr # jsdelivr CDN</span></span><br><span class="line">  <span class="comment"># scriptFrom: unpkg # unpkg CDN</span></span><br><span class="line">  <span class="comment"># scriptFrom: https://cdn.jsdelivr.net/npm/live2d-widget@3.x/lib/L2Dwidget.min.js # 你的自定义 url</span></span><br><span class="line">  <span class="attr">tagMode:</span> <span class="literal">false</span> <span class="comment"># 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中</span></span><br><span class="line">  <span class="attr">debug:</span> <span class="literal">false</span> <span class="comment"># 调试, 是否在控制台输出日志</span></span><br><span class="line">  <span class="attr">model:</span></span><br><span class="line">    <span class="attr">use:</span> <span class="string">live2d-widget-model-wanko</span> <span class="comment"># npm-module package name</span></span><br><span class="line">    <span class="comment"># use: wanko # 博客根目录/live2d_models/ 下的目录名</span></span><br><span class="line">    <span class="comment"># use: ./wives/wanko # 相对于博客根目录的路径</span></span><br><span class="line">    <span class="comment"># use: https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json # 你的自定义 url</span></span><br><span class="line">  <span class="attr">display:</span></span><br><span class="line">    <span class="attr">position:</span> <span class="string">right</span></span><br><span class="line">    <span class="attr">width:</span> <span class="number">150</span></span><br><span class="line">    <span class="attr">height:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">mobile:</span></span><br><span class="line">    <span class="attr">show:</span> <span class="literal">true</span> <span class="comment"># 手机中是否展示</span></span><br></pre></td></tr></table></figure></li>
-<li><p>下载自己喜欢的模型</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">live2d-widget-model-chitose</span><br><span class="line">live2d-widget-model-epsilon2_1</span><br><span class="line">live2d-widget-model-gf</span><br><span class="line">live2d-widget-model-haru/01 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haru/02 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haruto</span><br><span class="line">live2d-widget-model-hibiki</span><br><span class="line">live2d-widget-model-hijiki</span><br><span class="line">live2d-widget-model-izumi</span><br><span class="line">live2d-widget-model-koharu</span><br><span class="line">live2d-widget-model-miku</span><br><span class="line">live2d-widget-model-ni-j</span><br><span class="line">live2d-widget-model-nico</span><br><span class="line">live2d-widget-model-nietzsche</span><br><span class="line">live2d-widget-model-nipsilon</span><br><span class="line">live2d-widget-model-nito</span><br><span class="line">live2d-widget-model-shizuku</span><br><span class="line">live2d-widget-model-tororo</span><br><span class="line">live2d-widget-model-tsumiki</span><br><span class="line">live2d-widget-model-unitychan</span><br><span class="line">live2d-widget-model-wanko</span><br><span class="line">live2d-widget-model-z16</span><br></pre></td></tr></table></figure></li>
-<li><p>在根目录下创建 live2d_models文件夹, 在根目录的 node_modules目录下找到下载的模型文件 live2d-widget开头的文件夹, 复制, 粘贴到新建的文件夹live2d_models中</p>
-</li>
-<li><p>在配置文件中配置自己下载的模型</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">model:</span></span><br><span class="line">    <span class="attr">use:</span> <span class="string">live2d-widget</span>  <span class="comment">## 模型文件</span></span><br></pre></td></tr></table></figure></li>
-<li><p>启动服务器, 打开网站就显示在博客上了</p>
-<p><img src="/images/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/image-20210910200246083.png" alt="image-20210910200246083"></p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>福星考试</title>
-    <url>/2021/09/04/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/</url>
-    <content><![CDATA[<h3 id="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"><a href="#全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！" class="headerlink" title="全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！"></a>全身心的分析解决问题确实让人感到兴奋，跟打游戏的感觉差不多千钧一发取c位首级！</h3><p> 今天通过福星的考试从新复习了一下sql语句同时完成考试，福星中午在食堂请我吃了一顿饭，我选的包子蘸料是醋和辣椒。</p>
-<p><img src="/images/%E7%A6%8F%E6%98%9F%E8%80%83%E8%AF%95/d8f9d72a6059252d06aaf4b9a02c0c325ab5b90b-16307279093382.jpeg" alt="img"></p>
-<p>顺便记录一下今天图片上传没有显示， typeora图片根目录设置到source目录就可以了</p>
-]]></content>
-      <tags>
-        <tag>快乐时光</tag>
       </tags>
   </entry>
   <entry>
@@ -563,7 +563,7 @@
 <p>针对改图降低CDN图片缓存命中率的问题，我们根据业务的特点，提前合成不同波段的图片，并预热到CDN，保障了源站的安全。</p>
 <p>目前，淘宝上用户看到的图片，都是提前合成好的。未来，我们考虑在用户访问图片时，实时合成图片。通过这项技术，可以实时感知业务更多的实时信息，可以根据这些信息，在图片上合成当前用户或者环境更匹配的文案/元素等内容，给用户带来更多的惊喜。</p>
 <p>当然，实时合图也会面临更多的挑战，如：计算能力、合图性能。此外，对于CDN而言，由于每次用户访问的内容是临时合成的，CDN的缓存策略也是一个很大的挑战。</p>
-<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#122;&#104;&#x61;&#111;&#x6d;&#105;&#110;&#103;&#46;&#121;&#x77;&#116;&#64;&#116;&#x61;&#111;&#x62;&#x61;&#111;&#46;&#99;&#111;&#109;">&#122;&#104;&#x61;&#111;&#x6d;&#105;&#110;&#103;&#46;&#121;&#x77;&#116;&#64;&#116;&#x61;&#111;&#x62;&#x61;&#111;&#46;&#99;&#111;&#109;</a> </p>
+<p>技术来驱动业务！！！淘宝鹿班团队，长期聚焦在图片及视频领域，通过技术创新，提升商家的经营效率及用户的体验，如果你对图片或者视频技术感兴趣，或者希望接触到高并发的工程系统，希望通过code改变世界，欢迎加入我们！！！  <a href="mailto:&#x7a;&#104;&#x61;&#x6f;&#x6d;&#x69;&#x6e;&#103;&#x2e;&#x79;&#119;&#116;&#64;&#x74;&#x61;&#111;&#98;&#97;&#111;&#46;&#99;&#111;&#109;">&#x7a;&#104;&#x61;&#x6f;&#x6d;&#x69;&#x6e;&#103;&#x2e;&#x79;&#119;&#116;&#64;&#x74;&#x61;&#111;&#98;&#97;&#111;&#46;&#99;&#111;&#109;</a> </p>
 <p>——————————————————————————————————————</p>
 <p>阿里巴巴集团淘系技术部官方账号。淘系技术部是阿里巴巴新零售技术的王牌军，支撑淘宝、天猫核心电商以及淘宝直播、闲鱼、躺平、阿里汽车、阿里房产等创新业务，服务9亿用户，赋能各行业1000万商家。我们打造了全球领先的线上新零售技术平台，并作为核心技术团队保障了11次双十一购物狂欢节的成功。</p>
 <p>[点击此处关注我们，你将收获更多来自阿里一线工程师的技术实战技巧&amp;成长经历心得。另，不定期更新最新岗位招聘信息和简历内推通道，欢迎各位以最短路径加入我们。](</p>

@@ -814,4 +814,37 @@
         <tag>数据结构和算法</tag>
       </tags>
   </entry>
+  <entry>
+    <title>javascript赋值语句</title>
+    <url>/2021/10/24/javascript%E8%B5%8B%E5%80%BC%E8%AF%AD%E5%8F%A5/</url>
+    <content><![CDATA[<p>“use strict”</p>
+<p>​    var a = {n:1};</p>
+<p>​    var b = a;</p>
+<p>​    a = a.x = {n:2};</p>
+<p>​    console.log(a,b); <em>//–&gt; {n:2} {n:1,x:{n:2}}</em></p>
+<p>​    console.log(a.x,b.x); <em>//–&gt; undefined {n:2}</em></p>
+<p>​    <em>// a.x = a = {n:2};</em></p>
+<p>​    <em>/</em>*</p>
+<p>​      <em>a.x = a = {n:2};</em></p>
+<p>​      <em>1.a中添加x属性, x属性没有赋值, 此时a.x:undefined, a.x等待赋值, 操作挂起;</em></p>
+<p>​      <em>2.a等待赋值, 操作挂起</em></p>
+<p>​      <em>3.创建对象{n:2}</em></p>
+<p>​      <em>4.3中的返回值赋值给a</em></p>
+<p>​      <em>5.2中的返回值赋值给1中挂起的a.x</em></p>
+<p>​    **/*</p>
+<p>​    <em>/</em>*</p>
+<p>​      <em>a = a.x = {n:2};</em> </p>
+<p>​      <em>赋值操作的顺序是从右向左, javascript语言执行顺序从左到右,</em> </p>
+<p>​      <em>有=的时候执行挂起操作,继续向后执行, 最后从右向左进行赋值,</em> </p>
+<p>​      <em>1.a等待赋值;</em></p>
+<p>​      <em>2.a中添加x属性, x属性没有赋值, 此时a.x:undefined, a.x等待赋值, 操作挂起;</em></p>
+<p>​      <em>3.创建对象{n:2};</em></p>
+<p>​      <em>4.将3中返回值赋值给a.x;</em></p>
+<p>​      <em>5.将2中返回值赋值给a</em></p>
+<p>​    **/*</p>
+]]></content>
+      <tags>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
 </search>

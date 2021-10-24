@@ -817,31 +817,16 @@
   <entry>
     <title>javascript赋值语句</title>
     <url>/2021/10/24/javascript%E8%B5%8B%E5%80%BC%E8%AF%AD%E5%8F%A5/</url>
-    <content><![CDATA[<p>“use strict”</p>
-<p>​    var a = {n:1};</p>
-<p>​    var b = a;</p>
-<p>​    a = a.x = {n:2};</p>
-<p>​    console.log(a,b); <em>//–&gt; {n:2} {n:1,x:{n:2}}</em></p>
-<p>​    console.log(a.x,b.x); <em>//–&gt; undefined {n:2}</em></p>
-<p>​    <em>// a.x = a = {n:2};</em></p>
-<p>​    <em>/</em>*</p>
-<p>​      <em>a.x = a = {n:2};</em></p>
-<p>​      <em>1.a中添加x属性, x属性没有赋值, 此时a.x:undefined, a.x等待赋值, 操作挂起;</em></p>
-<p>​      <em>2.a等待赋值, 操作挂起</em></p>
-<p>​      <em>3.创建对象{n:2}</em></p>
-<p>​      <em>4.3中的返回值赋值给a</em></p>
-<p>​      <em>5.2中的返回值赋值给1中挂起的a.x</em></p>
-<p>​    **/*</p>
-<p>​    <em>/</em>*</p>
-<p>​      <em>a = a.x = {n:2};</em> </p>
-<p>​      <em>赋值操作的顺序是从右向左, javascript语言执行顺序从左到右,</em> </p>
-<p>​      <em>有=的时候执行挂起操作,继续向后执行, 最后从右向左进行赋值,</em> </p>
-<p>​      <em>1.a等待赋值;</em></p>
-<p>​      <em>2.a中添加x属性, x属性没有赋值, 此时a.x:undefined, a.x等待赋值, 操作挂起;</em></p>
-<p>​      <em>3.创建对象{n:2};</em></p>
-<p>​      <em>4.将3中返回值赋值给a.x;</em></p>
-<p>​      <em>5.将2中返回值赋值给a</em></p>
-<p>​    **/*</p>
+    <content><![CDATA[<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span></span><br><span class="line"></span><br><span class="line">​    <span class="keyword">var</span> a = &#123;<span class="attr">n</span>:<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">var</span> b = a;</span><br><span class="line"></span><br><span class="line">​    a = a.x = &#123;<span class="attr">n</span>:<span class="number">2</span>&#125;;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">console</span>.log(a,b); *<span class="comment">//--&gt; &#123;n:2&#125; &#123;n:1,x:&#123;n:2&#125;&#125;*</span></span><br><span class="line"></span><br><span class="line">​    <span class="built_in">console</span>.log(a.x,b.x); *<span class="comment">//--&gt; undefined &#123;n:2&#125;*</span></span><br><span class="line"></span><br><span class="line">​    *<span class="comment">// a.x = a = &#123;n:2&#125;;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">    *<span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *a.x = a = &#123;n:2&#125;;*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *1.a中添加x属性, x属性没有赋值, 此时a.x:undefined, a.x等待赋值, 操作挂起;*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *2.a等待赋值, 操作挂起*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *3.创建对象&#123;n:2&#125;*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *4.3中的返回值赋值给a*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *5.2中的返回值赋值给1中挂起的a.x*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​    **/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">    *<span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *a = a.x = &#123;n:2&#125;;* </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *赋值操作的顺序是从右向左, javascript语言执行顺序从左到右,* </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *有=的时候执行挂起操作,继续向后执行, 最后从右向左进行赋值,* </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *1.a等待赋值;*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *2.a中添加x属性, x属性没有赋值, 此时a.x:undefined, a.x等待赋值, 操作挂起;*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *3.创建对象&#123;n:2&#125;;*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *4.将3中返回值赋值给a.x;*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​      *5.将2中返回值赋值给a*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">​    **/</span></span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
         <tag>javascript</tag>

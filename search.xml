@@ -832,4 +832,17 @@
         <tag>javascript</tag>
       </tags>
   </entry>
+  <entry>
+    <title>offsetTop</title>
+    <url>/2021/10/25/offsetTop/</url>
+    <content><![CDATA[<ol>
+<li>offsetTop：元素到offsetParent顶部的距离</li>
+<li>offsetParent：距离元素最近的一个具有定位的祖宗元素（relative，absolute，fixed），若祖宗都不符合条件，offsetParent为body。如下图所示：获取child的offsetTop，图1的offsetParent为father，图2的offsetParent为body。</li>
+<li><img src="/images/offsetTop/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbnhpMTExMg==,size_16,color_FFFFFF,t_70.jpeg" alt="img"></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
 </search>

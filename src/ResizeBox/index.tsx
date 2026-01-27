@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useRef } from "react";
 import { throttle } from "lodash";
 import "./index.css";
-热区;
+
 export const ResizeBox = (props: { children: ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -27,20 +27,21 @@ export const ResizeBox = (props: { children: ReactNode }) => {
 
     const handleMouseMove = throttle((e: MouseEvent) => {
       const rect = resizableBox.getBoundingClientRect();
-      const isNearEdge = e.clientX > rect.right - 10 && e.clientX < rect.right + 10;
-      
+      const isNearEdge =
+        e.clientX > rect.right - 10 && e.clientX < rect.right + 10;
+
       if (isNearEdge && !isResizing) {
         resizableBox.style.cursor = "ew-resize";
         document.body.style.cursor = "ew-resize";
         return;
       }
-      
+
       if (isResizing) {
         const newWidth = Math.max(startWidth + (e.clientX - startX), MIN_WIDTH);
         resizableBox.style.width = `${newWidth}px`;
         return;
       }
-      
+
       document.body.style.cursor = "auto";
       resizableBox.style.cursor = "auto";
     }, 16);

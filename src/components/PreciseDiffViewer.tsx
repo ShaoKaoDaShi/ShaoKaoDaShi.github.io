@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { diffLines, diffChars, Change } from "diff";
+import { diffLines, diffChars } from "diff";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -206,7 +206,7 @@ const PreciseDiffViewer: React.FC<PreciseDiffViewerProps> = ({
     charDiffs?: Array<{
       type: "added" | "removed" | "unchanged";
       value: string;
-    }>
+    }>,
   ) => {
     if (!charDiffs) return null;
 

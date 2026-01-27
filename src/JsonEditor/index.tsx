@@ -14,7 +14,8 @@ try {
 // 提取样式到对象
 const styles = {
   container: {
-    width: "100vw",
+    width: "100%",
+    height: "100%",
     display: "flex",
     overflow: "hidden",
 

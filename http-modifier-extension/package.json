@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "generate-icons": "node scripts/generate-icons.js",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -23,6 +24,9 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "node-addon-api": "^8.5.0",
+    "node-gyp": "^12.1.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.1.18",
     "vite": "^7.2.4"
   }

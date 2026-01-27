@@ -1,0 +1,378 @@
+<!doctype html>
+<html>
+  <head>
+    <title>HTTP Modifier</title>
+    <style>
+      body {
+        width: 400px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        padding: 10px;
+      }
+      h2 {
+        margin-top: 0;
+        font-size: 16px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+      }
+      .section {
+        margin-bottom: 20px;
+        border: 1px solid #eee;
+        padding: 10px;
+        border-radius: 4px;
+      }
+      .form-group {
+        margin-bottom: 10px;
+      }
+      label {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 4px;
+        font-weight: bold;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 6px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 12px;
+      }
+      textarea {
+        height: 60px;
+        font-family: monospace;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      button.secondary {
+        background-color: #6c757d;
+      }
+      button.secondary:hover {
+        background-color: #545b62;
+      }
+      button.delete {
+        background-color: #dc3545;
+        padding: 4px 8px;
+        font-size: 10px;
+        margin-left: 5px;
+      }
+      button.edit {
+        background-color: #ffc107;
+        color: #212529;
+        padding: 4px 8px;
+        font-size: 10px;
+      }
+      button.edit:hover {
+        background-color: #e0a800;
+      }
+      .button-group {
+        display: flex;
+        gap: 10px;
+      }
+      .rule-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .rule-item {
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+      }
+      .rule-item.disabled {
+        opacity: 0.6;
+        background: #eee;
+      }
+      .rule-info {
+        flex-grow: 1;
+        overflow: hidden;
+        margin-right: 10px;
+      }
+      .rule-controls {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .rule-type {
+        font-weight: bold;
+        color: #555;
+        margin-right: 5px;
+      }
+      /* Switch styles */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 30px;
+        height: 16px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 16px;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 12px;
+        width: 12px;
+        left: 2px;
+        bottom: 2px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+      input:checked + .slider {
+        background-color: #2196f3;
+      }
+      input:checked + .slider:before {
+        transform: translateX(14px);
+      }
+
+      .tabs {
+        display: flex;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab {
+        padding: 8px 12px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-bottom: none;
+        font-size: 12px;
+        margin-bottom: -1px;
+      }
+      .tab.active {
+        border-color: #ddd;
+        border-top-color: #007bff;
+        background: white;
+        font-weight: bold;
+        border-top-width: 2px;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>HTTP Modifier Rules</h2>
+
+    <div class="tabs">
+      <div class="tab active" data-target="header-form">Header Rule</div>
+      <div class="tab" data-target="response-form">Response Rule</div>
+      <div class="tab" data-target="data-management">Data Sync</div>
+      <div class="tab" data-target="request-logs">Logs</div>
+    </div>
+
+    <div id="header-form" class="section form-section">
+      <div class="form-group">
+        <label>URL Contains (or Regex)</label>
+        <input type="text" id="header-url" placeholder="e.g. example.com/api" />
+      </div>
+      <div class="form-group">
+        <label>Action Type</label>
+        <select id="header-action-type">
+          <option value="request">Modify Request Header</option>
+          <option value="response">Modify Response Header</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Header Name</label>
+        <input type="text" id="header-name" placeholder="e.g. X-Custom-Token" />
+      </div>
+      <div class="form-group">
+        <label>Operation</label>
+        <select id="header-operation">
+          <option value="set">Set</option>
+          <option value="remove">Remove</option>
+          <option value="append">Append</option>
+        </select>
+      </div>
+      <div class="form-group" id="header-value-group">
+        <label>Header Value</label>
+        <input type="text" id="header-value" placeholder="Value..." />
+      </div>
+      <div class="button-group">
+        <button id="add-header-rule">Add Header Rule</button>
+        <button id="cancel-header-edit" class="secondary hidden">
+          Cancel Edit
+        </button>
+      </div>
+    </div>
+
+    <div id="response-form" class="section form-section hidden">
+      <div class="form-group">
+        <label>URL Contains (Regex)</label>
+        <input type="text" id="response-url" placeholder="e.g. api/v1/user" />
+      </div>
+      <div class="form-group">
+        <label>Response Body (JSON or Text)</label>
+        <textarea id="response-body" placeholder='{"status": "ok"}'></textarea>
+      </div>
+      <div class="button-group">
+        <button id="add-response-rule">Add Response Rule</button>
+        <button id="cancel-response-edit" class="secondary hidden">
+          Cancel Edit
+        </button>
+      </div>
+    </div>
+
+    <div id="data-management" class="section form-section hidden">
+      <div
+        style="
+          margin-bottom: 15px;
+          padding: 10px;
+          background: #fff3cd;
+          border: 1px solid #ffeeba;
+          border-radius: 4px;
+        "
+      >
+        <h4 style="margin: 0 0 5px 0; font-size: 13px">
+          Advanced: Network Visible Mock
+        </h4>
+        <p style="margin: 0 0 5px 0; color: #856404">
+          Enables mocking via Chrome Debugger API. This allows mocked responses
+          to be visible in the Network tab, but will show a "Debugging" banner.
+        </p>
+        <label class="switch" style="vertical-align: middle">
+          <input type="checkbox" id="debugger-mode-toggle" />
+          <span class="slider"></span>
+        </label>
+        <span style="font-weight: bold; margin-left: 5px"
+          >Enable Debugger Mode</span
+        >
+      </div>
+
+      <p style="margin-top: 0; color: #666">Backup or Restore your rules.</p>
+      <div class="button-group">
+        <button id="export-rules" style="background-color: #28a745">
+          Export Config (JSON)
+        </button>
+        <button id="import-rules-btn" style="background-color: #17a2b8">
+          Import Config
+        </button>
+        <input
+          type="file"
+          id="import-file"
+          accept=".json"
+          style="display: none"
+        />
+      </div>
+
+      <div
+        id="cloud-sync-section"
+        style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px"
+      >
+        <h3 style="font-size: 14px; margin-bottom: 10px">
+          Cloud Sync (Real Server)
+        </h3>
+
+        <!-- Login Form -->
+        <div id="login-form">
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              id="login-email"
+              placeholder="user@example.com"
+            />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="login-password" placeholder="******" />
+          </div>
+          <button id="login-btn">Login / Register</button>
+        </div>
+
+        <!-- Authenticated View -->
+        <div id="authenticated-view" class="hidden">
+          <p style="margin-bottom: 10px; font-size: 12px">
+            Logged in as: <strong id="user-email-display"></strong>
+          </p>
+          <div class="button-group">
+            <button id="sync-push-btn" style="background-color: #007bff">
+              Push to Cloud
+            </button>
+            <button id="sync-pull-btn" style="background-color: #6610f2">
+              Pull from Cloud
+            </button>
+          </div>
+          <button
+            id="logout-btn"
+            class="secondary"
+            style="margin-top: 10px; width: 100%"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="request-logs" class="section form-section hidden">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+        "
+      >
+        <h3 style="font-size: 14px; margin: 0">Request Logs</h3>
+        <button
+          id="clear-logs"
+          class="secondary"
+          style="padding: 2px 8px; font-size: 10px"
+        >
+          Clear
+        </button>
+      </div>
+      <div
+        id="logs-container"
+        style="
+          max-height: 300px;
+          overflow-y: auto;
+          font-size: 11px;
+          border: 1px solid #eee;
+          padding: 5px;
+        "
+      >
+        <p style="color: #999; text-align: center">No logs yet.</p>
+      </div>
+    </div>
+
+    <h3>Active Rules</h3>
+    <ul id="rules-list" class="rule-list">
+      <!-- Rules will be populated here -->
+    </ul>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

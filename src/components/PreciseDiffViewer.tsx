@@ -139,7 +139,7 @@ const PreciseDiffViewer: React.FC<PreciseDiffViewerProps> = ({
     lineChanges.forEach((change) => {
       const lines = change.value
         .split("\n")
-        .filter((line, index, lines) => line.length > 0 || lines.length > 1);
+        .filter((line, _index, lines) => line.length > 0 || lines.length > 1);
 
       lines.forEach((line) => {
         if (change.added) {

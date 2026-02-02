@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
-import { diffLines, Change } from 'diff';
-import styled from 'styled-components';
+import React, { useMemo } from "react";
+import { diffLines } from "diff";
+import styled from "styled-components";
 
 const DiffContainer = styled.div`
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
   font-size: 14px;
   line-height: 1.4;
   background: #f8f8f8;
@@ -12,25 +12,36 @@ const DiffContainer = styled.div`
   overflow-x: auto;
 `;
 
-const DiffLine = styled.div<{ type: 'added' | 'removed' | 'common' | 'changed' }>`
+const DiffLine = styled.div<{
+  type: "added" | "removed" | "common" | "changed";
+}>`
   padding: 2px 8px;
   display: flex;
-  background-color: ${props => {
+  background-color: ${(props) => {
     switch (props.type) {
-      case 'added': return '#e6ffe6';
-      case 'removed': return '#ffe6e6';
-      case 'changed': return '#fff2cc';
-      default: return 'transparent';
+      case "added":
+        return "#e6ffe6";
+      case "removed":
+        return "#ffe6e6";
+      case "changed":
+        return "#fff2cc";
+      default:
+        return "transparent";
     }
   }};
-  border-left: 3px solid ${props => {
-    switch (props.type) {
-      case 'added': return '#28a745';
-      case 'removed': return '#d73a49';
-      case 'changed': return '#ffd33d';
-      default: return 'transparent';
-    }
-  }};
+  border-left: 3px solid
+    ${(props) => {
+      switch (props.type) {
+        case "added":
+          return "#28a745";
+        case "removed":
+          return "#d73a49";
+        case "changed":
+          return "#ffd33d";
+        default:
+          return "transparent";
+      }
+    }};
 `;
 
 const LineNumber = styled.span`
@@ -46,11 +57,6 @@ const LineContent = styled.span`
   white-space: pre;
 `;
 
-const ChangedPart = styled.span<{ type: 'added' | 'removed' }>`
-  background-color: ${props => props.type === 'added' ? '#a6f3a6' : '#ffb3b3'};
-  text-decoration: ${props => props.type === 'removed' ? 'line-through' : 'none'};
-`;
-
 interface DiffViewerProps {
   oldText: string;
   newText: string;
@@ -61,9 +67,9 @@ const DiffViewer: React.FC<DiffViewerProps> = ({ oldText, newText }) => {
     return diffLines(oldText, newText, { ignoreWhitespace: false });
   }, [oldText, newText]);
 
-  const renderLine = (change: Change, index: number) => {
+  const renderLine = (change: any, index: number) => {
     const lineNumber = change.ln || change.ln2 || index + 1;
-    
+
     if (change.added) {
       return (
         <DiffLine key={index} type="added">
@@ -72,7 +78,7 @@ const DiffViewer: React.FC<DiffViewerProps> = ({ oldText, newText }) => {
         </DiffLine>
       );
     }
-    
+
     if (change.removed) {
       return (
         <DiffLine key={index} type="removed">
@@ -81,7 +87,7 @@ const DiffViewer: React.FC<DiffViewerProps> = ({ oldText, newText }) => {
         </DiffLine>
       );
     }
-    
+
     // 处理修改的行
     if (change.value) {
       return (
@@ -91,7 +97,7 @@ const DiffViewer: React.FC<DiffViewerProps> = ({ oldText, newText }) => {
         </DiffLine>
       );
     }
-    
+
     return null;
   };
 

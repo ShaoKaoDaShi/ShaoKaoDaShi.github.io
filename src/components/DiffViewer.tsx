@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { diffLines, diffChars, Change } from "diff";
+import { diffLines, diffChars } from "diff";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -141,7 +141,7 @@ const DiffViewer: React.FC<DiffViewerProps> = ({
     diff.forEach((change, changeIndex) => {
       const lines = change.value
         .split("\n")
-        .filter((line, index, arr) => line.length > 0 || arr.length > 1);
+        .filter((line, _index, arr) => line.length > 0 || arr.length > 1);
 
       lines.forEach((line, lineIndex) => {
         if (change.added) {

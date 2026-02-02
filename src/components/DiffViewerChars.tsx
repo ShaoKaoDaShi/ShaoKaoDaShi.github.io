@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { diffLines, diffChars, Change } from "diff";
+import { diffLines } from "diff";
 import styled from "styled-components";
 
 const DiffContainer = styled.div`
@@ -84,27 +84,6 @@ const DiffViewer: React.FC<DiffViewerProps> = ({
   const diff = useMemo(() => {
     return diffLines(oldText, newText, { ignoreWhitespace: false });
   }, [oldText, newText]);
-
-  const renderCharacterDiff = (oldLine: string, newLine: string) => {
-    const charDiff = diffChars(oldLine, newLine);
-    return charDiff.map((part, index) => {
-      if (part.added) {
-        return (
-          <ChangedText key={index} type="added">
-            {part.value}
-          </ChangedText>
-        );
-      }
-      if (part.removed) {
-        return (
-          <ChangedText key={index} type="removed">
-            {part.value}
-          </ChangedText>
-        );
-      }
-      return <span key={index}>{part.value}</span>;
-    });
-  };
 
   const renderDiff = () => {
     let oldLineNumber = 0;

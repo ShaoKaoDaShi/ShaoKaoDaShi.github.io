@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { diffLines, diffWords, Change } from "diff";
+import { diffLines, diffWords } from "diff";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -147,7 +147,7 @@ const EnhancedDiffViewer: React.FC<EnhancedDiffViewerProps> = ({
   oldText,
   newText,
   fileName = "文件",
-  contextLines = 3,
+  contextLines: _contextLines = 3,
 }) => {
   const lineDiffs = useMemo(() => {
     const oldLines = oldText.split("\n");

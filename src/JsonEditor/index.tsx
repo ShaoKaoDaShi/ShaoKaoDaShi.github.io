@@ -199,11 +199,27 @@ function JsonEditor() {
 
   const saveToHistory = useMemo(
     () =>
-      debounce((value: string) => {
-        db.jsonParseHistory.add({
-          jsonString: value,
-          date: new Date().getTime(),
-        });
+      debounce(async (value: string) => {
+        try {
+          const existing = await db.jsonParseHistory
+            .where("jsonString")
+            .equals(value)
+            .first();
+
+          if (existing) {
+            // Update timestamp to move it to the top
+            await db.jsonParseHistory.update(existing.id, {
+              date: new Date().getTime(),
+            });
+          } else {
+            await db.jsonParseHistory.add({
+              jsonString: value,
+              date: new Date().getTime(),
+            });
+          }
+        } catch (error) {
+          console.error("Failed to save history:", error);
+        }
       }, 2000),
     [],
   );

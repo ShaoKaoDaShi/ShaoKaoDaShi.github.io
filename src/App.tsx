@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import JsonEditor from "./JsonEditor";
 import DiffViewerPage from "./pages/DiffViewerPage";
 import PreciseDiffViewerPage from "./pages/PreciseDiffViewerPage";
@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -18,6 +18,6 @@ export default function App() {
           <Route path="precise-diff" element={<PreciseDiffViewerPage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

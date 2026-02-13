@@ -2,8 +2,9 @@
   "name": "vscode-tab-guardian",
   "displayName": "Tab Guardian",
   "description": "控制最多打开的代码标签页，超限后按最近最少使用自动关闭。",
+  "icon": "icon.svg",
   "version": "0.0.1",
-  "publisher": "peishuangheng",
+  "publisher": "shaokaodashi",
   "engines": {
     "vscode": "^1.80.0"
   },

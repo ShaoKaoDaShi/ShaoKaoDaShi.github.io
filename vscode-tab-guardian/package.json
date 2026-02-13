@@ -1,0 +1,66 @@
+{
+  "name": "vscode-tab-guardian",
+  "displayName": "Tab Guardian",
+  "description": "控制最多打开的代码标签页，超限后按最近最少使用自动关闭。",
+  "version": "0.0.1",
+  "publisher": "peishuangheng",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:tabManager.cleanNow"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "tabManager.cleanNow",
+        "title": "Tab Guardian: 立即清理多余标签页",
+        "category": "Tab Guardian"
+      }
+    ],
+    "configuration": {
+      "title": "Tab Guardian",
+      "properties": {
+        "tabManager.maxOpenTabs": {
+          "type": "number",
+          "default": 6,
+          "minimum": 4,
+          "maximum": 6,
+          "description": "最多同时打开的标签页数量（4-6）。超过时按 LRU 自动关闭可关闭的标签。"
+        },
+        "tabManager.autoCloseEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否在打开新标签时自动关闭多余标签。"
+        },
+        "tabManager.respectPinned": {
+          "type": "boolean",
+          "default": true,
+          "description": "自动关闭时是否保护已固定（Pinned）的标签。"
+        },
+        "tabManager.respectDirty": {
+          "type": "boolean",
+          "default": true,
+          "description": "自动关闭时是否保护有未保存更改（Dirty）的标签。"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "echo \"No linting configured\"",
+    "test": "echo \"No tests configured\""
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.4.0"
+  }
+}

@@ -48,7 +48,7 @@ class TabGuardian {
         this.lruMap = new WeakMap();
         this.isCleaning = false;
         this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-        this.statusBarItem.command = 'tabManager.cleanNow';
+        this.statusBarItem.command = "tabManager.cleanNow";
         this.statusBarItem.show();
         this.config = this.loadConfig();
         this.initializeLru();
@@ -65,7 +65,7 @@ class TabGuardian {
             this.onActiveEditorChanged();
         }));
         subscriptions.push(vscode.workspace.onDidChangeConfiguration((event) => {
-            if (event.affectsConfiguration('tabManager')) {
+            if (event.affectsConfiguration("tabManager")) {
                 this.config = this.loadConfig();
                 this.updateStatusBar();
                 if (this.config.autoCloseEnabled) {
@@ -73,19 +73,19 @@ class TabGuardian {
                 }
             }
         }));
-        subscriptions.push(vscode.commands.registerCommand('tabManager.cleanNow', async () => {
+        subscriptions.push(vscode.commands.registerCommand("tabManager.cleanNow", async () => {
             await this.ensureLimit(true);
         }));
     }
     loadConfig() {
-        const cfg = vscode.workspace.getConfiguration('tabManager');
-        const rawMax = cfg.get('maxOpenTabs', 6);
+        const cfg = vscode.workspace.getConfiguration("tabManager");
+        const rawMax = cfg.get("maxOpenTabs", 6);
         const maxOpenTabs = clamp(rawMax, MIN_TABS, MAX_TABS);
         return {
             maxOpenTabs,
-            autoCloseEnabled: cfg.get('autoCloseEnabled', true),
-            respectPinned: cfg.get('respectPinned', true),
-            respectDirty: cfg.get('respectDirty', true),
+            autoCloseEnabled: cfg.get("autoCloseEnabled", true),
+            respectPinned: cfg.get("respectPinned", true),
+            respectDirty: cfg.get("respectDirty", true),
         };
     }
     initializeLru() {
@@ -100,6 +100,13 @@ class TabGuardian {
         }
     }
     onTabsChanged() {
+        // 确保所有新打开的 Tab 都有初始 LRU 分数，防止被误判为最久未使用而关闭
+        const allTabs = this.getAllTabs();
+        for (const tab of allTabs) {
+            if (!this.lruMap.has(tab)) {
+                this.touchTab(tab);
+            }
+        }
         this.updateActiveTabUsage();
         this.updateStatusBar();
         if (!this.config.autoCloseEnabled) {
@@ -132,7 +139,7 @@ class TabGuardian {
     updateStatusBar() {
         const current = this.countAllTabs();
         const max = this.config.maxOpenTabs;
-        const modeLabel = this.config.autoCloseEnabled ? '自动' : '手动';
+        const modeLabel = this.config.autoCloseEnabled ? "自动" : "手动";
         this.statusBarItem.text = `Tabs ${current}/${max}`;
         this.statusBarItem.tooltip = `当前标签页：${current}/${max}（${modeLabel}清理）`;
     }
@@ -150,7 +157,7 @@ class TabGuardian {
     isTabDirtyCompat(tab) {
         // 兼容旧版 @types/vscode：优先尝试从 Tab 对象本身读取 isDirty
         const maybeDirty = tab.isDirty;
-        if (typeof maybeDirty === 'boolean') {
+        if (typeof maybeDirty === "boolean") {
             return maybeDirty;
         }
         const input = tab.input;
@@ -225,12 +232,14 @@ class TabGuardian {
         }
     }
 }
+let _tabGuardian;
 function activate(context) {
-    // 初始化 Tab Guardian
-    // 实例本身通过 context.subscriptions 生命周期托管
-    new TabGuardian(context);
+    _tabGuardian = new TabGuardian(context);
 }
 function deactivate() {
-    // 所有资源都挂在 context.subscriptions 上，VS Code 会自动清理
+    if (_tabGuardian) {
+        console.log("TabGuardian deactivated");
+        _tabGuardian = undefined;
+    }
 }
 //# sourceMappingURL=extension.js.map

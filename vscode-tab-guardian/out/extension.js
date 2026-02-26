@@ -36,8 +36,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = activate;
 exports.deactivate = deactivate;
 const vscode = __importStar(require("vscode"));
-const MIN_TABS = 4;
-const MAX_TABS = 6;
+const MIN_TABS = 1;
+const MAX_TABS = 50;
 function clamp(value, min, max) {
     return Math.min(max, Math.max(min, value));
 }

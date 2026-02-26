@@ -7,8 +7,8 @@ interface TabManagerConfig {
   respectDirty: boolean;
 }
 
-const MIN_TABS = 4;
-const MAX_TABS = 6;
+const MIN_TABS = 1;
+const MAX_TABS = 50;
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));

@@ -1,5 +1,13 @@
+/* global chrome */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
+
+const generateId = () => {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return Date.now().toString() + Math.random().toString(36).substr(2, 9);
+};
 
 const ResponseRuleTab = () => {
   const [rules, setRules] = useState([]);
@@ -9,10 +17,6 @@ const ResponseRuleTab = () => {
     responseBody: ''
   });
 
-  useEffect(() => {
-    loadRules();
-  }, []);
-
   const loadRules = () => {
     if (typeof chrome !== 'undefined' && chrome.storage) {
       chrome.storage.local.get(['rules'], (result) => {
@@ -20,6 +24,10 @@ const ResponseRuleTab = () => {
       });
     }
   };
+
+  useEffect(() => {
+    loadRules();
+  }, []);
 
   const saveToStorage = (updatedRules) => {
     if (typeof chrome !== 'undefined' && chrome.storage) {
@@ -41,7 +49,7 @@ const ResponseRuleTab = () => {
     }
 
     const newRule = {
-      id: editingId || Date.now().toString(),
+      id: editingId || generateId(),
       type: 'response',
       enabled: true,
       ...formData

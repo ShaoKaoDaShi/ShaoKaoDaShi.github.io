@@ -1,123 +1,144 @@
-# 架构概览
+# AGENTS：高层架构与协作指南
 
-本项目是一个包含多个模块的工程，涵盖 React Web 应用、Chrome 扩展、VS Code 插件以及后端服务。主要功能包括 JSON 数据查看与对比、HTTP 请求修改、PDF 工具以及 IDE 标签页管理。
+本仓库是一个“多应用/多扩展”集合：包含多个相互独立的前端应用、浏览器扩展、VS Code 扩展与配套后端服务。各子项目有各自的构建链路与运行方式，通常不共享运行时代码。
 
-## 1. 项目概览
+说明：仓库中未发现 `.cursor/rules/*`、`.github/copilot-instructions.md`、`.trae/rules/*`。
 
-### 核心模块
+## 1) 项目概览
 
-*   **`react-json-viewer` (根目录)**:
-    *   **类型**: Web 应用
-    *   **技术栈**: React 18, Vite, TypeScript, Monaco Editor, Dexie (IndexedDB)。
-    *   **用途**: 提供 JSON 数据的高级查看、编辑和 Diff 对比功能。
+### 1.1 主要子项目
 
-*   **`http-modifier-extension`**:
-    *   **类型**: Chrome 浏览器扩展
-    *   **技术栈**: React, Vite, Tailwind CSS。
-    *   **用途**: 拦截和修改浏览器发出的 HTTP 请求与响应，支持规则同步。
+**A. `./`（React JSON Viewer Web）**
+- 入口与路由：`src/App.tsx` 使用 `HashRouter`，主要页面为 `Home`、`JsonEditor`、多种 Diff 页面。
+- 本地存储：`src/Database/jsonParseHistory.ts` 使用 Dexie（IndexedDB）存储 JSON 解析历史。
+- 构建输出：`vite.config.ts` 指定 `build.outDir = "docs"`，用于静态部署。
 
-*   **`http-modifier-server`**:
-    *   **类型**: 后端服务
-    *   **技术栈**: Node.js, Express, SQLite。
-    *   **用途**: 为 Chrome 扩展提供用户认证和配置规则的云端同步服务。
+**B. `http-modifier-extension/`（Chrome 扩展：改 Header + Mock Response + 日志 + 同步）**
+- MV3 配置：`http-modifier-extension/public/manifest.json`。
+- 核心运行机制分三层：
+  - Service Worker：`http-modifier-extension/public/background.js`
+    - 将“Header 规则”转换为 `declarativeNetRequest` 动态规则并更新（动态规则 id 采用 `index+1` 的整数）。
+    - “Debugger Mode”通过 `chrome.debugger` + `Fetch.enable` / `Fetch.fulfillRequest` 在网络层 mock，使 DevTools Network 可见。
+    - 日志存内存队列（最多 50 条），通过 `chrome.runtime` 消息供 Popup 拉取。
+  - Content Script：`http-modifier-extension/public/content.js`
+    - 在 `document_start` 注入 `inject.js` 到页面主世界。
+    - 通过 `window.postMessage` 将 response 规则与 Debugger 状态下发到页面脚本。
+    - 将页面脚本发出的拦截日志转发到 `background.js`。
+  - Page Inject：`http-modifier-extension/public/inject.js`
+    - Monkey patch `window.fetch` 与 `XMLHttpRequest` 做“客户端层” response mock。
+    - 当 Debugger Mode 启用时（由 content script 通知）停止匹配/拦截，避免“双层同时 mock”。
 
-*   **`pdf-image-converter`**:
-    *   **类型**: Web 应用
-    *   **技术栈**: React 18, Vite, TypeScript, Tailwind CSS, Shadcn/ui, pdf-lib, pdfjs-dist。
-    *   **用途**: 处理 PDF 与图片之间的转换，支持文件拖拽和预览。
+Popup UI（React + Tailwind）：`http-modifier-extension/src/App.jsx` + `http-modifier-extension/src/components/*`
+- 规则与用户信息主要存 `chrome.storage.local`（键：`rules`、`user`）。
+- Cloud Sync API 入口固定为 `http-modifier-extension/src/components/DataSyncTab.jsx` 中的 `API_BASE_URL = "http://localhost:3000/api"`。
 
-*   **`vscode-tab-guardian`**:
-    *   **类型**: VS Code 扩展
-    *   **技术栈**: TypeScript, VS Code Extension API。
-    *   **用途**: 自动管理编辑器标签页数量，基于 LRU 策略关闭多余标签，支持固定和未保存保护。
+**C. `http-modifier-server/`（Cloud Sync 后端）**
+- 运行时：`http-modifier-server/package.json` 使用 `bun` 启动（`bun server.ts`）。
+- HTTP 服务：`http-modifier-server/server.ts` 基于 Express + CORS，提供：
+  - `POST /api/login`：注册/登录并返回 token。
+  - `POST /api/sync/push`：保存 rules JSON。
+  - `GET /api/sync/pull`：拉取 rules JSON。
+- 数据库：`http-modifier-server/database.ts` 使用 `bun:sqlite`，文件名 `db.sqlite`，表：`user`、`rules`。
 
-## 2. 构建与命令
+**D. `pdf-image-converter/`（PDF/图片处理 Web 应用）**
+- 构建：`pdf-image-converter/vite.config.ts`，包含 `@rdservices/aime-code-inspector` 的 `CodeInspectorPlugin`（注释标明“不要移除”），并配置了 `@` -> `./src` 的别名。
+- 依赖（从 `pdf-image-converter/package.json`）：包含 `pdf-lib`、`pdfjs-dist`、`file-saver`、`jszip` 等（具体用途以实现代码为准）。
 
-各模块通常独立运行。以下是常用开发命令：
+**E. `vscode-tab-guardian/`（VS Code 扩展：标签页上限 + LRU 清理）**
+- 核心逻辑：`vscode-tab-guardian/src/extension.ts` 维护 `WeakMap<Tab, number>` 作为 LRU 分数；在 tab 变化/激活编辑器变化时根据配置自动关闭“可关闭”的文本 tab。
+- 配置项：`vscode-tab-guardian/package.json` 的 `contributes.configuration`（如 `tabManager.maxOpenTabs`、`respectPinned`、`respectDirty`）。
 
-### 根项目 (`react-json-viewer`)
-| 命令 | 描述 |
-| :--- | :--- |
-| `pnpm dev` | 启动开发服务器 |
-| `pnpm build` | 构建生产版本 (输出到 `docs/`) |
-| `pnpm lint` | 运行 ESLint 检查 |
-| `pnpm preview` | 预览生产构建 |
+### 1.2 子项目之间的关系
 
-### Chrome 扩展 (`http-modifier-extension`)
-| 命令 | 描述 |
-| :--- | :--- |
-| `pnpm dev` | 启动开发服务器 |
-| `pnpm build` | 构建扩展 (输出到 `dist/`) |
-| `pnpm generate-icons` | 生成扩展图标 |
+- `http-modifier-extension/` 与 `http-modifier-server/` 通过 HTTP 接口协作（见 `DataSyncTab.jsx` 使用的 `API_BASE_URL` 与 `server.ts` 的 `/api/*` 路由）。
+- 其它子项目（根 Web、PDF 工具、VS Code 扩展）在代码层面互不依赖，按目录独立开发/构建。
 
-### 后端服务 (`http-modifier-server`)
-| 命令 | 描述 |
-| :--- | :--- |
-| `pnpm start` | 启动 Express 服务器 (Port 3000) |
+## 2) Build & Commands
 
-### PDF 工具 (`pdf-image-converter`)
-进入目录后执行：
-| 命令 | 描述 |
-| :--- | :--- |
-| `pnpm dev` | 启动开发服务器 |
-| `pnpm build` | 构建生产版本 |
+以各目录的 `package.json` 为准（本仓库不同子项目的包管理器/脚本并不完全统一）。
 
-### VS Code 插件 (`vscode-tab-guardian`)
-进入目录后执行：
-| 命令 | 描述 |
-| :--- | :--- |
-| `npm run compile` | 编译 TypeScript |
-| `npm run watch` | 监听文件变更并编译 |
-| `npm run vscode:prepublish` | 发布前编译 |
+**根目录（React JSON Viewer）**：`package.json`
+- `npm run dev`：启动 Vite 开发服务器
+- `npm run build`：Vite 构建（输出到 `docs/`，见 `vite.config.ts`）
+- `npm run lint`：ESLint
+- `npm run preview`：本地预览构建产物
 
-## 3. 代码风格与规范
+**Chrome 扩展（http-modifier-extension）**：`http-modifier-extension/package.json`
+- `npm run dev`：Vite 开发（Popup UI）
+- `npm run build`：构建扩展（输出到 `http-modifier-extension/dist/`，见 `http-modifier-extension/vite.config.js`）
+- `npm run lint`：ESLint
+- `npm run generate-icons`：用 `sharp` 从 `public/icons/icon.svg` 生成多尺寸 PNG（见 `http-modifier-extension/scripts/generate-icons.js`）
 
-*   **语言**: 全面使用 **TypeScript** (除了后端服务部分使用 JavaScript)。
-*   **框架**: 前端统一使用 **React** (Functional Components + Hooks)。
-*   **样式方案**:
-    *   新模块 (`pdf-image-converter`, `http-modifier-extension`) 优先使用 **Tailwind CSS**。
-    *   根项目混用了 Styled Components 和 CSS Modules。
-    *   UI 组件库：`pdf-image-converter` 使用了 **Shadcn/ui** (@radix-ui)。
-*   **代码规范**:
-    *   **ESLint**: 大部分模块配置了 ESLint 9+ 和 typescript-eslint。
-    *   **Prettier**: 项目包含 Prettier 依赖用于代码格式化。
+**Cloud Sync Server（http-modifier-server）**：`http-modifier-server/package.json`
+- `bun server.ts`：启动（脚本：`npm run start`）
+- `bun --watch server.ts`：开发热重载（脚本：`npm run dev`）
+- `npm run typecheck`：TypeScript 类型检查
 
-## 4. 测试
+**PDF 工具（pdf-image-converter）**：`pdf-image-converter/package.json`
+- `npm run dev`、`npm run build`、`npm run lint`、`npm run preview`（以该目录脚本为准）
 
-*   **现状**: 目前主要模块 (`package.json`) 中未配置自动化测试框架 (如 Jest 或 Vitest)。
-*   **建议**:
-    *   对 React 组件引入 `Vitest` + `React Testing Library`。
-    *   对后端 API 引入 `Supertest`。
-    *   VS Code 插件目前无测试配置，建议引入 `@vscode/test-electron`。
+**VS Code 扩展（vscode-tab-guardian）**：`vscode-tab-guardian/package.json`
+- `npm run compile`：编译 TypeScript（输出到 `out/`）
+- `npm run watch`：监听编译
+- `npm run vscode:prepublish`：发布前编译
 
-## 5. 安全与数据
+**部署相关脚本（可选）**
+- `scripts/deploy_mac_nginx.sh`：将 `./dist/` 复制到 `/opt/homebrew/etc/nginx/jsonParse/`（脚本假设存在 `dist/`）。
+- `scripts/nginx.conf`：一个监听 `8080` 的静态站点示例配置。
 
-*   **认证 (Server)**: 使用基于 Token 的自定义认证机制。
-*   **加密**: 密码存储目前使用 MD5 (见 `database.js` 或相关逻辑)，**建议升级**到 bcrypt 或 Argon2。
-*   **存储**:
-    *   后端使用 SQLite (`db.sqlite`)，需注意文件权限。
-    *   前端大量使用 IndexedDB (Dexie) 和 LocalStorage，敏感数据应避免明文存储。
-    *   PDF 处理完全在客户端进行，不涉及文件上传，隐私性较好。
+## 3) Code Style
 
-## 6. 配置管理
+### 3.1 ESLint（实际配置）
 
-*   **构建配置**:
-    *   根项目: `vite.config.ts` (构建到 `docs` 目录，适配 GitHub Pages)。
-    *   PDF 工具: `vite.config.ts` (标准构建)。
-    *   Chrome 扩展: `vite.config.js` (适配浏览器扩展结构)。
-*   **环境变**: 使用 `.env` 文件管理环境变量 (如 API 地址)。
-*   **VS Code 配置**: 插件配置项定义在 `package.json` 的 `contributes.configuration` 中 (如 `tabManager.maxOpenTabs`)。
+- 根目录：`eslint.config.js` 使用 `typescript-eslint` flat config，规则包含 `react-hooks` 推荐集与 `react-refresh/only-export-components`。
+- `http-modifier-extension/`：`http-modifier-extension/eslint.config.js` 针对 `**/*.{js,jsx}`，并将 `dist/` 设为 ignore；包含规则 `no-unused-vars: ["error", { varsIgnorePattern: "^[A-Z_]" }]`。
+- `pdf-image-converter/`：`pdf-image-converter/eslint.config.js` 同样采用 `typescript-eslint` flat config。
 
-## 7. 目录结构说明
+### 3.2 约定与“容易踩坑”的实现细节
 
-```
-/
-├── http-modifier-extension/  # Chrome 扩展源码
-├── http-modifier-server/     # 后端服务源码
-├── pdf-image-converter/      # PDF 转图片工具源码
-├── vscode-tab-guardian/      # VS Code 插件源码
-├── src/                      # JSON Viewer 主应用源码
-├── docs/                     # 主应用构建产物 (GitHub Pages)
-├── package.json              # 主应用依赖
-└── ...
-```
+- Chrome 扩展的三层脚本边界：
+  - Popup UI（`http-modifier-extension/src/*`）在扩展页面环境运行；
+  - Background/Content/Inject（`http-modifier-extension/public/*.js`）在 MV3/页面上下文运行；
+  - `public/manifest.json` 直接引用 `public/*.js`，因此这些文件的路径与输出结构需要保持一致。
+- DNR 动态规则 ID 必须是整数：`http-modifier-extension/public/background.js` 用数组 index 生成（更改规则生成逻辑时要保持这一约束）。
+- Response mock 有两条路径：
+  - 默认模式：`inject.js`（fetch/XHR patch）
+  - Debugger 模式：`background.js`（Fetch.fulfillRequest）
+  两者通过消息互斥，避免冲突。
+
+## 4) Testing
+
+仓库内未看到统一的自动化测试框架接入（例如 Jest/Vitest 的测试脚本与用例目录约定）。现阶段验证主要依赖：
+- 各子项目的 `npm run lint` / `npm run build`
+- `http-modifier-server` 的 `npm run typecheck`
+- `vscode-tab-guardian` 的 `npm run compile`
+
+## 5) Security
+
+### 5.1 Chrome 扩展权限与风险点
+
+- `http-modifier-extension/public/manifest.json` 申请了 `debugger`、`declarativeNetRequest*`、`storage`、`tabs`，并对 `<all_urls>` 具备 host 访问能力。
+- `http-modifier-extension/public/content.js` 通过 `window.postMessage(..., "*")` 与页面脚本通信，并仅校验 `event.source === window`；任何同页脚本都可伪造同类型消息。当前实现依赖消息 `type` 字段做分流（扩展内不执行来自页面的代码字符串），但在扩展增强功能时应保持“只接收必要字段、校验结构”的原则。
+
+### 5.2 后端认证/存储
+
+- `http-modifier-server/server.ts` 使用 `md5()` 存储密码与生成 token（见 `md5()` 与 `/api/login`）。
+- `http-modifier-server/server.ts` 默认启用 `cors()`（允许跨域）。
+- `http-modifier-server/database.ts` 将规则以 `rules_json` 字段整块存储；调试/备份时注意其中可能包含敏感信息（如 Header 里的 token）。
+
+### 5.3 本仓库的本地凭证/环境变量
+
+- `src/config.js` 使用 `dotenv.config()` 从环境读取 `MRS_TOKEN`、`MRS_JWT` 等敏感字段，并用于 `src/mrsClient.js` 这类 Node 脚本（含 `fs/promises` 写文件）。
+- `http-modifier-extension/src/components/DataSyncTab.jsx` 会把登录返回的 `user.token` 存在 `chrome.storage.local` 并作为 `Authorization: Bearer ...` 发送。
+
+## 6) Configuration
+
+### 6.1 Vite/构建配置
+
+- 根目录：`vite.config.ts` 设置 `base: "./"` 与 `build.outDir: "docs"`。
+- `http-modifier-extension/`：`http-modifier-extension/vite.config.js` 将 `index.html` 作为构建入口，并输出到 `dist/`。
+- `pdf-image-converter/`：`pdf-image-converter/vite.config.ts` 配置了 `@` alias，并启用 `CodeInspectorPlugin`。
+
+### 6.2 MCP（可选开发工具）
+
+- `mcp.json` 配置了 `chrome-devtools-mcp@latest` 的 MCP server（通过 `npx` 启动）。

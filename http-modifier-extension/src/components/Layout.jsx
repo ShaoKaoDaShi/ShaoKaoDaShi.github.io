@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Layout = ({ children }) => {
   const [activeTab, setActiveTab] = useState(0);
-  
+
   const tabs = React.Children.toArray(children).map((child, index) => ({
     label: child.props.label,
     icon: child.props.icon,
     index,
-    component: child
+    component: child,
   }));
 
   return (
@@ -18,9 +18,13 @@ const Layout = ({ children }) => {
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-sm">
             M
           </div>
-          <h1 className="text-lg font-bold text-gray-800 tracking-tight">HTTP Modifier</h1>
+          <h1 className="text-lg font-bold text-gray-800 tracking-tight">
+            HTTP Modifier
+          </h1>
         </div>
-        <div className="text-xs text-gray-400 font-medium bg-gray-100 px-2 py-1 rounded-md">v1.0.0</div>
+        <div className="text-xs text-gray-400 font-medium bg-gray-100 px-2 py-1 rounded-md">
+          v1.0.0
+        </div>
       </div>
 
       {/* Navigation */}
@@ -31,9 +35,10 @@ const Layout = ({ children }) => {
             className={`
               relative px-4 py-3 text-sm font-medium transition-colors duration-200 outline-none
               flex items-center gap-2 whitespace-nowrap
-              ${activeTab === tab.index 
-                ? 'text-blue-600' 
-                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+              ${
+                activeTab === tab.index
+                  ? "text-blue-600"
+                  : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
               }
             `}
             onClick={() => setActiveTab(tab.index)}
@@ -48,8 +53,8 @@ const Layout = ({ children }) => {
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 overflow-y-auto p-6 bg-gray-50 custom-scrollbar">
-        <div className="max-w-3xl mx-auto h-full">
+      <div className="flex-1 overflow-y-auto p-6 pb-20 bg-gray-50 custom-scrollbar">
+        <div className="max-w-3xl mx-auto min-h-full">
           {tabs[activeTab].component}
         </div>
       </div>

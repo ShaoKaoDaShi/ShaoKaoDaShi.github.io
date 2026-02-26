@@ -30,14 +30,22 @@ function sendRules() {
 }
 
 function sendDebuggerStatus() {
-  chrome.storage.local.get(["debuggerEnabled"], (result) => {
-    window.postMessage(
-      {
-        type: "HTTP_MODIFIER_DEBUGGER_MODE",
-        enabled: !!result.debuggerEnabled,
-      },
-      "*",
-    );
+  chrome.runtime.sendMessage({ type: "GET_DEBUGGER_STATUS" }, (response) => {
+    // If background script is not running (e.g. extension disabled/reloaded), response might be undefined
+    if (chrome.runtime.lastError) {
+      console.warn("HTTP Modifier: Failed to get debugger status", chrome.runtime.lastError);
+      return;
+    }
+    
+    if (response) {
+      window.postMessage(
+        {
+          type: "HTTP_MODIFIER_DEBUGGER_MODE",
+          enabled: response.enabled,
+        },
+        "*",
+      );
+    }
   });
 }
 
@@ -92,9 +100,6 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
   if (namespace === "local") {
     if (changes.rules) {
       sendRules();
-    }
-    if (changes.debuggerEnabled) {
-      sendDebuggerStatus();
     }
   }
 });

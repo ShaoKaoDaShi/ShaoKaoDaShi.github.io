@@ -99,6 +99,8 @@
       throw err;
     }
   };
+  // Preserve toString to mimic native fetch
+  window.fetch.toString = originalFetch.toString.bind(originalFetch);
 
   // Patch XMLHttpRequest
   const OriginalXHR = window.XMLHttpRequest;
@@ -154,4 +156,16 @@
 
     return xhr;
   };
+
+  // Copy static properties and prototype from OriginalXHR
+  // This is crucial for libraries that check XMLHttpRequest.DONE or access prototype methods
+  for (const prop in OriginalXHR) {
+    if (Object.prototype.hasOwnProperty.call(OriginalXHR, prop)) {
+      window.XMLHttpRequest[prop] = OriginalXHR[prop];
+    }
+  }
+  window.XMLHttpRequest.prototype = OriginalXHR.prototype;
+  // Also preserve toString to mask the hook slightly better
+  window.XMLHttpRequest.toString = OriginalXHR.toString.bind(OriginalXHR);
+
 })();

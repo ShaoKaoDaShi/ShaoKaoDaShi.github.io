@@ -4,6 +4,23 @@ let requestLogs = [];
 const MAX_LOGS = 50;
 let attachedTabs = new Set();
 
+// Load attached tabs from session storage on startup
+if (chrome.storage.session) {
+  chrome.storage.session.get(["attachedTabIds"], (result) => {
+    if (result.attachedTabIds) {
+      attachedTabs = new Set(result.attachedTabIds);
+    }
+  });
+}
+
+async function updateSession() {
+  if (chrome.storage.session) {
+    await chrome.storage.session.set({
+      attachedTabIds: Array.from(attachedTabs),
+    });
+  }
+}
+
 function updateRules() {
   chrome.storage.local.get(["rules"], (result) => {
     const rules = result.rules || [];
@@ -87,6 +104,10 @@ function updateRules() {
 
 // Debugger Logic
 async function attachDebugger(tabId) {
+  if (attachedTabs.has(tabId)) {
+    return { success: true };
+  }
+
   const target = { tabId };
   try {
     await chrome.debugger.attach(target, "1.3");
@@ -97,10 +118,19 @@ async function attachDebugger(tabId) {
       ],
     });
     attachedTabs.add(tabId);
+    await updateSession();
     console.log("Debugger attached to tab", tabId);
     return { success: true };
   } catch (err) {
     console.error("Failed to attach debugger", err);
+    
+    // Handle "Already attached" error gracefully
+    if (err.message && (err.message.includes("attached") || err.message.includes("debugging"))) {
+       attachedTabs.add(tabId);
+       await updateSession();
+       return { success: true };
+    }
+
     // Return the actual error message
     return {
       success: false,
@@ -113,11 +143,12 @@ async function detachDebugger(tabId) {
   const target = { tabId };
   try {
     await chrome.debugger.detach(target);
-    attachedTabs.delete(tabId);
-    console.log("Debugger detached from tab", tabId);
   } catch (err) {
     console.error("Failed to detach debugger", err);
   }
+  attachedTabs.delete(tabId);
+  await updateSession();
+  console.log("Debugger detached from tab", tabId);
 }
 
 chrome.debugger.onEvent.addListener(async (source, method, params) => {
@@ -195,14 +226,13 @@ chrome.debugger.onEvent.addListener(async (source, method, params) => {
 
 chrome.debugger.onDetach.addListener((source, reason) => {
   attachedTabs.delete(source.tabId);
-  // If user closed the warning banner, update storage
-  chrome.storage.local.get(["debuggerEnabled"], (result) => {
-    if (result.debuggerEnabled && attachedTabs.size === 0) {
-      // Keep it enabled in storage? Or disable it?
-      // Usually better to keep enabled but user needs to re-enable per tab or we auto-attach?
-      // For simplicity, we just track attached tabs.
-    }
-  });
+  updateSession();
+  
+  // Notify content script that debugger is disabled (e.g. user closed banner)
+  chrome.tabs.sendMessage(source.tabId, { type: "DEBUGGER_MODE_DISABLED" })
+    .catch(() => {
+      // Content script might not be available if tab was closed
+    });
 });
 
 // Listen for storage changes
@@ -215,6 +245,8 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 // Initial load
 chrome.runtime.onInstalled.addListener(() => {
   updateRules();
+  // Cleanup old global flag
+  chrome.storage.local.remove("debuggerEnabled");
 });
 
 // Handle messages
@@ -243,9 +275,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     });
     return true; // async response
   } else if (message.type === "DISABLE_DEBUGGER") {
-    detachDebugger(message.tabId);
-    // Notify content script to re-enable its own mocking
-    chrome.tabs.sendMessage(message.tabId, { type: "DEBUGGER_MODE_DISABLED" });
-    sendResponse({ success: true });
+    detachDebugger(message.tabId).then(() => {
+      // Notify content script to re-enable its own mocking
+      chrome.tabs.sendMessage(message.tabId, { type: "DEBUGGER_MODE_DISABLED" });
+      sendResponse({ success: true });
+    });
+    return true; // async response
+  } else if (message.type === "GET_DEBUGGER_STATUS") {
+    // Check if the sender tab (or requested tabId) is attached
+    const tabId = message.tabId || (sender.tab && sender.tab.id);
+    if (tabId) {
+      sendResponse({ enabled: attachedTabs.has(tabId) });
+    } else {
+      sendResponse({ enabled: false });
+    }
   }
 });

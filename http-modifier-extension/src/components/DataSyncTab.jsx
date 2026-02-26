@@ -11,9 +11,22 @@ const DataSyncTab = () => {
 
   useEffect(() => {
     if (typeof chrome !== 'undefined' && chrome.storage) {
-      chrome.storage.local.get(['user', 'debuggerEnabled'], (result) => {
+      chrome.storage.local.get(['user'], (result) => {
         setUser(result.user || null);
-        setDebuggerEnabled(!!result.debuggerEnabled);
+      });
+
+      // Check debugger status for current tab
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs[0]) {
+          chrome.runtime.sendMessage(
+            { type: "GET_DEBUGGER_STATUS", tabId: tabs[0].id },
+            (response) => {
+              if (response) {
+                setDebuggerEnabled(response.enabled);
+              }
+            }
+          );
+        }
       });
     }
   }, []);
@@ -187,36 +200,29 @@ const DataSyncTab = () => {
   const toggleDebugger = (checked) => {
     if (typeof chrome === 'undefined' || !chrome.runtime) return;
 
-    if (checked) {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs[0]) {
-          chrome.runtime.sendMessage(
-            { type: "ENABLE_DEBUGGER", tabId: tabs[0].id },
-            (response) => {
-              if (response && response.success) {
-                chrome.storage.local.set({ debuggerEnabled: true });
-                setDebuggerEnabled(true);
-              } else {
-                alert("Failed to enable Debugger Mode: " + (response ? response.error : "Unknown error"));
-                setDebuggerEnabled(false);
-              }
-            }
-          );
-        }
-      });
-    } else {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs[0]) {
-          chrome.runtime.sendMessage(
-            { type: "DISABLE_DEBUGGER", tabId: tabs[0].id },
-            () => {
-              chrome.storage.local.set({ debuggerEnabled: false });
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (!tabs[0]) return;
+
+      const messageType = checked ? "ENABLE_DEBUGGER" : "DISABLE_DEBUGGER";
+      
+      chrome.runtime.sendMessage(
+        { type: messageType, tabId: tabs[0].id },
+        (response) => {
+          if (response && response.success) {
+            setDebuggerEnabled(checked);
+          } else {
+            if (checked) {
+              alert("Failed to enable Debugger Mode: " + (response ? response.error : "Unknown error"));
+              setDebuggerEnabled(false);
+            } else {
+              // If disable fails, still update UI to unchecked? 
+              // Usually if disable fails it means it wasn't attached.
               setDebuggerEnabled(false);
             }
-          );
+          }
         }
-      });
-    }
+      );
+    });
   };
 
   return (

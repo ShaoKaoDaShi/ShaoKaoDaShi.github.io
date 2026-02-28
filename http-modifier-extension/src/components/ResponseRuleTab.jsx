@@ -1,5 +1,3 @@
-/* global chrome */
-/* eslint-disable react/prop-types */
 import { useState, useEffect, useCallback } from "react";
 
 const generateId = () => {

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="http-modifier-response-mocker-icon" xmlns="http://www.w3.org/2000/svg" viewBox="16 16 96 96">
+  <!-- Background rounded square -->
+  <g id="background">
+    <rect x="16" y="16" width="96" height="96" rx="24" ry="24" fill="#0F172A" />
+  </g>
+
+  <!-- Main icon group -->
+  <g id="icon" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Shield outline -->
+    <g id="shield" stroke="#38BDF8" stroke-width="6">
+      <path d="M64 28
+               L44 38
+               V60
+               C44 76.5 54.2 92.1 64 96
+               C73.8 92.1 84 76.5 84 60
+               V38
+               Z" />
+    </g>
+
+    <!-- Modifier slider inside shield -->
+    <g id="modifier" stroke="#22D3EE" stroke-width="5">
+      <!-- Slider track -->
+      <line x1="52" y1="60" x2="76" y2="60" />
+      <!-- Slider knob -->
+      <circle cx="70" cy="60" r="5" fill="#22D3EE" stroke="#0F172A" stroke-width="2" />
+    </g>
+
+    <!-- Response / mock return arrow on the right side -->
+    <g id="arrow" stroke="#38BDF8" stroke-width="6">
+      <!-- Curved arrow body -->
+      <path d="M80 46
+               C89 50 96 57 96 64
+               C96 71 89 78 80 82" />
+      <!-- Arrow head -->
+      <path d="M76 50
+               L80 46
+               L84 50" />
+    </g>
+
+    <!-- Subtle purple sparkles -->
+    <g id="sparkles" stroke="#A78BFA" stroke-width="2">
+      <!-- Small star near slider -->
+      <path d="M56 50
+               L56 54
+               M54 52
+               L58 52" />
+      <!-- Small star near arrow tip -->
+      <path d="M90 40
+               L90 44
+               M88 42
+               L92 42" />
+    </g>
+  </g>
+</svg>

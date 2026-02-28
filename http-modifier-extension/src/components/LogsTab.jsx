@@ -1,16 +1,28 @@
-import { useState, useEffect } from 'react';
+/* global chrome */
+import { useState, useEffect, useCallback } from 'react';
+
+const LOG_REFRESH_INTERVAL = 2000;
+
+const METHOD_COLORS = {
+  GET: 'bg-blue-100 text-blue-700',
+  POST: 'bg-green-100 text-green-700',
+  PUT: 'bg-orange-100 text-orange-700',
+  DELETE: 'bg-red-100 text-red-700',
+  PATCH: 'bg-yellow-100 text-yellow-700',
+};
+
+const formatTime = (timestamp) => {
+  return new Date(timestamp).toLocaleTimeString([], { hour12: false });
+};
+
+const getMethodColor = (method) => {
+  return METHOD_COLORS[method] || 'bg-gray-100 text-gray-700';
+};
 
 const LogsTab = () => {
   const [logs, setLogs] = useState([]);
 
-  useEffect(() => {
-    loadLogs();
-    // Refresh logs every 2 seconds
-    const interval = setInterval(loadLogs, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const loadLogs = () => {
+  const loadLogs = useCallback(() => {
     if (typeof chrome !== 'undefined' && chrome.runtime) {
       chrome.runtime.sendMessage({ type: 'GET_LOGS' }, (response) => {
         if (response && response.logs) {
@@ -18,9 +30,9 @@ const LogsTab = () => {
         }
       });
     }
-  };
+  }, []);
 
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     if (typeof chrome !== 'undefined' && chrome.runtime) {
       chrome.runtime.sendMessage({ type: 'CLEAR_LOGS' }, () => {
         setLogs([]);
@@ -28,18 +40,13 @@ const LogsTab = () => {
     } else {
       setLogs([]);
     }
-  };
+  }, []);
 
-  const getMethodColor = (method) => {
-    const colors = {
-      GET: 'bg-blue-100 text-blue-700',
-      POST: 'bg-green-100 text-green-700',
-      PUT: 'bg-orange-100 text-orange-700',
-      DELETE: 'bg-red-100 text-red-700',
-      PATCH: 'bg-yellow-100 text-yellow-700',
-    };
-    return colors[method] || 'bg-gray-100 text-gray-700';
-  };
+  useEffect(() => {
+    loadLogs();
+    const interval = setInterval(loadLogs, LOG_REFRESH_INTERVAL);
+    return () => clearInterval(interval);
+  }, [loadLogs]);
 
   return (
     <div className="flex flex-col h-[500px]">
@@ -77,7 +84,7 @@ const LogsTab = () => {
                         {log.url}
                       </div>
                       <span className="text-[10px] text-gray-400 shrink-0 font-mono">
-                        {new Date(log.timestamp).toLocaleTimeString([], { hour12: false })}
+                        {formatTime(log.timestamp)}
                       </span>
                     </div>
                   </div>

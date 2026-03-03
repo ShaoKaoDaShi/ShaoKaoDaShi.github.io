@@ -195,40 +195,40 @@ class TabGuardian {
         }
         return true;
     }
-    async ensureLimit(force) {
+    ensureLimit(force) {
         if (!force && !this.config.autoCloseEnabled) {
-            return;
+            return Promise.resolve();
         }
         if (this.isCleaning) {
-            return;
+            return Promise.resolve();
         }
         this.isCleaning = true;
-        try {
-            const allTabs = this.getAllTabs();
-            const total = allTabs.length;
-            const max = this.config.maxOpenTabs;
-            if (total <= max) {
-                return;
-            }
-            const activeTab = vscode.window.tabGroups.activeTabGroup?.activeTab;
-            const candidates = allTabs.filter((tab) => this.isClosableTab(tab, activeTab));
-            if (candidates.length === 0) {
-                return;
-            }
-            const needCloseCount = Math.min(total - max, candidates.length);
-            const sortedByLru = candidates.sort((a, b) => {
-                const aScore = this.lruMap.get(a) ?? 0;
-                const bScore = this.lruMap.get(b) ?? 0;
-                return aScore - bScore;
-            });
-            const toClose = sortedByLru.slice(0, needCloseCount);
-            if (toClose.length > 0) {
-                await vscode.window.tabGroups.close(toClose);
-            }
-        }
-        finally {
+        return this.doEnsureLimit(force).finally(() => {
             this.isCleaning = false;
             this.updateStatusBar();
+        });
+    }
+    async doEnsureLimit(force) {
+        const allTabs = this.getAllTabs();
+        const total = allTabs.length;
+        const max = this.config.maxOpenTabs;
+        if (total <= max) {
+            return;
+        }
+        const activeTab = vscode.window.tabGroups.activeTabGroup?.activeTab;
+        const candidates = allTabs.filter((tab) => this.isClosableTab(tab, activeTab));
+        if (candidates.length === 0) {
+            return;
+        }
+        const needCloseCount = Math.min(total - max, candidates.length);
+        const sortedByLru = candidates.sort((a, b) => {
+            const aScore = this.lruMap.get(a) ?? Number.MAX_SAFE_INTEGER;
+            const bScore = this.lruMap.get(b) ?? Number.MAX_SAFE_INTEGER;
+            return aScore - bScore;
+        });
+        const toClose = sortedByLru.slice(0, needCloseCount);
+        if (toClose.length > 0) {
+            await vscode.window.tabGroups.close(toClose);
         }
     }
 }

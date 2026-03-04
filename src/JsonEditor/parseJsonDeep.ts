@@ -7,10 +7,16 @@ type StackItem = {
 export function parseJsonDeep(target: unknown): unknown {
   let parsedTarget: unknown;
 
-  try {
-    parsedTarget = JSON.parse(target as string);
-  } catch (e) {
-    console.error("Failed to parse JSON:", e);
+  if (typeof target === 'string') {
+    try {
+      parsedTarget = JSON.parse(target);
+    } catch (e) {
+      console.error("Failed to parse JSON:", e);
+      return target;
+    }
+  } else if (isObject(target) || Array.isArray(target)) {
+    parsedTarget = target;
+  } else {
     return target;
   }
 

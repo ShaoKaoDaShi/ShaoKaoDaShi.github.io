@@ -233,10 +233,10 @@ function JsonEditor() {
 
       try {
         // 先尝试标准解析验证
-        JSON.parse(value);
+        const parsed = JSON.parse(value);
 
         // 如果成功，执行深度解析
-        const parsedValue = parseJsonDeep(value);
+        const parsedValue = parseJsonDeep(parsed);
         setState((prev) => ({
           ...prev,
           orgValue: value,

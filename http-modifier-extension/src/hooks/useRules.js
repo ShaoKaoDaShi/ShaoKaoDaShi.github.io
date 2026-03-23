@@ -13,6 +13,20 @@ export const normalizeRule = (rule) => ({
   groupName: normalizeGroupName(rule?.groupName),
 });
 
+export const disableRulesInGroup = (rules, groupName) => {
+  const normalizedGroupName = normalizeGroupName(groupName);
+
+  return rules.map((rule) => {
+    const normalizedRule = normalizeRule(rule);
+
+    if (normalizedRule.groupName !== normalizedGroupName) {
+      return normalizedRule;
+    }
+
+    return { ...normalizedRule, enabled: false };
+  });
+};
+
 export const useRules = () => {
   const [rules, setRules] = useState([]);
 
@@ -83,12 +97,24 @@ export const useRules = () => {
     [saveRulesToStorage],
   );
 
+  const disableGroup = useCallback(
+    (groupName) => {
+      setRules((currentRules) => {
+        const updatedRules = disableRulesInGroup(currentRules, groupName);
+        saveRulesToStorage(updatedRules);
+        return updatedRules;
+      });
+    },
+    [saveRulesToStorage],
+  );
+
   return {
     rules,
     addRule,
     updateRule,
     deleteRule,
     toggleRule,
+    disableGroup,
     refreshRules: loadRules,
   };
 };

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   DEFAULT_GROUP_NAME,
+  disableRulesInGroup,
   normalizeGroupName,
   normalizeRule,
 } from "./useRules";
@@ -44,5 +45,41 @@ describe("useRules normalization", () => {
       enabled: false,
       groupName: "Custom Group",
     });
+  });
+});
+
+describe("disableRulesInGroup", () => {
+  it("disables only rules in the requested group", () => {
+    expect(
+      disableRulesInGroup(
+        [
+          { id: 1, name: "Rule 1", enabled: true, groupName: "Team A" },
+          { id: 2, name: "Rule 2", enabled: true, groupName: "Team B" },
+          { id: 3, name: "Rule 3", enabled: false, groupName: "Team A" },
+        ],
+        "Team A",
+      ),
+    ).toEqual([
+      { id: 1, name: "Rule 1", enabled: false, groupName: "Team A" },
+      { id: 2, name: "Rule 2", enabled: true, groupName: "Team B" },
+      { id: 3, name: "Rule 3", enabled: false, groupName: "Team A" },
+    ]);
+  });
+
+  it("normalizes blank group names while disabling the default group", () => {
+    expect(
+      disableRulesInGroup(
+        [
+          { id: 1, name: "Rule 1", enabled: true, groupName: "   " },
+          { id: 2, name: "Rule 2", enabled: true, groupName: "Team B" },
+          { id: 3, name: "Rule 3", enabled: true },
+        ],
+        DEFAULT_GROUP_NAME,
+      ),
+    ).toEqual([
+      { id: 1, name: "Rule 1", enabled: false, groupName: DEFAULT_GROUP_NAME },
+      { id: 2, name: "Rule 2", enabled: true, groupName: "Team B" },
+      { id: 3, name: "Rule 3", enabled: false, groupName: DEFAULT_GROUP_NAME },
+    ]);
   });
 });

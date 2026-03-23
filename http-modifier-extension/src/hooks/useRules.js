@@ -1,12 +1,25 @@
 import { useState, useEffect, useCallback } from "react";
 
+export const DEFAULT_GROUP_NAME = "Default";
+
+export const normalizeGroupName = (groupName) => {
+  const normalizedGroupName = groupName?.trim();
+
+  return normalizedGroupName || DEFAULT_GROUP_NAME;
+};
+
+export const normalizeRule = (rule) => ({
+  ...rule,
+  groupName: normalizeGroupName(rule?.groupName),
+});
+
 export const useRules = () => {
   const [rules, setRules] = useState([]);
 
   const loadRules = useCallback(() => {
     if (typeof chrome !== "undefined" && chrome.storage) {
       chrome.storage.local.get(["rules"], (result) => {
-        setRules(result.rules || []);
+        setRules((result.rules || []).map(normalizeRule));
       });
     }
   }, []);
@@ -24,7 +37,7 @@ export const useRules = () => {
   const addRule = useCallback(
     (newRule) => {
       setRules((currentRules) => {
-        const updatedRules = [...currentRules, newRule];
+        const updatedRules = [...currentRules, normalizeRule(newRule)];
         saveRulesToStorage(updatedRules);
         return updatedRules;
       });
@@ -35,8 +48,9 @@ export const useRules = () => {
   const updateRule = useCallback(
     (updatedRule) => {
       setRules((currentRules) => {
+        const normalizedRule = normalizeRule(updatedRule);
         const updatedRules = currentRules.map((r) =>
-          r.id === updatedRule.id ? updatedRule : r,
+          r.id === normalizedRule.id ? normalizedRule : r,
         );
         saveRulesToStorage(updatedRules);
         return updatedRules;

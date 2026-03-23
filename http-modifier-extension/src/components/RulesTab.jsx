@@ -1,5 +1,5 @@
-import React, { useState, useCallback, memo } from "react";
-import { useRules } from "../hooks/useRules";
+import React, { useState, useCallback, useMemo, memo } from "react";
+import { normalizeGroupName, useRules } from "../hooks/useRules";
 import HeaderRuleForm from "./HeaderRuleForm";
 import ResponseRuleForm from "./ResponseRuleForm";
 import {
@@ -186,7 +186,8 @@ const RuleItem = memo(({ rule, onEdit, onDelete, onCopy, onToggle }) => {
 });
 
 const RulesTab = () => {
-  const { rules, addRule, updateRule, deleteRule, toggleRule } = useRules();
+  const { rules, addRule, updateRule, deleteRule, toggleRule, disableGroup } =
+    useRules();
   const [editingRule, setEditingRule] = useState(null);
   const [creationType, setCreationType] = useState(null); // 'header' | 'response' | null
 
@@ -196,6 +197,7 @@ const RulesTab = () => {
         updateRule({
           ...editingRule,
           ...formData,
+          groupName: formData.groupName || editingRule.groupName,
         });
         setEditingRule(null);
       } else if (creationType) {
@@ -253,6 +255,31 @@ const RulesTab = () => {
       (editingRule.type === RULE_TYPES.RESPONSE ||
         editingRule.type === "response")) ||
     creationType === RULE_TYPES.RESPONSE;
+
+  const groupedRules = useMemo(() => {
+    const groups = new Map();
+
+    rules.forEach((rule) => {
+      const groupName = normalizeGroupName(rule.groupName);
+      const existingGroup = groups.get(groupName);
+
+      if (existingGroup) {
+        existingGroup.rules.push(rule);
+        if (rule.enabled !== false) {
+          existingGroup.isActive = true;
+        }
+        return;
+      }
+
+      groups.set(groupName, {
+        groupName,
+        rules: [rule],
+        isActive: rule.enabled !== false,
+      });
+    });
+
+    return Array.from(groups.values());
+  }, [rules]);
 
   return (
     <div className="space-y-6">
@@ -348,16 +375,52 @@ const RulesTab = () => {
             <p className="text-gray-400 text-sm">No rules configured yet.</p>
           </div>
         ) : (
-          <div className="space-y-3">
-            {rules.map((rule) => (
-              <RuleItem
-                key={rule.id}
-                rule={rule}
-                onEdit={handleEdit}
-                onDelete={handleDeleteWithCheck}
-                onCopy={handleCopy}
-                onToggle={toggleRule}
-              />
+          <div className="space-y-4">
+            {groupedRules.map((group) => (
+              <section key={group.groupName} className="space-y-3">
+                <div className="flex items-center justify-between gap-3 px-1">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <h4 className="text-sm font-semibold text-gray-900 truncate">
+                      {group.groupName}
+                    </h4>
+                    <span className="text-xs text-gray-500 whitespace-nowrap">
+                      {group.rules.length}{" "}
+                      {group.rules.length === 1 ? "rule" : "rules"}
+                    </span>
+                    <span
+                      className={`text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded ${
+                        group.isActive
+                          ? "bg-green-100 text-green-700"
+                          : "bg-gray-100 text-gray-600"
+                      }`}
+                    >
+                      {group.isActive ? "Active" : "Inactive"}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      disableGroup(normalizeGroupName(group.groupName))
+                    }
+                    className="text-xs font-medium text-red-600 hover:text-red-700"
+                  >
+                    Disable Group
+                  </button>
+                </div>
+
+                <div className="space-y-3">
+                  {group.rules.map((rule) => (
+                    <RuleItem
+                      key={rule.id}
+                      rule={rule}
+                      onEdit={handleEdit}
+                      onDelete={handleDeleteWithCheck}
+                      onCopy={handleCopy}
+                      onToggle={toggleRule}
+                    />
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         )}

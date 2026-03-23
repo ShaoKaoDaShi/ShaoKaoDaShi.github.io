@@ -1,5 +1,8 @@
 import React, { useState, useMemo, memo } from "react";
 import { ACTION_TYPES, OPERATIONS } from "../constants";
+import { normalizeGroupName } from "../hooks/useRules";
+
+const DEFAULT_GROUP_NAME = normalizeGroupName();
 
 const FORM_DEFAULTS = {
   urlPattern: "",
@@ -7,6 +10,7 @@ const FORM_DEFAULTS = {
   headerName: "",
   operation: OPERATIONS.SET,
   headerValue: "",
+  groupName: "",
 };
 
 const HeaderRuleForm = memo(
@@ -19,6 +23,7 @@ const HeaderRuleForm = memo(
           headerName: initialData.headerName || "",
           operation: initialData.operation || OPERATIONS.SET,
           headerValue: initialData.headerValue || "",
+          groupName: normalizeGroupName(initialData.groupName),
         };
       }
       return FORM_DEFAULTS;
@@ -39,7 +44,10 @@ const HeaderRuleForm = memo(
         setError("Please fill in all required fields");
         return;
       }
-      onSubmit(formData);
+      onSubmit({
+        ...formData,
+        groupName: normalizeGroupName(formData.groupName),
+      });
       // Reset form if not editing (if editing, parent handles closing/reset via initialData change)
       if (!isEditing) {
         setFormData(FORM_DEFAULTS);
@@ -81,10 +89,14 @@ const HeaderRuleForm = memo(
 
         <div className="grid grid-cols-2 gap-3 mb-3">
           <div className="col-span-2">
-            <label className="block text-xs font-medium text-gray-500 mb-1">
+            <label
+              htmlFor="header-rule-url-pattern"
+              className="block text-xs font-medium text-gray-500 mb-1"
+            >
               URL Pattern (contains or regex)
             </label>
             <input
+              id="header-rule-url-pattern"
               type="text"
               className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
               placeholder="e.g. example.com/api"
@@ -94,10 +106,14 @@ const HeaderRuleForm = memo(
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">
+            <label
+              htmlFor="header-rule-action-type"
+              className="block text-xs font-medium text-gray-500 mb-1"
+            >
               Type
             </label>
             <select
+              id="header-rule-action-type"
               className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
               value={formData.actionType}
               onChange={(e) => handleChange("actionType", e.target.value)}
@@ -111,10 +127,14 @@ const HeaderRuleForm = memo(
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">
+            <label
+              htmlFor="header-rule-operation"
+              className="block text-xs font-medium text-gray-500 mb-1"
+            >
               Operation
             </label>
             <select
+              id="header-rule-operation"
               className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
               value={formData.operation}
               onChange={(e) => handleChange("operation", e.target.value)}
@@ -128,10 +148,14 @@ const HeaderRuleForm = memo(
           </div>
 
           <div className="col-span-2">
-            <label className="block text-xs font-medium text-gray-500 mb-1">
+            <label
+              htmlFor="header-rule-name"
+              className="block text-xs font-medium text-gray-500 mb-1"
+            >
               Header Name
             </label>
             <input
+              id="header-rule-name"
               type="text"
               className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
               placeholder="e.g. Authorization"
@@ -140,12 +164,33 @@ const HeaderRuleForm = memo(
             />
           </div>
 
+          <div className="col-span-2">
+            <label
+              htmlFor="header-rule-group-name"
+              className="block text-xs font-medium text-gray-500 mb-1"
+            >
+              Group Name
+            </label>
+            <input
+              id="header-rule-group-name"
+              type="text"
+              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+              placeholder="e.g. Default"
+              value={formData.groupName}
+              onChange={(e) => handleChange("groupName", e.target.value)}
+            />
+          </div>
+
           {formData.operation !== OPERATIONS.REMOVE && (
             <div className="col-span-2">
-              <label className="block text-xs font-medium text-gray-500 mb-1">
+              <label
+                htmlFor="header-rule-value"
+                className="block text-xs font-medium text-gray-500 mb-1"
+              >
                 Header Value
               </label>
               <input
+                id="header-rule-value"
                 type="text"
                 className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
                 placeholder="e.g. Bearer token123"

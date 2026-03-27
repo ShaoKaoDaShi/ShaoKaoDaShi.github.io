@@ -47,6 +47,7 @@ class TabGuardian {
         this.lruCounter = 0;
         this.lruMap = new WeakMap();
         this.isCleaning = false;
+        this.cleanupScheduled = false;
         this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
         this.statusBarItem.command = "tabManager.cleanNow";
         this.statusBarItem.show();
@@ -112,7 +113,7 @@ class TabGuardian {
         if (!this.config.autoCloseEnabled) {
             return;
         }
-        void this.ensureLimit(false);
+        this.scheduleCleanup();
     }
     onActiveEditorChanged() {
         this.updateActiveTabUsage();
@@ -121,6 +122,16 @@ class TabGuardian {
             return;
         }
         void this.ensureLimit(false);
+    }
+    scheduleCleanup() {
+        if (this.cleanupScheduled) {
+            return;
+        }
+        this.cleanupScheduled = true;
+        queueMicrotask(() => {
+            this.cleanupScheduled = false;
+            void this.ensureLimit(false);
+        });
     }
     updateActiveTabUsage() {
         const activeGroup = vscode.window.tabGroups.activeTabGroup;

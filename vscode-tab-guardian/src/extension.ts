@@ -19,6 +19,7 @@ class TabGuardian {
   private lruCounter = 0;
   private lruMap = new WeakMap<vscode.Tab, number>();
   private isCleaning = false;
+  private cleanupScheduled = false;
   private config: TabManagerConfig;
 
   constructor(private readonly context: vscode.ExtensionContext) {
@@ -114,7 +115,7 @@ class TabGuardian {
       return;
     }
 
-    void this.ensureLimit(false);
+    this.scheduleCleanup();
   }
 
   private onActiveEditorChanged(): void {
@@ -126,6 +127,19 @@ class TabGuardian {
     }
 
     void this.ensureLimit(false);
+  }
+
+  private scheduleCleanup(): void {
+    if (this.cleanupScheduled) {
+      return;
+    }
+
+    this.cleanupScheduled = true;
+
+    queueMicrotask(() => {
+      this.cleanupScheduled = false;
+      void this.ensureLimit(false);
+    });
   }
 
   private updateActiveTabUsage(): void {

@@ -57,7 +57,8 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "lint": "echo \"No linting configured\"",
-    "test": "echo \"No tests configured\"",
+    "test": "npm run compile && node --test out/*.test.js",
+    "verify": "npm run test",
     "package": "vsce package"
   },
   "devDependencies": {

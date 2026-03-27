@@ -1,144 +1,227 @@
-# AGENTS：高层架构与协作指南
+# AGENTS.md
 
-本仓库是一个“多应用/多扩展”集合：包含多个相互独立的前端应用、浏览器扩展、VS Code 扩展与配套后端服务。各子项目有各自的构建链路与运行方式，通常不共享运行时代码。
+Agent execution guide for `/Users/bytedance/projects/skds/reactJsonView`.
+This repository is a multi-project workspace. Treat each top-level app or extension as an independent project unless code clearly proves otherwise.
 
-说明：仓库中未发现 `.cursor/rules/*`、`.github/copilot-instructions.md`、`.trae/rules/*`。
+## Rule Files
 
-## 1) 项目概览
+- No `.cursor/rules/*` files were found.
+- No `.cursorrules` file was found.
+- No `.github/copilot-instructions.md` file was found.
+- No additional agent rule files were found under the repo root during inspection.
 
-### 1.1 主要子项目
+## Repository Map
 
-**A. `./`（React JSON Viewer Web）**
-- 入口与路由：`src/App.tsx` 使用 `HashRouter`，主要页面为 `Home`、`JsonEditor`、多种 Diff 页面。
-- 本地存储：`src/Database/jsonParseHistory.ts` 使用 Dexie（IndexedDB）存储 JSON 解析历史。
-- 构建输出：`vite.config.ts` 指定 `build.outDir = "docs"`，用于静态部署。
+### Root web app: `./`
 
-**B. `http-modifier-extension/`（Chrome 扩展：改 Header + Mock Response + 日志 + 同步）**
-- MV3 配置：`http-modifier-extension/public/manifest.json`。
-- 核心运行机制分三层：
-  - Service Worker：`http-modifier-extension/public/background.js`
-    - 将“Header 规则”转换为 `declarativeNetRequest` 动态规则并更新（动态规则 id 采用 `index+1` 的整数）。
-    - “Debugger Mode”通过 `chrome.debugger` + `Fetch.enable` / `Fetch.fulfillRequest` 在网络层 mock，使 DevTools Network 可见。
-    - 日志存内存队列（最多 50 条），通过 `chrome.runtime` 消息供 Popup 拉取。
-  - Content Script：`http-modifier-extension/public/content.js`
-    - 在 `document_start` 注入 `inject.js` 到页面主世界。
-    - 通过 `window.postMessage` 将 response 规则与 Debugger 状态下发到页面脚本。
-    - 将页面脚本发出的拦截日志转发到 `background.js`。
-  - Page Inject：`http-modifier-extension/public/inject.js`
-    - Monkey patch `window.fetch` 与 `XMLHttpRequest` 做“客户端层” response mock。
-    - 当 Debugger Mode 启用时（由 content script 通知）停止匹配/拦截，避免“双层同时 mock”。
+- Stack: React + TypeScript + Vite.
+- Main app entry: `src/App.tsx`.
+- Build config: `vite.config.ts`.
+- Output directory: `docs/`.
+- Local data layer: `src/Database/jsonParseHistory.ts` uses Dexie.
 
-Popup UI（React + Tailwind）：`http-modifier-extension/src/App.jsx` + `http-modifier-extension/src/components/*`
-- 规则与用户信息主要存 `chrome.storage.local`（键：`rules`、`user`）。
-- Cloud Sync API 入口固定为 `http-modifier-extension/src/components/DataSyncTab.jsx` 中的 `API_BASE_URL = "http://localhost:3000/api"`。
+### Chrome extension: `http-modifier-extension/`
 
-**C. `http-modifier-server/`（Cloud Sync 后端）**
-- 运行时：`http-modifier-server/package.json` 使用 `bun` 启动（`bun server.ts`）。
-- HTTP 服务：`http-modifier-server/server.ts` 基于 Express + CORS，提供：
-  - `POST /api/login`：注册/登录并返回 token。
-  - `POST /api/sync/push`：保存 rules JSON。
-  - `GET /api/sync/pull`：拉取 rules JSON。
-- 数据库：`http-modifier-server/database.ts` 使用 `bun:sqlite`，文件名 `db.sqlite`，表：`user`、`rules`。
+- Stack: React + Tailwind for popup, plain JS for MV3 runtime scripts.
+- Manifest: `http-modifier-extension/public/manifest.json`.
+- Popup app entry: `http-modifier-extension/src/App.jsx`.
+- Runtime scripts: `http-modifier-extension/public/background.js`, `http-modifier-extension/public/content.js`, `http-modifier-extension/public/inject.js`.
+- Build config: `http-modifier-extension/vite.config.js`.
+- Output directory: `http-modifier-extension/dist/`.
 
-**D. `pdf-image-converter/`（PDF/图片处理 Web 应用）**
-- 构建：`pdf-image-converter/vite.config.ts`，包含 `@rdservices/aime-code-inspector` 的 `CodeInspectorPlugin`（注释标明“不要移除”），并配置了 `@` -> `./src` 的别名。
-- 依赖（从 `pdf-image-converter/package.json`）：包含 `pdf-lib`、`pdfjs-dist`、`file-saver`、`jszip` 等（具体用途以实现代码为准）。
+### Sync server: `http-modifier-server/`
 
-**E. `vscode-tab-guardian/`（VS Code 扩展：标签页上限 + LRU 清理）**
-- 核心逻辑：`vscode-tab-guardian/src/extension.ts` 维护 `WeakMap<Tab, number>` 作为 LRU 分数；在 tab 变化/激活编辑器变化时根据配置自动关闭“可关闭”的文本 tab。
-- 配置项：`vscode-tab-guardian/package.json` 的 `contributes.configuration`（如 `tabManager.maxOpenTabs`、`respectPinned`、`respectDirty`）。
+- Stack: TypeScript + Express + Bun + SQLite.
+- Main server entry: `http-modifier-server/server.ts`.
+- Database setup: `http-modifier-server/database.ts`.
+- Runtime package manager: Bun, not Node.
 
-### 1.2 子项目之间的关系
+### PDF/image app: `pdf-image-converter/`
 
-- `http-modifier-extension/` 与 `http-modifier-server/` 通过 HTTP 接口协作（见 `DataSyncTab.jsx` 使用的 `API_BASE_URL` 与 `server.ts` 的 `/api/*` 路由）。
-- 其它子项目（根 Web、PDF 工具、VS Code 扩展）在代码层面互不依赖，按目录独立开发/构建。
+- Stack: React + TypeScript + Vite.
+- Build config: `pdf-image-converter/vite.config.ts`.
+- Path alias: `@ -> ./src`.
+- Special note: keep `CodeInspectorPlugin`; code comments indicate it should not be removed.
 
-## 2) Build & Commands
+### VS Code extension: `vscode-tab-guardian/`
 
-以各目录的 `package.json` 为准（本仓库不同子项目的包管理器/脚本并不完全统一）。
+- Stack: TypeScript + VS Code Extension API.
+- Main extension entry: `vscode-tab-guardian/src/extension.ts`.
+- Package config: `vscode-tab-guardian/package.json`.
+- Compiled output: `vscode-tab-guardian/out/`.
+- Tests currently compile to `vscode-tab-guardian/out/*.test.js`.
 
-**根目录（React JSON Viewer）**：`package.json`
-- `npm run dev`：启动 Vite 开发服务器
-- `npm run build`：Vite 构建（输出到 `docs/`，见 `vite.config.ts`）
-- `npm run lint`：ESLint
-- `npm run preview`：本地预览构建产物
+## General Working Rules
 
-**Chrome 扩展（http-modifier-extension）**：`http-modifier-extension/package.json`
-- `npm run dev`：Vite 开发（Popup UI）
-- `npm run build`：构建扩展（输出到 `http-modifier-extension/dist/`，见 `http-modifier-extension/vite.config.js`）
-- `npm run lint`：ESLint
-- `npm run generate-icons`：用 `sharp` 从 `public/icons/icon.svg` 生成多尺寸 PNG（见 `http-modifier-extension/scripts/generate-icons.js`）
+- First identify which subproject you are changing.
+- Run commands from that subproject directory unless the command clearly belongs at repo root.
+- Do not assume tooling is shared across subprojects.
+- Prefer the smallest verification command that proves your change.
+- If a project has no formal tests, say so directly and use build/lint/typecheck instead.
+- Do not remove generated files if that subproject normally checks them in.
+- Do not overwrite unrelated user changes in other subprojects.
 
-**Cloud Sync Server（http-modifier-server）**：`http-modifier-server/package.json`
-- `bun server.ts`：启动（脚本：`npm run start`）
-- `bun --watch server.ts`：开发热重载（脚本：`npm run dev`）
-- `npm run typecheck`：TypeScript 类型检查
+## Build, Lint, and Test Commands
 
-**PDF 工具（pdf-image-converter）**：`pdf-image-converter/package.json`
-- `npm run dev`、`npm run build`、`npm run lint`、`npm run preview`（以该目录脚本为准）
+### Root web app: `./`
 
-**VS Code 扩展（vscode-tab-guardian）**：`vscode-tab-guardian/package.json`
-- `npm run compile`：编译 TypeScript（输出到 `out/`）
-- `npm run watch`：监听编译
-- `npm run vscode:prepublish`：发布前编译
+- Install: `npm install`
+- Dev server: `npm run dev`
+- Build: `npm run build`
+- Lint: `npm run lint`
+- Preview build: `npm run preview`
+- Full verification: `npm run lint && npm run build`
+- Single test: no formal test runner was found.
+- Smallest useful validation: `npm run lint` or `npm run build`
 
-**部署相关脚本（可选）**
-- `scripts/deploy_mac_nginx.sh`：将 `./dist/` 复制到 `/opt/homebrew/etc/nginx/jsonParse/`（脚本假设存在 `dist/`）。
-- `scripts/nginx.conf`：一个监听 `8080` 的静态站点示例配置。
+### Chrome extension: `http-modifier-extension/`
 
-## 3) Code Style
+- Install: `npm install`
+- Dev server for popup UI: `npm run dev`
+- Build extension bundle: `npm run build`
+- Lint: `npm run lint`
+- Generate icons: `npm run generate-icons`
+- Full verification: `npm run lint && npm run build`
+- Single test: no formal test runner was found.
+- Smallest useful validation: `npm run lint` for JS/JSX changes, `npm run build` for integration changes
 
-### 3.1 ESLint（实际配置）
+### Sync server: `http-modifier-server/`
 
-- 根目录：`eslint.config.js` 使用 `typescript-eslint` flat config，规则包含 `react-hooks` 推荐集与 `react-refresh/only-export-components`。
-- `http-modifier-extension/`：`http-modifier-extension/eslint.config.js` 针对 `**/*.{js,jsx}`，并将 `dist/` 设为 ignore；包含规则 `no-unused-vars: ["error", { varsIgnorePattern: "^[A-Z_]" }]`。
-- `pdf-image-converter/`：`pdf-image-converter/eslint.config.js` 同样采用 `typescript-eslint` flat config。
+- Install: `npm install`
+- Start server: `npm run start`
+- Dev server: `npm run dev`
+- Typecheck: `npm run typecheck`
+- Full verification: `npm run typecheck`
+- Single test: no formal test runner was found.
+- Smallest useful validation: `npm run typecheck`
+- Runtime note: scripts use Bun; do not replace with `node server.ts`
 
-### 3.2 约定与“容易踩坑”的实现细节
+### PDF/image app: `pdf-image-converter/`
 
-- Chrome 扩展的三层脚本边界：
-  - Popup UI（`http-modifier-extension/src/*`）在扩展页面环境运行；
-  - Background/Content/Inject（`http-modifier-extension/public/*.js`）在 MV3/页面上下文运行；
-  - `public/manifest.json` 直接引用 `public/*.js`，因此这些文件的路径与输出结构需要保持一致。
-- DNR 动态规则 ID 必须是整数：`http-modifier-extension/public/background.js` 用数组 index 生成（更改规则生成逻辑时要保持这一约束）。
-- Response mock 有两条路径：
-  - 默认模式：`inject.js`（fetch/XHR patch）
-  - Debugger 模式：`background.js`（Fetch.fulfillRequest）
-  两者通过消息互斥，避免冲突。
+- Install: `npm install`
+- Dev server: `npm run dev`
+- Build: `npm run build`
+- Lint: `npm run lint`
+- Preview: `npm run preview`
+- Full verification: `npm run lint && npm run build`
+- Single test: no formal test runner was found.
+- Smallest useful validation: `npm run lint` or `npm run build`
 
-## 4) Testing
+### VS Code extension: `vscode-tab-guardian/`
 
-仓库内未看到统一的自动化测试框架接入（例如 Jest/Vitest 的测试脚本与用例目录约定）。现阶段验证主要依赖：
-- 各子项目的 `npm run lint` / `npm run build`
-- `http-modifier-server` 的 `npm run typecheck`
-- `vscode-tab-guardian` 的 `npm run compile`
+- Install: `npm install`
+- Compile: `npm run compile`
+- Watch compile: `npm run watch`
+- Prepublish compile: `npm run vscode:prepublish`
+- Test suite: `npm test`
+- Verify alias: `npm run verify`
+- Full verification: `npm test && npm run compile`
+- Single compiled test file: `node --test out/extension.test.js`
+- All compiled tests: `node --test out/*.test.js`
+- Important: compile first if `out/` is stale
+- Smallest useful validation for source change: `npm run compile`
 
-## 5) Security
+## How To Run One Test
 
-### 5.1 Chrome 扩展权限与风险点
+Use these rules when an agent wants the smallest possible test scope.
 
-- `http-modifier-extension/public/manifest.json` 申请了 `debugger`、`declarativeNetRequest*`、`storage`、`tabs`，并对 `<all_urls>` 具备 host 访问能力。
-- `http-modifier-extension/public/content.js` 通过 `window.postMessage(..., "*")` 与页面脚本通信，并仅校验 `event.source === window`；任何同页脚本都可伪造同类型消息。当前实现依赖消息 `type` 字段做分流（扩展内不执行来自页面的代码字符串），但在扩展增强功能时应保持“只接收必要字段、校验结构”的原则。
+- Root web app: no single-test command available; use lint or build.
+- Chrome extension: no single-test command available; use lint or build.
+- Sync server: no single-test command available; use `npm run typecheck`.
+- PDF/image app: no single-test command available; use lint or build.
+- VS Code extension: run `npm run compile && node --test out/extension.test.js`.
+- If more test files are added later in `vscode-tab-guardian/out/`, prefer `node --test path/to/file.test.js` for one file.
 
-### 5.2 后端认证/存储
+## Code Style Guidelines
 
-- `http-modifier-server/server.ts` 使用 `md5()` 存储密码与生成 token（见 `md5()` 与 `/api/login`）。
-- `http-modifier-server/server.ts` 默认启用 `cors()`（允许跨域）。
-- `http-modifier-server/database.ts` 将规则以 `rules_json` 字段整块存储；调试/备份时注意其中可能包含敏感信息（如 Header 里的 token）。
+### Imports
 
-### 5.3 本仓库的本地凭证/环境变量
+- Follow the style already used in the target subproject.
+- Keep Node built-in imports separate from local imports when files already do that.
+- Prefer direct relative imports over introducing new alias systems unless the subproject already has them.
+- Do not leave unused imports behind; ESLint is configured to catch some of them.
+- In React files, keep component imports grouped and stable.
 
-- `src/config.js` 使用 `dotenv.config()` 从环境读取 `MRS_TOKEN`、`MRS_JWT` 等敏感字段，并用于 `src/mrsClient.js` 这类 Node 脚本（含 `fs/promises` 写文件）。
-- `http-modifier-extension/src/components/DataSyncTab.jsx` 会把登录返回的 `user.token` 存在 `chrome.storage.local` 并作为 `Authorization: Bearer ...` 发送。
+### Formatting
 
-## 6) Configuration
+- Match existing whitespace, quote style, semicolon usage, and trailing comma behavior in the file you edit.
+- Do not introduce a new formatter or reformat unrelated files.
+- Keep diffs narrow; avoid cleanup-only edits unless required for correctness.
+- Prefer ASCII in new content unless the file already uses non-ASCII text or the text is user-facing.
 
-### 6.1 Vite/构建配置
+### Types
 
-- 根目录：`vite.config.ts` 设置 `base: "./"` 与 `build.outDir: "docs"`。
-- `http-modifier-extension/`：`http-modifier-extension/vite.config.js` 将 `index.html` 作为构建入口，并输出到 `dist/`。
-- `pdf-image-converter/`：`pdf-image-converter/vite.config.ts` 配置了 `@` alias，并启用 `CodeInspectorPlugin`。
+- In TypeScript, prefer explicit types for public APIs, config objects, return values, and compatibility wrappers.
+- Avoid `any` when a narrower type, union, or type guard is possible.
+- When working around runtime API differences, isolate the compatibility logic in a helper.
+- Preserve strictness assumptions from `tsconfig.json`; do not weaken compiler settings casually.
 
-### 6.2 MCP（可选开发工具）
+### Naming
 
-- `mcp.json` 配置了 `chrome-devtools-mcp@latest` 的 MCP server（通过 `npx` 启动）。
+- Components, classes, and React pages: `PascalCase`.
+- Functions, methods, variables, and hooks: `camelCase`.
+- Constants: `UPPER_SNAKE_CASE` only when the file already uses constant-style naming.
+- File names should follow local conventions instead of forcing one naming style repo-wide.
+- Keep command IDs, storage keys, and config keys stable unless migration is intentional.
+
+### Error Handling
+
+- Do not silently swallow errors in async code.
+- Surface enough context to debug failures, especially in server code and extension runtime code.
+- Prefer returning or logging structured error information over vague messages.
+- In browser and extension code, guard boundary conditions before mutating shared state.
+- In multi-step flows, fail early when configuration is missing or invalid.
+
+### Comments
+
+- Add comments only when a rule, workaround, or integration boundary is not obvious from code.
+- Prefer short comments explaining why, not restating what the code does.
+- Keep existing useful comments unless they are now inaccurate.
+
+## Project-Specific Implementation Notes
+
+### Root web app
+
+- `vite.config.ts` builds into `docs/`; be careful because this affects deploy artifacts.
+- Routing uses `HashRouter`; do not switch routing mode casually.
+- IndexedDB behavior is part of user-visible state, so changes around Dexie should be validated carefully.
+
+### Chrome extension
+
+- Keep popup React code separate from MV3 runtime scripts in `public/`.
+- `manifest.json` references runtime script paths directly; preserve file names and locations.
+- Dynamic DNR rule IDs in `background.js` must remain integers.
+- Debugger-mode response mocking and injected-page mocking are intentionally separate paths.
+- Be careful with `window.postMessage` boundaries; validate message shape conservatively.
+
+### Sync server
+
+- Server runtime is Bun-based; SQLite usage relies on `bun:sqlite`.
+- Authentication and token handling are simplistic; avoid accidental auth changes while making unrelated edits.
+- Treat stored rule JSON as potentially sensitive.
+
+### PDF/image app
+
+- Preserve the Vite alias and the inspector plugin.
+- Avoid removing plugin code or config marked as required by comments.
+
+### VS Code extension
+
+- Source of truth is `src/`; `out/` is generated output.
+- If you change `src/extension.ts`, run `npm run compile` before claiming success.
+- Deferred cleanup and tab-closing behavior now has regression coverage; keep tests updated with behavior changes.
+- If you add new tests, ensure `npm test` still works against compiled output.
+
+## Validation Strategy
+
+- For logic-only TypeScript changes, prefer lint/typecheck/compile first.
+- For runtime or integration changes, run the smallest command plus a full project build when available.
+- For the VS Code extension, prefer `npm test` after behavior changes.
+- When no tests exist, explicitly report which command you used as a substitute and why.
+
+## Security and Config Notes
+
+- Never commit secrets from `.env`, tokens, or local database files.
+- Be cautious editing files that carry credentials, auth tokens, or sync data.
+- Avoid changing CORS, auth, or extension permissions unless the task explicitly requires it.
+- Do not assume generated deploy files in `docs/` are disposable without checking repo context.

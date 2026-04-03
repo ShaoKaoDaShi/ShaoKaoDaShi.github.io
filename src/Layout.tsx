@@ -10,6 +10,7 @@ const Layout: React.FC = () => {
     { path: "/diff", label: "Diff Viewer" },
     { path: "/optimized-diff", label: "Optimized Diff" },
     { path: "/precise-diff", label: "Precise Diff" },
+    { path: "/playground", label: "Playground" },
   ];
 
   return (

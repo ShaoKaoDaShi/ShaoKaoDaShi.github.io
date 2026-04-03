@@ -21,6 +21,12 @@ const Home: React.FC = () => {
       path: '/precise-diff',
       color: 'bg-purple-500',
     },
+    {
+      title: 'Playground',
+      description: 'Component playground for testing and previewing UI components.',
+      path: '/playground',
+      color: 'bg-yellow-500',
+    },
   ];
 
   return (

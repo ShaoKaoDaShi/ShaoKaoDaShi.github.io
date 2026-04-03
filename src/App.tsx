@@ -3,6 +3,7 @@ import JsonEditor from "./JsonEditor";
 import DiffViewerPage from "./pages/DiffViewerPage";
 import PreciseDiffViewerPage from "./pages/PreciseDiffViewerPage";
 import OptimizedDiffPage from "./pages/OptimizedDiffPage";
+import PlaygroundPage from "./pages/PlaygroundPage";
 import Layout from "./Layout";
 import Home from "./pages/Home";
 
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="diff" element={<DiffViewerPage />} />
           <Route path="optimized-diff" element={<OptimizedDiffPage />} />
           <Route path="precise-diff" element={<PreciseDiffViewerPage />} />
+          <Route path="playground" element={<PlaygroundPage />} />
         </Route>
       </Routes>
     </HashRouter>

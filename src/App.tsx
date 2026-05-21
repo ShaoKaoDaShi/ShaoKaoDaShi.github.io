@@ -4,6 +4,7 @@ import DiffViewerPage from "./pages/DiffViewerPage";
 import PreciseDiffViewerPage from "./pages/PreciseDiffViewerPage";
 import OptimizedDiffPage from "./pages/OptimizedDiffPage";
 import PlaygroundPage from "./pages/PlaygroundPage";
+import VideoTestPage from "./pages/VideoTestPage";
 import Layout from "./Layout";
 import Home from "./pages/Home";
 
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="optimized-diff" element={<OptimizedDiffPage />} />
           <Route path="precise-diff" element={<PreciseDiffViewerPage />} />
           <Route path="playground" element={<PlaygroundPage />} />
+          <Route path="video-test" element={<VideoTestPage />} />
         </Route>
       </Routes>
     </HashRouter>

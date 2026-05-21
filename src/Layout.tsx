@@ -11,6 +11,7 @@ const Layout: React.FC = () => {
     { path: "/optimized-diff", label: "Optimized Diff" },
     { path: "/precise-diff", label: "Precise Diff" },
     { path: "/playground", label: "Playground" },
+    { path: "/video-test", label: "Video Test" },
   ];
 
   return (

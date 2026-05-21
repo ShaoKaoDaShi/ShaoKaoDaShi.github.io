@@ -1,31 +1,41 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
   const features = [
     {
-      title: 'JSON Editor',
-      description: 'A powerful JSON editor with parsing, formatting, and history support.',
-      path: '/editor',
-      color: 'bg-blue-500',
+      title: "JSON Editor",
+      description:
+        "A powerful JSON editor with parsing, formatting, and history support.",
+      path: "/editor",
+      color: "bg-blue-500",
     },
     {
-      title: 'Diff Viewer',
-      description: 'Compare two text files and visualize the differences.',
-      path: '/diff',
-      color: 'bg-green-500',
+      title: "Diff Viewer",
+      description: "Compare two text files and visualize the differences.",
+      path: "/diff",
+      color: "bg-green-500",
     },
     {
-      title: 'Precise Diff Viewer',
-      description: 'Advanced character-level difference visualization for code.',
-      path: '/precise-diff',
-      color: 'bg-purple-500',
+      title: "Precise Diff Viewer",
+      description:
+        "Advanced character-level difference visualization for code.",
+      path: "/precise-diff",
+      color: "bg-purple-500",
     },
     {
-      title: 'Playground',
-      description: 'Component playground for testing and previewing UI components.',
-      path: '/playground',
-      color: 'bg-yellow-500',
+      title: "Playground",
+      description:
+        "Component playground for testing and previewing UI components.",
+      path: "/playground",
+      color: "bg-yellow-500",
+    },
+    {
+      title: "Video Test",
+      description:
+        "A simple page for testing local and remote video playback in the browser.",
+      path: "/video-test",
+      color: "bg-rose-500",
     },
   ];
 

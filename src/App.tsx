@@ -5,6 +5,8 @@ import PreciseDiffViewerPage from "./pages/PreciseDiffViewerPage";
 import OptimizedDiffPage from "./pages/OptimizedDiffPage";
 import PlaygroundPage from "./pages/PlaygroundPage";
 import VideoTestPage from "./pages/VideoTestPage";
+import ThreePhysicsDemoPage from "./pages/ThreePhysicsDemoPage";
+import ThreeTeachingSlingshotPage from "./pages/ThreeTeachingSlingshotPage";
 import Layout from "./Layout";
 import Home from "./pages/Home";
 
@@ -20,6 +22,11 @@ export default function App() {
           <Route path="precise-diff" element={<PreciseDiffViewerPage />} />
           <Route path="playground" element={<PlaygroundPage />} />
           <Route path="video-test" element={<VideoTestPage />} />
+          <Route path="three-physics" element={<ThreePhysicsDemoPage />} />
+          <Route
+            path="three-teaching-slingshot"
+            element={<ThreeTeachingSlingshotPage />}
+          />
         </Route>
       </Routes>
     </HashRouter>

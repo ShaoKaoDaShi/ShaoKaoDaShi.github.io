@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 const Layout: React.FC = () => {
   const location = useLocation();
+  const [json, setJson] = useState("");
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -12,6 +13,8 @@ const Layout: React.FC = () => {
     { path: "/precise-diff", label: "Precise Diff" },
     { path: "/playground", label: "Playground" },
     { path: "/video-test", label: "Video Test" },
+    { path: "/three-physics", label: "Three Physics" },
+    { path: "/three-teaching-slingshot", label: "Teaching Slingshot" },
   ];
 
   return (
@@ -47,6 +50,12 @@ const Layout: React.FC = () => {
 
       <main className="flex-1 overflow-hidden flex flex-col">
         <Outlet />
+        <textarea
+          className="flex-1"
+          value={json}
+          defaultValue={"asdfasfd"}
+          onChange={(e) => setJson(e.target.value)}
+        ></textarea>
       </main>
     </div>
   );

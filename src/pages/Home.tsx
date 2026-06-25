@@ -37,6 +37,20 @@ const Home: React.FC = () => {
       path: "/video-test",
       color: "bg-rose-500",
     },
+    {
+      title: "Three Physics",
+      description:
+        "A Three.js scene with Rapier rigid-body physics and collisions.",
+      path: "/three-physics",
+      color: "bg-cyan-500",
+    },
+    {
+      title: "Teaching Slingshot",
+      description:
+        "A safe Three.js teaching model for a low-energy guided slingshot mechanism.",
+      path: "/three-teaching-slingshot",
+      color: "bg-sky-500",
+    },
   ];
 
   return (

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@opencode-ai/plugin": "npm:@byted/neeko-plugin@2.1.90"
+  }
+}

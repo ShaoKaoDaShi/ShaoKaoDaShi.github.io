@@ -13,6 +13,12 @@ const FORM_DEFAULTS = {
   groupName: "",
 };
 
+const HEADER_PRESETS = [
+  { name: "Authorization", value: "Bearer " },
+  { name: "Content-Type", value: "application/json" },
+  { name: "X-Request-ID", value: "" },
+];
+
 const HeaderRuleForm = memo(
   ({ initialData, onSubmit, onCancel, isEditing }) => {
     const [formData, setFormData] = useState(() => {
@@ -54,6 +60,16 @@ const HeaderRuleForm = memo(
       }
     };
 
+    const applyPreset = (preset) => {
+      setFormData((prev) => ({
+        ...prev,
+        headerName: preset.name,
+        headerValue: preset.value,
+        operation: OPERATIONS.SET,
+      }));
+      if (error) setError("");
+    };
+
     const actionTypeOptions = useMemo(
       () => [
         { value: ACTION_TYPES.REQUEST, label: "Request Header" },
@@ -88,6 +104,26 @@ const HeaderRuleForm = memo(
         </h3>
 
         <div className="grid grid-cols-2 gap-3 mb-3">
+          <div className="col-span-2">
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <span className="text-xs font-medium text-gray-500">
+                Common headers
+              </span>
+              <div className="flex flex-wrap justify-end gap-1">
+                {HEADER_PRESETS.map((preset) => (
+                  <button
+                    key={preset.name}
+                    type="button"
+                    onClick={() => applyPreset(preset)}
+                    className="px-2 py-1 text-[10px] font-medium text-blue-700 bg-blue-50 border border-blue-100 rounded hover:bg-blue-100 transition-colors"
+                  >
+                    {preset.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <div className="col-span-2">
             <label
               htmlFor="header-rule-url-pattern"

@@ -70,4 +70,23 @@ describe("HeaderRuleForm", () => {
 
     expect(screen.getByLabelText("Group Name").value).toBe("Default");
   });
+
+  it("fills header fields from a common preset", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <HeaderRuleForm
+        onSubmit={() => {}}
+        onCancel={() => {}}
+        isEditing={false}
+      />,
+    );
+
+    await user.click(screen.getByRole("button", { name: "Content-Type" }));
+
+    expect(screen.getByLabelText("Header Name").value).toBe("Content-Type");
+    expect(screen.getByLabelText("Header Value").value).toBe(
+      "application/json",
+    );
+  });
 });

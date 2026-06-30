@@ -21,9 +21,25 @@ async function updateSession() {
   }
 }
 
+function updateRuleBadge(rules) {
+  const enabledRuleCount = rules.filter(
+    (rule) => rule.enabled !== false,
+  ).length;
+
+  chrome.action.setBadgeBackgroundColor({ color: "#2563eb" });
+  chrome.action.setBadgeText({
+    text: enabledRuleCount > 0 ? String(enabledRuleCount) : "",
+  });
+  chrome.action.setTitle({
+    title: `HTTP Modifier Settings (${enabledRuleCount} enabled rules)`,
+  });
+}
+
 function updateRules() {
   chrome.storage.local.get(["rules"], (result) => {
     const rules = result.rules || [];
+    updateRuleBadge(rules);
+
     const headerRules = rules.filter(
       (r) => r.type === "header" && r.enabled !== false,
     );
@@ -68,7 +84,7 @@ function updateRules() {
         ],
       };
 
-      if (/[^a-zA-Z0-9\/\.\-\_\:\?]/.test(rule.urlPattern)) {
+      if (/[^a-zA-Z0-9/._:?-]/.test(rule.urlPattern)) {
         condition.regexFilter = rule.urlPattern;
       } else {
         condition.urlFilter = rule.urlPattern;
@@ -123,12 +139,15 @@ async function attachDebugger(tabId) {
     return { success: true };
   } catch (err) {
     console.error("Failed to attach debugger", err);
-    
+
     // Handle "Already attached" error gracefully
-    if (err.message && (err.message.includes("attached") || err.message.includes("debugging"))) {
-       attachedTabs.add(tabId);
-       await updateSession();
-       return { success: true };
+    if (
+      err.message &&
+      (err.message.includes("attached") || err.message.includes("debugging"))
+    ) {
+      attachedTabs.add(tabId);
+      await updateSession();
+      return { success: true };
     }
 
     // Return the actual error message
@@ -164,7 +183,7 @@ chrome.debugger.onEvent.addListener(async (source, method, params) => {
       const matchingRule = responseRules.find((rule) => {
         try {
           if (new RegExp(rule.urlPattern).test(request.url)) return true;
-        } catch (e) {
+        } catch {
           return request.url.includes(rule.urlPattern);
         }
         return false;
@@ -224,12 +243,13 @@ chrome.debugger.onEvent.addListener(async (source, method, params) => {
   }
 });
 
-chrome.debugger.onDetach.addListener((source, reason) => {
+chrome.debugger.onDetach.addListener((source) => {
   attachedTabs.delete(source.tabId);
   updateSession();
-  
+
   // Notify content script that debugger is disabled (e.g. user closed banner)
-  chrome.tabs.sendMessage(source.tabId, { type: "DEBUGGER_MODE_DISABLED" })
+  chrome.tabs
+    .sendMessage(source.tabId, { type: "DEBUGGER_MODE_DISABLED" })
     .catch(() => {
       // Content script might not be available if tab was closed
     });
@@ -247,6 +267,10 @@ chrome.runtime.onInstalled.addListener(() => {
   updateRules();
   // Cleanup old global flag
   chrome.storage.local.remove("debuggerEnabled");
+});
+
+chrome.runtime.onStartup.addListener(() => {
+  updateRules();
 });
 
 // Handle messages
@@ -277,7 +301,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   } else if (message.type === "DISABLE_DEBUGGER") {
     detachDebugger(message.tabId).then(() => {
       // Notify content script to re-enable its own mocking
-      chrome.tabs.sendMessage(message.tabId, { type: "DEBUGGER_MODE_DISABLED" });
+      chrome.tabs.sendMessage(message.tabId, {
+        type: "DEBUGGER_MODE_DISABLED",
+      });
       sendResponse({ success: true });
     });
     return true; // async response

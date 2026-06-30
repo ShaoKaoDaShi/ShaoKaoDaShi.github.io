@@ -198,7 +198,7 @@ describe("RulesTab", () => {
 
     render(<RulesTab />);
 
-    await user.click(screen.getByRole("button", { name: /Header Rule/i }));
+    await user.click(screen.getByRole("button", { name: /Add Header/i }));
 
     expect(headerRuleFormMock).toHaveBeenLastCalledWith(
       expect.objectContaining({

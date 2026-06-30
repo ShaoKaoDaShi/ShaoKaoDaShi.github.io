@@ -65,18 +65,21 @@ const RuleItem = memo(({ rule, onEdit, onDelete, onCopy, onToggle }) => {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Toggle Switch */}
-            <label className="relative inline-flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                className="sr-only peer"
-                checked={!isDisabled}
-                onChange={(e) => onToggle(rule.id, e.target.checked)}
-              />
-              <div className="w-7 h-4 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-blue-600"></div>
+            <label className="inline-flex items-center gap-1.5 cursor-pointer rounded-full border border-gray-200 bg-gray-50 px-2 py-1 text-[10px] font-medium text-gray-600 hover:bg-white transition-colors">
+              <span>{isDisabled ? "Disabled" : "Enabled"}</span>
+              <span className="relative inline-flex h-4 w-7 items-center">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={!isDisabled}
+                  onChange={(e) => onToggle(rule.id, e.target.checked)}
+                />
+                <span className="absolute inset-0 rounded-full bg-gray-200 transition-colors peer-checked:bg-blue-600"></span>
+                <span className="absolute left-[2px] top-[2px] h-3 w-3 rounded-full border border-gray-300 bg-white transition-transform peer-checked:translate-x-3"></span>
+              </span>
             </label>
 
-            <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-1">
               <button
                 onClick={() => onCopy(rule)}
                 className="p-1 text-gray-400 hover:text-green-600 rounded hover:bg-green-50 transition-colors"
@@ -285,16 +288,22 @@ const RulesTab = () => {
     <div className="space-y-6">
       {/* Creation Buttons */}
       {!editingRule && !creationType && (
-        <div className="grid grid-cols-2 gap-3">
-          <button
-            onClick={() => setCreationType(RULE_TYPES.HEADER)}
-            className="flex items-center justify-center gap-2 p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all group shadow-sm"
-          >
-            <span className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+        <div className="flex items-center justify-between gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 shadow-sm">
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900">Rules</h3>
+            <p className="text-[10px] text-gray-500">
+              Add headers or mock responses
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setCreationType(RULE_TYPES.HEADER)}
+              className="inline-flex items-center gap-1.5 rounded-md bg-blue-600 px-3 py-2 text-xs font-medium text-white shadow-sm transition-colors hover:bg-blue-700 active:scale-95"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
+                width="13"
+                height="13"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -302,28 +311,19 @@ const RulesTab = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <path d="M4 6h16M4 12h16M4 18h16" />
+                <path d="M12 5v14M5 12h14" />
               </svg>
-            </span>
-            <div className="text-left">
-              <div className="text-sm font-medium text-gray-900">
-                Header Rule
-              </div>
-              <div className="text-[10px] text-gray-500">
-                Modify request/response headers
-              </div>
-            </div>
-          </button>
+              Add Header
+            </button>
 
-          <button
-            onClick={() => setCreationType(RULE_TYPES.RESPONSE)}
-            className="flex items-center justify-center gap-2 p-3 bg-white border border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-all group shadow-sm"
-          >
-            <span className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <button
+              onClick={() => setCreationType(RULE_TYPES.RESPONSE)}
+              className="inline-flex items-center gap-1.5 rounded-md border border-gray-200 bg-white px-3 py-2 text-xs font-medium text-gray-700 transition-colors hover:border-green-300 hover:bg-green-50 hover:text-green-700 active:scale-95"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
+                width="13"
+                height="13"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -333,14 +333,9 @@ const RulesTab = () => {
               >
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
               </svg>
-            </span>
-            <div className="text-left">
-              <div className="text-sm font-medium text-gray-900">Mock Rule</div>
-              <div className="text-[10px] text-gray-500">
-                Mock API response body
-              </div>
-            </div>
-          </button>
+              Mock
+            </button>
+          </div>
         </div>
       )}
 

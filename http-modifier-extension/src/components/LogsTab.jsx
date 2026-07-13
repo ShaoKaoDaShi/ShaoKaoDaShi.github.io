@@ -11,47 +11,87 @@ const METHOD_COLORS = {
 };
 
 const formatTime = (timestamp) => {
-  return new Date(timestamp).toLocaleTimeString([], { hour12: false });
+  const date = new Date(timestamp);
+  return Number.isNaN(date.getTime())
+    ? "Unknown time"
+    : date.toLocaleTimeString([], { hour12: false });
 };
 
 const getMethodColor = (method) => {
   return METHOD_COLORS[method] || "bg-gray-100 text-gray-700";
 };
 
+const getRuntimeError = (fallback) =>
+  chrome.runtime.lastError?.message || fallback;
+
 const LogsTab = () => {
   const [logs, setLogs] = useState([]);
+  const [error, setError] = useState("");
 
   const loadLogs = useCallback(() => {
-    if (typeof chrome !== "undefined" && chrome.runtime) {
+    if (typeof chrome === "undefined" || !chrome.runtime) {
+      setError("Extension runtime is unavailable.");
+      return;
+    }
+
+    try {
       chrome.runtime.sendMessage({ type: "GET_LOGS" }, (response) => {
-        if (response && response.logs) {
-          setLogs(response.logs);
+        if (chrome.runtime.lastError) {
+          setError(getRuntimeError("Unable to load intercept logs."));
+          return;
         }
+        if (!Array.isArray(response?.logs)) {
+          setError("The extension returned an invalid logs response.");
+          return;
+        }
+        setLogs(response.logs);
+        setError("");
       });
+    } catch (runtimeError) {
+      setError(runtimeError.message || "Unable to load intercept logs.");
     }
   }, []);
 
   const handleClear = useCallback(() => {
-    if (typeof chrome !== "undefined" && chrome.runtime) {
-      chrome.runtime.sendMessage({ type: "CLEAR_LOGS" }, () => {
+    if (!confirm("Clear all intercept logs?")) return;
+
+    if (typeof chrome === "undefined" || !chrome.runtime) {
+      setError("Extension runtime is unavailable.");
+      return;
+    }
+
+    try {
+      chrome.runtime.sendMessage({ type: "CLEAR_LOGS" }, (response) => {
+        if (chrome.runtime.lastError || response?.success !== true) {
+          setError(getRuntimeError("Unable to clear intercept logs."));
+          return;
+        }
         setLogs([]);
+        setError("");
       });
-    } else {
-      setLogs([]);
+    } catch (runtimeError) {
+      setError(runtimeError.message || "Unable to clear intercept logs.");
     }
   }, []);
 
   useEffect(() => {
-    loadLogs();
+    const initialLoad = setTimeout(loadLogs, 0);
     const interval = setInterval(loadLogs, LOG_REFRESH_INTERVAL);
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(initialLoad);
+      clearInterval(interval);
+    };
   }, [loadLogs]);
 
   return (
     <div className="flex flex-col h-[500px]">
       <div className="flex justify-between items-center mb-4 shrink-0">
-        <h3 className="text-sm font-bold text-gray-800 flex items-center gap-2">
+        <h3
+          id="intercept-logs-heading"
+          className="text-sm font-bold text-gray-800 flex items-center gap-2"
+        >
           <svg
+            aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
@@ -69,10 +109,13 @@ const LogsTab = () => {
           Intercept Logs
         </h3>
         <button
+          type="button"
+          aria-label="Clear intercept logs"
           onClick={handleClear}
-          className="px-3 py-1.5 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded hover:bg-gray-50 hover:text-red-600 transition-colors flex items-center gap-1"
+          className="px-3 py-1.5 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded hover:bg-gray-50 hover:text-red-600 transition-colors flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
         >
           <svg
+            aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="12"
             height="12"
@@ -91,10 +134,25 @@ const LogsTab = () => {
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto bg-white border border-gray-200 rounded-lg shadow-inner custom-scrollbar">
+      {error && (
+        <p
+          role="alert"
+          className="mb-3 rounded border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-700"
+        >
+          {error}
+        </p>
+      )}
+
+      <div
+        role="region"
+        aria-labelledby="intercept-logs-heading"
+        tabIndex="0"
+        className="flex-1 overflow-y-auto bg-white border border-gray-200 rounded-lg shadow-inner custom-scrollbar focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+      >
         {logs.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-gray-400 gap-2">
             <svg
+              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="32"
               height="32"
@@ -113,58 +171,95 @@ const LogsTab = () => {
           </div>
         ) : (
           <div className="divide-y divide-gray-100">
-            {logs.map((log, index) => (
-              <div
-                key={index}
-                className="p-3 hover:bg-gray-50 transition-colors group"
-              >
-                <div className="flex items-start gap-3 mb-1">
-                  <span
-                    className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide shrink-0 ${getMethodColor(log.method)}`}
-                  >
-                    {log.method}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2">
-                      <div
-                        className="text-xs font-medium text-gray-800 truncate"
-                        title={log.url}
-                      >
-                        {log.url}
+            {logs.map((entry, index) => {
+              const log = entry && typeof entry === "object" ? entry : {};
+              const id =
+                typeof log.id === "string" && log.id
+                  ? log.id
+                  : `malformed-${index}`;
+              const method =
+                typeof log.method === "string" && log.method
+                  ? log.method
+                  : "Unknown method";
+              const url =
+                typeof log.url === "string" && log.url
+                  ? log.url
+                  : "Unknown URL";
+              const tabUrl =
+                typeof log.tabUrl === "string" && log.tabUrl
+                  ? log.tabUrl
+                  : "Unknown tab URL";
+              const tabId = Number.isInteger(log.tabId)
+                ? `Tab ${log.tabId}`
+                : "Unknown tab";
+              const response =
+                log.mockResponse && typeof log.mockResponse === "object"
+                  ? log.mockResponse
+                  : {};
+              const bodyLength = Number.isFinite(response.bodyLength)
+                ? `${response.bodyLength}b`
+                : "Unknown";
+              const preview =
+                typeof response.preview === "string"
+                  ? response.preview
+                  : "Preview unavailable";
+
+              return (
+                <div
+                  key={id}
+                  data-testid={`log-${id}`}
+                  className="p-3 hover:bg-gray-50 transition-colors group"
+                >
+                  <div className="flex items-start gap-3 mb-1">
+                    <span
+                      className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide shrink-0 ${getMethodColor(method)}`}
+                    >
+                      {method}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <div
+                          className="text-xs font-medium text-gray-800 truncate"
+                          title={url}
+                        >
+                          {url}
+                        </div>
+                        <span className="text-[10px] text-gray-400 shrink-0 font-mono">
+                          {formatTime(log.timestamp)}
+                        </span>
                       </div>
-                      <span className="text-[10px] text-gray-400 shrink-0 font-mono">
-                        {formatTime(log.timestamp)}
+                    </div>
+                  </div>
+
+                  <div className="pl-[52px]">
+                    <div className="mb-1.5 min-w-0 text-[10px] text-gray-500">
+                      <span className="font-medium text-gray-600">{tabId}</span>
+                      <span className="mx-1" aria-hidden="true">
+                        &middot;
                       </span>
+                      <span className="break-all" title={tabUrl}>
+                        {tabUrl}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] text-gray-500 mb-1.5">
+                      <span>
+                        {log.type === "debugger"
+                          ? "Debugger API"
+                          : "Client Script"}
+                      </span>
+                      <span>
+                        Status: {log.originalResponse?.status || "200"}
+                      </span>
+                      <span>Size: {bodyLength}</span>
+                    </div>
+
+                    <div className="bg-gray-50 rounded border border-gray-100 p-2 font-mono text-[10px] text-gray-600 break-all relative group-hover:border-gray-200 transition-colors">
+                      {preview}
                     </div>
                   </div>
                 </div>
-
-                <div className="pl-[52px]">
-                  <div className="flex items-center gap-4 text-[10px] text-gray-500 mb-1.5">
-                    <span className="flex items-center gap-1">
-                      <span
-                        className={`w-1.5 h-1.5 rounded-full ${log.type === "debugger" ? "bg-amber-500" : "bg-blue-500"}`}
-                      ></span>
-                      {log.type === "debugger"
-                        ? "Debugger API"
-                        : "Client Script"}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-                      Status:{" "}
-                      {log.originalResponse
-                        ? log.originalResponse.status
-                        : "200"}
-                    </span>
-                    <span>Size: {log.mockResponse.bodyLength}b</span>
-                  </div>
-
-                  <div className="bg-gray-50 rounded border border-gray-100 p-2 font-mono text-[10px] text-gray-600 break-all relative group-hover:border-gray-200 transition-colors">
-                    {log.mockResponse.preview}
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

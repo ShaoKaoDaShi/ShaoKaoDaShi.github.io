@@ -36,6 +36,7 @@ vi.mock("./ResponseRuleForm", () => ({
 
 afterEach(() => {
   cleanup();
+  vi.restoreAllMocks();
   useRulesMock.mockReset();
   headerRuleFormMock.mockReset();
   responseRuleFormMock.mockReset();
@@ -99,6 +100,7 @@ describe("RulesTab", () => {
     const disableButtons = screen.getAllByRole("button", {
       name: "Disable Group",
     });
+    vi.spyOn(globalThis, "confirm").mockReturnValue(true);
     await user.click(disableButtons[0]);
 
     expect(disableGroup).toHaveBeenCalledWith("Team A");
@@ -142,6 +144,7 @@ describe("RulesTab", () => {
     expect(screen.getByText("Default")).toBeTruthy();
     expect(screen.getByText("2 rules")).toBeTruthy();
 
+    vi.spyOn(globalThis, "confirm").mockReturnValue(true);
     await user.click(screen.getByRole("button", { name: "Disable Group" }));
 
     expect(disableGroup).toHaveBeenCalledWith("Default");
@@ -181,6 +184,156 @@ describe("RulesTab", () => {
         groupName: "Team A",
       }),
     );
+  });
+
+  it("shows header application states and global errors without labeling response rules", () => {
+    useRulesMock.mockReturnValue({
+      rules: [
+        {
+          id: "applied",
+          type: "header",
+          enabled: true,
+          actionType: "request",
+          operation: "set",
+          urlPattern: "applied.example.com",
+          headerName: "X-Applied",
+          headerValue: "yes",
+          groupName: "Default",
+        },
+        {
+          id: "failed",
+          type: "header",
+          enabled: true,
+          actionType: "request",
+          operation: "set",
+          urlPattern: "failed.example.com",
+          headerName: "X-Failed",
+          headerValue: "yes",
+          groupName: "Default",
+        },
+        {
+          id: "invalid",
+          type: "header",
+          enabled: true,
+          actionType: "request",
+          operation: "set",
+          urlPattern: "invalid.example.com",
+          headerName: "Bad Header",
+          headerValue: "yes",
+          groupName: "Default",
+        },
+        {
+          id: "response",
+          type: "response",
+          enabled: true,
+          urlPattern: "mock.example.com",
+          responseBody: "{}",
+          groupName: "Default",
+        },
+      ],
+      storageError: "Storage unavailable",
+      ruleApplicationStatus: {
+        globalError: "DNR quota exceeded",
+        statuses: [
+          { sourceRuleId: "applied", state: "applied", errors: {} },
+          {
+            sourceRuleId: "failed",
+            state: "failed",
+            error: "DNR quota exceeded",
+            errors: {},
+          },
+          {
+            sourceRuleId: "invalid",
+            state: "invalid",
+            errors: { headerName: "Enter a valid HTTP header name." },
+          },
+        ],
+      },
+      addRule: vi.fn(),
+      updateRule: vi.fn(),
+      deleteRule: vi.fn(),
+      toggleRule: vi.fn(),
+      disableGroup: vi.fn(),
+    });
+
+    render(<RulesTab />);
+
+    expect(screen.getByText("Storage unavailable")).toBeTruthy();
+    expect(screen.getByText("DNR quota exceeded")).toBeTruthy();
+    expect(screen.getByText("Applied")).toBeTruthy();
+    expect(screen.getByText(/^Failed:/)).toBeTruthy();
+    expect(screen.getByText(/^Invalid:/)).toBeTruthy();
+    expect(screen.queryByText("Response registered")).toBeNull();
+  });
+
+  it("requires confirmation for delete and disabling a group", async () => {
+    const deleteRule = vi.fn();
+    const disableGroup = vi.fn();
+    const confirm = vi.spyOn(globalThis, "confirm").mockReturnValue(false);
+    const user = userEvent.setup();
+    useRulesMock.mockReturnValue({
+      rules: [
+        {
+          id: "1",
+          type: "header",
+          enabled: true,
+          actionType: "request",
+          operation: "set",
+          urlPattern: "api.example.com",
+          headerName: "Authorization",
+          headerValue: "Bearer one",
+          groupName: "Team A",
+        },
+      ],
+      addRule: vi.fn(),
+      updateRule: vi.fn(),
+      deleteRule,
+      toggleRule: vi.fn(),
+      disableGroup,
+    });
+
+    render(<RulesTab />);
+    await user.click(screen.getByRole("button", { name: "Delete rule" }));
+    await user.click(screen.getByRole("button", { name: "Disable Group" }));
+    expect(deleteRule).not.toHaveBeenCalled();
+    expect(disableGroup).not.toHaveBeenCalled();
+
+    confirm.mockReturnValue(true);
+    await user.click(screen.getByRole("button", { name: "Delete rule" }));
+    await user.click(screen.getByRole("button", { name: "Disable Group" }));
+    expect(deleteRule).toHaveBeenCalledWith("1");
+    expect(disableGroup).toHaveBeenCalledWith("Team A");
+  });
+
+  it("names toggle and icon controls accessibly", () => {
+    useRulesMock.mockReturnValue({
+      rules: [
+        {
+          id: "1",
+          type: "header",
+          enabled: true,
+          actionType: "request",
+          operation: "set",
+          urlPattern: "api.example.com",
+          headerName: "Authorization",
+          headerValue: "Bearer one",
+          groupName: "Team A",
+        },
+      ],
+      addRule: vi.fn(),
+      updateRule: vi.fn(),
+      deleteRule: vi.fn(),
+      toggleRule: vi.fn(),
+      disableGroup: vi.fn(),
+    });
+
+    render(<RulesTab />);
+    expect(screen.getByRole("checkbox", { name: "Enable rule" }).name).toBe(
+      "enabled-1",
+    );
+    expect(screen.getByRole("button", { name: "Duplicate rule" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Edit rule" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Delete rule" })).toBeTruthy();
   });
 
   it("passes the selected groupName through header rule creation submit", async () => {

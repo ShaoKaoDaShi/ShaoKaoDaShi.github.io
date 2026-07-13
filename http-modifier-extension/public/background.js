@@ -1,319 +1,489 @@
-// background.js
+importScripts("ruleContract.js", "backgroundCore.js");
 
-let requestLogs = [];
 const MAX_LOGS = 50;
-let attachedTabs = new Set();
+const APPLICATION_STATUS_KEY = "ruleApplicationStatus";
+const ATTACHED_TAB_IDS_KEY = "attachedTabIds";
+const extensionOrigin = chrome.runtime.getURL("");
+const attachedTabs = new Set();
+let requestLogs = [];
+let applicationGeneration = 0;
+let updateQueue = Promise.resolve();
 
-// Load attached tabs from session storage on startup
-if (chrome.storage.session) {
-  chrome.storage.session.get(["attachedTabIds"], (result) => {
-    if (result.attachedTabIds) {
-      attachedTabs = new Set(result.attachedTabIds);
-    }
-  });
-}
+const errorMessage = (error) =>
+  error instanceof Error
+    ? error.message
+    : String(error || "Unknown Chrome error");
 
-async function updateSession() {
-  if (chrome.storage.session) {
-    await chrome.storage.session.set({
-      attachedTabIds: Array.from(attachedTabs),
+const chromeCall = (invoke) =>
+  new Promise((resolve, reject) => {
+    invoke((result) => {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+        return;
+      }
+      resolve(result);
     });
+  });
+
+const getLocal = (keys) =>
+  chromeCall((callback) => chrome.storage.local.get(keys, callback));
+const setLocal = (value) =>
+  chromeCall((callback) => chrome.storage.local.set(value, callback));
+const getSession = (keys) =>
+  chromeCall((callback) => chrome.storage.session.get(keys, callback));
+const setSession = (value) =>
+  chromeCall((callback) => chrome.storage.session.set(value, callback));
+const getDynamicRules = () =>
+  chromeCall((callback) =>
+    chrome.declarativeNetRequest.getDynamicRules(callback),
+  );
+const updateDynamicRules = (options) =>
+  chromeCall((callback) =>
+    chrome.declarativeNetRequest.updateDynamicRules(options, callback),
+  );
+const getDebuggerTargets = () =>
+  chromeCall((callback) => chrome.debugger.getTargets(callback));
+const attachDebuggerTarget = (target) =>
+  chromeCall((callback) => chrome.debugger.attach(target, "1.3", callback));
+const detachDebuggerTarget = (target) =>
+  chromeCall((callback) => chrome.debugger.detach(target, callback));
+const sendDebuggerCommand = (target, method, params) =>
+  chromeCall((callback) =>
+    chrome.debugger.sendCommand(target, method, params, callback),
+  );
+
+const isExtensionPage = (sender) => {
+  if (sender.id !== chrome.runtime.id || typeof sender.url !== "string") {
+    return false;
   }
-}
 
-function updateRuleBadge(rules) {
-  const enabledRuleCount = rules.filter(
-    (rule) => rule.enabled !== false,
+  try {
+    const senderUrl = new URL(sender.url);
+    const expectedUrl = new URL(extensionOrigin);
+    return (
+      senderUrl.protocol === expectedUrl.protocol &&
+      senderUrl.host === expectedUrl.host
+    );
+  } catch {
+    return false;
+  }
+};
+
+const isContentScript = (sender) =>
+  sender.id === chrome.runtime.id &&
+  Number.isInteger(sender.tab?.id) &&
+  typeof sender.url === "string" &&
+  !isExtensionPage(sender);
+
+const isValidLogPayload = (log) => {
+  if (!log || typeof log !== "object" || Array.isArray(log)) return false;
+  if (
+    Object.keys(log).some(
+      (key) =>
+        !["method", "ruleId", "type", "url", "mockResponse"].includes(key),
+    )
+  ) {
+    return false;
+  }
+
+  return (
+    typeof log.url === "string" &&
+    log.url.length > 0 &&
+    log.url.length <= 4096 &&
+    typeof log.method === "string" &&
+    log.method.length > 0 &&
+    log.method.length <= 16 &&
+    ["fetch", "xhr"].includes(log.type) &&
+    typeof log.ruleId === "string" &&
+    log.ruleId.length > 0 &&
+    log.ruleId.length <= 256 &&
+    log.mockResponse &&
+    typeof log.mockResponse === "object" &&
+    !Array.isArray(log.mockResponse) &&
+    Object.keys(log.mockResponse).every((key) =>
+      ["bodyLength", "preview"].includes(key),
+    ) &&
+    Number.isSafeInteger(log.mockResponse.bodyLength) &&
+    log.mockResponse.bodyLength >= 0 &&
+    typeof log.mockResponse.preview === "string" &&
+    log.mockResponse.preview.length <= 100
+  );
+};
+
+const addLog = (log) => {
+  requestLogs.unshift({
+    id: crypto.randomUUID(),
+    timestamp: Date.now(),
+    tabId: Number.isInteger(log.tabId) ? log.tabId : null,
+    tabUrl: String(log.tabUrl || "").slice(0, 4096),
+    method: String(log.method || "").slice(0, 16),
+    ruleId: String(log.ruleId || "").slice(0, 256),
+    type: log.type,
+    url: String(log.url || "").slice(0, 4096),
+    mockResponse: {
+      bodyLength:
+        Number.isSafeInteger(log.mockResponse?.bodyLength) &&
+        log.mockResponse.bodyLength >= 0
+          ? log.mockResponse.bodyLength
+          : 0,
+      preview: String(log.mockResponse?.preview || "").slice(0, 100),
+    },
+  });
+  requestLogs = requestLogs.slice(0, MAX_LOGS);
+};
+
+const updateRuleBadge = (statuses) => {
+  const appliedCount = statuses.filter(
+    (status) => status.state === "applied",
   ).length;
-
   chrome.action.setBadgeBackgroundColor({ color: "#2563eb" });
   chrome.action.setBadgeText({
-    text: enabledRuleCount > 0 ? String(enabledRuleCount) : "",
+    text: appliedCount > 0 ? String(appliedCount) : "",
   });
   chrome.action.setTitle({
-    title: `HTTP Modifier Settings (${enabledRuleCount} enabled rules)`,
+    title: `HTTP Modifier Settings (${appliedCount} active header rules)`,
   });
-}
+};
 
-function updateRules() {
-  chrome.storage.local.get(["rules"], (result) => {
-    const rules = result.rules || [];
-    updateRuleBadge(rules);
+const checkRegexSupport = (regex) =>
+  chromeCall((callback) =>
+    chrome.declarativeNetRequest.isRegexSupported(
+      { regex, isCaseSensitive: true, requireCapturing: false },
+      callback,
+    ),
+  );
 
-    const headerRules = rules.filter(
-      (r) => r.type === "header" && r.enabled !== false,
-    );
+const excludeUnsupportedRegexes = async (built) => {
+  const supportedCandidates = [];
+  const unsupportedErrors = new Map();
 
-    // Convert to DNR rules
-    const dnrRules = headerRules.map((rule, index) => {
-      const id = index + 1; // DNR rule IDs must be integers
-
-      const action = {
-        type: "modifyHeaders",
-      };
-
-      const headerOperation = rule.operation; // set, remove, append
-      const headerInfo = {
-        header: rule.headerName,
-        operation: headerOperation,
-        value: headerOperation === "remove" ? undefined : rule.headerValue,
-      };
-
-      if (rule.actionType === "request") {
-        action.requestHeaders = [headerInfo];
-      } else {
-        action.responseHeaders = [headerInfo];
-      }
-
-      // Determine condition
-      const condition = {
-        resourceTypes: [
-          "main_frame",
-          "sub_frame",
-          "stylesheet",
-          "script",
-          "image",
-          "font",
-          "object",
-          "xmlhttprequest",
-          "ping",
-          "csp_report",
-          "media",
-          "websocket",
-          "other",
-        ],
-      };
-
-      if (/[^a-zA-Z0-9/._:?-]/.test(rule.urlPattern)) {
-        condition.regexFilter = rule.urlPattern;
-      } else {
-        condition.urlFilter = rule.urlPattern;
-      }
-
-      return {
-        id: id,
-        priority: 1,
-        action: action,
-        condition: condition,
-      };
-    });
-
-    // Update dynamic rules
-    chrome.declarativeNetRequest.getDynamicRules((existingRules) => {
-      const removeRuleIds = existingRules.map((r) => r.id);
-      chrome.declarativeNetRequest.updateDynamicRules(
-        {
-          removeRuleIds: removeRuleIds,
-          addRules: dnrRules,
-        },
-        () => {
-          if (chrome.runtime.lastError) {
-            console.error("Error updating rules:", chrome.runtime.lastError);
-          } else {
-            console.log("Rules updated successfully:", dnrRules);
-          }
-        },
-      );
-    });
-  });
-}
-
-// Debugger Logic
-async function attachDebugger(tabId) {
-  if (attachedTabs.has(tabId)) {
-    return { success: true };
-  }
-
-  const target = { tabId };
-  try {
-    await chrome.debugger.attach(target, "1.3");
-    await chrome.debugger.sendCommand(target, "Fetch.enable", {
-      patterns: [
-        { urlPattern: "*", requestStage: "Request" },
-        { urlPattern: "*", requestStage: "Response" },
-      ],
-    });
-    attachedTabs.add(tabId);
-    await updateSession();
-    console.log("Debugger attached to tab", tabId);
-    return { success: true };
-  } catch (err) {
-    console.error("Failed to attach debugger", err);
-
-    // Handle "Already attached" error gracefully
-    if (
-      err.message &&
-      (err.message.includes("attached") || err.message.includes("debugging"))
-    ) {
-      attachedTabs.add(tabId);
-      await updateSession();
-      return { success: true };
+  for (const candidate of built.candidates) {
+    const regex = candidate.dnrRule.condition.regexFilter;
+    if (!regex) {
+      supportedCandidates.push(candidate);
+      continue;
     }
 
-    // Return the actual error message
+    try {
+      const result = await checkRegexSupport(regex);
+      if (result?.isSupported) {
+        supportedCandidates.push(candidate);
+      } else {
+        unsupportedErrors.set(
+          candidate.sourceRuleId,
+          result?.reason || "Chrome does not support this regular expression.",
+        );
+      }
+    } catch (error) {
+      unsupportedErrors.set(
+        candidate.sourceRuleId,
+        `Unable to verify Chrome regex support: ${errorMessage(error)}`,
+      );
+    }
+  }
+
+  return {
+    candidates: supportedCandidates,
+    statuses: built.statuses.map((status) =>
+      unsupportedErrors.has(status.sourceRuleId)
+        ? {
+            sourceRuleId: status.sourceRuleId,
+            state: "invalid",
+            errors: {
+              urlPattern: unsupportedErrors.get(status.sourceRuleId),
+            },
+          }
+        : status,
+    ),
+  };
+};
+
+const applyRules = async (generation) => {
+  const { rules = [] } = await getLocal(["rules"]);
+  const built = await excludeUnsupportedRegexes(
+    globalThis.HttpModifierBackgroundCore.buildDnrCandidates(rules),
+  );
+  const existingRules = await getDynamicRules();
+  const result = await globalThis.HttpModifierBackgroundCore.applyDnrCandidates(
+    built,
+    updateDynamicRules,
+    existingRules.map((rule) => rule.id),
+  );
+
+  if (generation !== applicationGeneration) return;
+
+  const status = {
+    generation,
+    timestamp: Date.now(),
+    globalError: result.globalError,
+    existingRulesPreserved: result.existingRulesPreserved,
+    statuses: result.statuses,
+  };
+  await setLocal({ [APPLICATION_STATUS_KEY]: status });
+  updateRuleBadge(result.statuses);
+};
+
+const queueRuleUpdate = () => {
+  const generation = ++applicationGeneration;
+  updateQueue = updateQueue
+    .then(
+      () => applyRules(generation),
+      () => applyRules(generation),
+    )
+    .catch(async (error) => {
+      console.error("HTTP Modifier: Failed to apply rules", error);
+      if (generation !== applicationGeneration) return;
+
+      await setLocal({
+        [APPLICATION_STATUS_KEY]: {
+          generation,
+          timestamp: Date.now(),
+          globalError: errorMessage(error),
+          statuses: [],
+        },
+      }).catch((storageError) => {
+        console.error(
+          "HTTP Modifier: Failed to persist rule application error",
+          storageError,
+        );
+      });
+      updateRuleBadge([]);
+    });
+  return updateQueue;
+};
+
+const persistAttachedTabs = () =>
+  setSession({ [ATTACHED_TAB_IDS_KEY]: Array.from(attachedTabs) });
+
+const reconcileAttachedTabs = async () => {
+  const [{ [ATTACHED_TAB_IDS_KEY]: storedTabIds = [] }, targets] =
+    await Promise.all([
+      getSession([ATTACHED_TAB_IDS_KEY]),
+      getDebuggerTargets(),
+    ]);
+  const liveTabIds = new Set(
+    targets
+      .filter((target) => target.attached && Number.isInteger(target.tabId))
+      .map((target) => target.tabId),
+  );
+
+  attachedTabs.clear();
+  for (const tabId of Array.isArray(storedTabIds) ? storedTabIds : []) {
+    if (Number.isInteger(tabId) && liveTabIds.has(tabId)) {
+      attachedTabs.add(tabId);
+    }
+  }
+  await persistAttachedTabs();
+};
+
+const isDebuggerAttached = (tabId) =>
+  globalThis.HttpModifierBackgroundCore.verifyDebuggerAttachment(
+    tabId,
+    getDebuggerTargets,
+  );
+
+const isManagedDebuggerAttached = async (tabId) => {
+  if (!attachedTabs.has(tabId)) return false;
+  if (await isDebuggerAttached(tabId)) return true;
+
+  attachedTabs.delete(tabId);
+  await persistAttachedTabs();
+  return false;
+};
+
+const attachDebugger = async (tabId) => {
+  if (!Number.isInteger(tabId)) {
+    return { success: false, error: "Select a valid browser tab." };
+  }
+  if (await isManagedDebuggerAttached(tabId)) return { success: true };
+  if (await isDebuggerAttached(tabId)) {
     return {
       success: false,
-      error: err.message || "Unknown error occurred during debugger attachment",
+      error: "This tab is already attached to another debugger client.",
     };
   }
-}
 
-async function detachDebugger(tabId) {
   const target = { tabId };
   try {
-    await chrome.debugger.detach(target);
-  } catch (err) {
-    console.error("Failed to detach debugger", err);
+    await attachDebuggerTarget(target);
+    if (!(await isDebuggerAttached(tabId))) {
+      throw new Error("Chrome did not confirm the debugger attachment.");
+    }
+    await sendDebuggerCommand(target, "Fetch.enable", {
+      patterns: [{ urlPattern: "*", requestStage: "Request" }],
+    });
+    attachedTabs.add(tabId);
+    await persistAttachedTabs();
+    return { success: true };
+  } catch (error) {
+    attachedTabs.delete(tabId);
+    await persistAttachedTabs();
+    if (await isDebuggerAttached(tabId).catch(() => false)) {
+      await detachDebuggerTarget(target).catch(() => {});
+    }
+    return {
+      success: false,
+      error: errorMessage(error),
+    };
   }
-  attachedTabs.delete(tabId);
-  await updateSession();
-  console.log("Debugger detached from tab", tabId);
-}
+};
 
-chrome.debugger.onEvent.addListener(async (source, method, params) => {
-  if (method === "Fetch.requestPaused") {
-    const { requestId, request } = params;
+const detachDebugger = async (tabId) => {
+  if (!Number.isInteger(tabId)) {
+    return { success: false, error: "Select a valid browser tab." };
+  }
 
-    chrome.storage.local.get(["rules"], async (result) => {
-      const rules = result.rules || [];
-      const responseRules = rules.filter(
-        (r) => r.type === "response" && r.enabled !== false,
-      );
+  try {
+    if (await isManagedDebuggerAttached(tabId)) {
+      await detachDebuggerTarget({ tabId });
+    }
+    attachedTabs.delete(tabId);
+    await persistAttachedTabs();
+    return { success: true };
+  } catch (error) {
+    return {
+      success: false,
+      error: error.message || "Debugger detach failed.",
+    };
+  }
+};
 
-      const matchingRule = responseRules.find((rule) => {
-        try {
-          if (new RegExp(rule.urlPattern).test(request.url)) return true;
-        } catch {
-          return request.url.includes(rule.urlPattern);
-        }
-        return false;
-      });
+const notifyTab = (tabId, type) => {
+  chrome.tabs.sendMessage(tabId, { type }, () => void chrome.runtime.lastError);
+};
 
-      if (matchingRule) {
-        // Log interception
-        const log = {
-          timestamp: Date.now(),
-          url: request.url,
-          method: request.method,
-          type: "debugger",
-          originalResponse: { status: 200, statusText: "OK (Mocked)" },
-          mockResponse: {
-            bodyLength: matchingRule.responseBody.length,
-            preview:
-              matchingRule.responseBody.substring(0, 100) +
-              (matchingRule.responseBody.length > 100 ? "..." : ""),
-          },
-        };
-        requestLogs.unshift(log);
-        if (requestLogs.length > MAX_LOGS) requestLogs.pop();
+const continuePausedRequest = (source, requestId) =>
+  sendDebuggerCommand(source, "Fetch.continueRequest", { requestId });
 
-        // Fulfill request
-        const responseHeaders = [
-          { name: "Content-Type", value: "application/json" },
-          { name: "Access-Control-Allow-Origin", value: "*" },
-        ];
+chrome.debugger.onEvent.addListener((source, method, params) => {
+  if (method !== "Fetch.requestPaused") return;
 
-        // Body must be Base64 encoded
-        // Use a safe base64 encoding for UTF-8 strings
-        const body = btoa(
-          unescape(encodeURIComponent(matchingRule.responseBody)),
+  getLocal(["rules"])
+    .then(({ rules = [] }) =>
+      globalThis.HttpModifierBackgroundCore.handlePausedRequest({
+        source,
+        params,
+        rules,
+        sendCommand: sendDebuggerCommand,
+        onMock: ({ rule, request }) =>
+          addLog({
+            tabId: source.tabId,
+            tabUrl: request.url,
+            method: request.method,
+            ruleId: rule.id,
+            type: "debugger",
+            url: request.url,
+            mockResponse: {
+              bodyLength: rule.responseBody.length,
+              preview: rule.responseBody.slice(0, 100),
+            },
+          }),
+      }),
+    )
+    .then((outcome) => {
+      if (outcome.outcome === "failed") {
+        console.error(
+          "HTTP Modifier: Paused request could not resume",
+          outcome,
         );
-
-        try {
-          await chrome.debugger.sendCommand(source, "Fetch.fulfillRequest", {
-            requestId,
-            responseCode: 200,
-            responseHeaders,
-            body,
-          });
-        } catch (e) {
-          console.error("Failed to fulfill request", e);
-          // Fallback to continue if fulfill fails
-          chrome.debugger.sendCommand(source, "Fetch.continueRequest", {
-            requestId,
-          });
-        }
-      } else {
-        // Continue normally
-        chrome.debugger.sendCommand(source, "Fetch.continueRequest", {
-          requestId,
-        });
+      }
+    })
+    .catch(async (error) => {
+      console.error("HTTP Modifier: Failed to process paused request", error);
+      try {
+        await continuePausedRequest(source, params?.requestId);
+      } catch (continueError) {
+        console.error(
+          "HTTP Modifier: Paused request fallback failed",
+          continueError,
+        );
       }
     });
-  }
 });
 
 chrome.debugger.onDetach.addListener((source) => {
   attachedTabs.delete(source.tabId);
-  updateSession();
-
-  // Notify content script that debugger is disabled (e.g. user closed banner)
-  chrome.tabs
-    .sendMessage(source.tabId, { type: "DEBUGGER_MODE_DISABLED" })
-    .catch(() => {
-      // Content script might not be available if tab was closed
-    });
+  persistAttachedTabs().catch(() => {});
+  notifyTab(source.tabId, "DEBUGGER_MODE_DISABLED");
 });
 
-// Listen for storage changes
 chrome.storage.onChanged.addListener((changes, namespace) => {
-  if (namespace === "local" && changes.rules) {
-    updateRules();
-  }
+  if (namespace === "local" && changes.rules) queueRuleUpdate();
 });
 
-// Initial load
 chrome.runtime.onInstalled.addListener(() => {
-  updateRules();
-  // Cleanup old global flag
-  chrome.storage.local.remove("debuggerEnabled");
+  chrome.storage.local.remove(["debuggerEnabled", "user"]);
+  queueRuleUpdate();
 });
 
 chrome.runtime.onStartup.addListener(() => {
-  updateRules();
+  reconcileAttachedTabs().catch(() => {});
+  queueRuleUpdate();
 });
 
-// Handle messages
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (sender.id !== chrome.runtime.id || !message?.type) return false;
+
   if (message.type === "LOG_REQUEST") {
-    requestLogs.unshift(message.payload);
-    if (requestLogs.length > MAX_LOGS) {
-      requestLogs.pop();
+    if (!isContentScript(sender) || !isValidLogPayload(message.payload)) {
+      return false;
     }
-  } else if (message.type === "GET_LOGS") {
+    addLog({
+      ...message.payload,
+      tabId: sender.tab.id,
+      tabUrl: sender.tab.url || sender.url,
+    });
+    return false;
+  }
+
+  if (message.type === "GET_DEBUGGER_STATUS" && isContentScript(sender)) {
+    isManagedDebuggerAttached(sender.tab.id)
+      .then((enabled) => sendResponse({ enabled }))
+      .catch((error) =>
+        sendResponse({ enabled: false, error: errorMessage(error) }),
+      );
+    return true;
+  }
+
+  if (!isExtensionPage(sender)) return false;
+
+  if (message.type === "GET_DEBUGGER_STATUS") {
+    isManagedDebuggerAttached(message.tabId)
+      .then((enabled) => sendResponse({ enabled }))
+      .catch((error) =>
+        sendResponse({ enabled: false, error: errorMessage(error) }),
+      );
+    return true;
+  }
+
+  if (message.type === "GET_LOGS") {
     sendResponse({ logs: requestLogs });
-  } else if (message.type === "CLEAR_LOGS") {
+    return false;
+  }
+  if (message.type === "CLEAR_LOGS") {
     requestLogs = [];
     sendResponse({ success: true });
-  } else if (message.type === "ENABLE_DEBUGGER") {
-    attachDebugger(message.tabId).then((result) => {
-      if (result.success) {
-        sendResponse({ success: true });
-        // Notify content script to disable its own mocking
-        chrome.tabs.sendMessage(message.tabId, {
-          type: "DEBUGGER_MODE_ENABLED",
-        });
-      } else {
-        sendResponse({ success: false, error: result.error });
-      }
-    });
-    return true; // async response
-  } else if (message.type === "DISABLE_DEBUGGER") {
-    detachDebugger(message.tabId).then(() => {
-      // Notify content script to re-enable its own mocking
-      chrome.tabs.sendMessage(message.tabId, {
-        type: "DEBUGGER_MODE_DISABLED",
-      });
-      sendResponse({ success: true });
-    });
-    return true; // async response
-  } else if (message.type === "GET_DEBUGGER_STATUS") {
-    // Check if the sender tab (or requested tabId) is attached
-    const tabId = message.tabId || (sender.tab && sender.tab.id);
-    if (tabId) {
-      sendResponse({ enabled: attachedTabs.has(tabId) });
-    } else {
-      sendResponse({ enabled: false });
-    }
+    return false;
   }
+  if (message.type === "ENABLE_DEBUGGER") {
+    attachDebugger(message.tabId).then((result) => {
+      if (result.success) notifyTab(message.tabId, "DEBUGGER_MODE_ENABLED");
+      sendResponse(result);
+    });
+    return true;
+  }
+  if (message.type === "DISABLE_DEBUGGER") {
+    detachDebugger(message.tabId).then((result) => {
+      if (result.success) notifyTab(message.tabId, "DEBUGGER_MODE_DISABLED");
+      sendResponse(result);
+    });
+    return true;
+  }
+
+  return false;
 });
+
+reconcileAttachedTabs().catch((error) => {
+  console.error("HTTP Modifier: Failed to reconcile debugger sessions", error);
+});
+queueRuleUpdate();

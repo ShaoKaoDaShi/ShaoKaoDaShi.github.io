@@ -1,3 +1,8 @@
+import "../public/ruleContract.js";
+
+export const RULE_CONTRACT = globalThis.HttpModifierRules;
+export const MATCH_TYPES = RULE_CONTRACT.MATCH_TYPES;
+
 export const ACTION_TYPES = {
   REQUEST: "request",
   RESPONSE: "response",

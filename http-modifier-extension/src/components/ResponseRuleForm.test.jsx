@@ -23,7 +23,7 @@ describe("ResponseRuleForm", () => {
       />,
     );
 
-    const urlPatternInput = screen.getByLabelText("URL Pattern (regex)");
+    const urlPatternInput = screen.getByLabelText("URL Pattern");
     const groupNameInput = screen.getByLabelText("Group Name");
     const responseBodyInput = screen.getByLabelText("Response Body (JSON)");
 
@@ -57,7 +57,7 @@ describe("ResponseRuleForm", () => {
       />,
     );
 
-    const urlPatternInput = screen.getByLabelText("URL Pattern (regex)");
+    const urlPatternInput = screen.getByLabelText("URL Pattern");
     const groupNameInput = screen.getByLabelText("Group Name");
     const responseBodyInput = screen.getByLabelText("Response Body (JSON)");
 
@@ -71,6 +71,63 @@ describe("ResponseRuleForm", () => {
     await user.click(screen.getByRole("button", { name: "Create Rule" }));
 
     expect(groupNameInput.value).toBe("Default");
+  });
+
+  it("submits an explicit selected match type", async () => {
+    const onSubmit = vi.fn();
+    const user = userEvent.setup();
+    render(
+      <ResponseRuleForm
+        onSubmit={onSubmit}
+        onCancel={() => {}}
+        isEditing={false}
+      />,
+    );
+
+    await user.type(screen.getByLabelText("URL Pattern"), "example.com");
+    await user.selectOptions(screen.getByLabelText("Match Type"), "contains");
+    fireEvent.change(screen.getByLabelText("Response Body (JSON)"), {
+      target: { value: "{}" },
+    });
+    await user.click(screen.getByRole("button", { name: "Create Rule" }));
+
+    expect(onSubmit).toHaveBeenCalledWith(
+      expect.objectContaining({ matchType: "contains" }),
+    );
+  });
+
+  it("reports contract validation errors and focuses the first invalid field", async () => {
+    const onSubmit = vi.fn();
+    const user = userEvent.setup();
+    render(
+      <ResponseRuleForm
+        onSubmit={onSubmit}
+        onCancel={() => {}}
+        isEditing={false}
+      />,
+    );
+
+    await user.selectOptions(screen.getByLabelText("Match Type"), "regex");
+    fireEvent.change(screen.getByLabelText("URL Pattern"), {
+      target: { value: "[" },
+    });
+    await user.type(screen.getByLabelText("Response Body (JSON)"), "invalid");
+    await user.click(screen.getByRole("button", { name: "Create Rule" }));
+
+    const url = screen.getByLabelText("URL Pattern");
+    expect(url.required).toBe(true);
+    expect(url.getAttribute("aria-invalid")).toBe("true");
+    expect(url.getAttribute("aria-describedby")).toBe(
+      "response-rule-url-pattern-error",
+    );
+    expect(document.activeElement).toBe(url);
+    expect(
+      screen
+        .getByText("Enter a valid regular expression.")
+        .getAttribute("role"),
+    ).toBe("alert");
+    expect(screen.getByText("Response body must be valid JSON.")).toBeTruthy();
+    expect(onSubmit).not.toHaveBeenCalled();
   });
 
   it("hydrates groupName from initialData", () => {

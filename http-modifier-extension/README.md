@@ -1,16 +1,67 @@
-# React + Vite
+# HTTP Modifier
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+HTTP Modifier is a Chrome Manifest V3 extension for modifying request or response headers and mocking JSON responses on user-selected URL patterns. Rules and logs stay in the browser's extension storage and runtime memory; the extension has no account system or cloud sync.
 
-Currently, two official plugins are available:
+## Install From Source
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Requirements: a current Node.js release supported by Vite and npm.
 
-## React Compiler
+```sh
+npm install
+npm run build
+npm run verify:build
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Load the build in Chrome:
 
-## Expanding the ESLint configuration
+1. Open `chrome://extensions`.
+2. Enable **Developer mode**.
+3. Select **Load unpacked**.
+4. Choose this project's `dist/` directory.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Rebuild and reload the unpacked extension after source changes.
+
+## Rule Semantics
+
+- Header rules use Chrome Declarative Net Request to set, append, or remove request or response headers.
+- Response rules mock JSON for `fetch` and asynchronous XHR in the page. Debugger Mode can mock requests through the Chrome Debugger API.
+- **Contains** performs a case-sensitive substring match against the normalized absolute URL.
+- **Regex** uses a JavaScript regular expression. Header-rule regexes must also be accepted by Chrome's DNR engine.
+- Wildcards have no special meaning. Select Regex when wildcard-like matching is needed.
+- Rules apply to every HTTP method. The first enabled matching response rule wins.
+- Logs identify the request URL, source tab, method, interception engine, response size, and preview. Logs are bounded and are cleared when the extension service worker restarts.
+
+## Privacy And Permissions
+
+All rules are stored locally through `chrome.storage.local`. Backup and restore use local JSON files. There is no cloud sync, login, analytics, or remote rule service.
+
+The extension requests broad host access because user-created rules may target any site. It also uses:
+
+- `declarativeNetRequest` and `declarativeNetRequestWithHostAccess` for header rules.
+- `storage` for local rules and settings.
+- `tabs` for active-tab controls and trusted source-tab metadata in logs.
+- `debugger` only when Debugger Mode is enabled for a tab. Chrome displays its standard debugger warning while attached.
+
+Rules can contain sensitive headers or mocked data. Review JSON backups before sharing them.
+
+## Development
+
+```sh
+npm run dev
+npm test
+npm run lint
+npm run build
+npm run verify:build
+```
+
+`npm` is the only supported package manager. `npm run verify:build` validates the generated manifest version, permissions, content-script order and execution world, plus every referenced popup, script, and icon asset.
+
+## Limitations
+
+- Chrome and Chromium-based browsers with Manifest V3 are the supported targets.
+- Page-level response mocking covers `fetch` and asynchronous XHR. Synchronous XHR and unsupported XHR response types are not mocked.
+- Content scripts cannot run on browser-internal pages, the Chrome Web Store, or other restricted URLs.
+- Debugger Mode may conflict with DevTools or another debugger attached to the same tab.
+- Header changes remain subject to Chrome DNR quotas and regex support.
+- Response mocks return status `200` with JSON-oriented headers; arbitrary status codes, delays, streaming, and binary bodies are not supported.
+- Logs are diagnostic and temporary, not a persistent network archive.

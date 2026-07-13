@@ -1,105 +1,141 @@
-// content.js
+(() => {
+  const channelToken = crypto.randomUUID();
+  const { normalizeRule, validateRule } = globalThis.HttpModifierRules;
+  const MAX_URL_LENGTH = 4096;
+  const MAX_METHOD_LENGTH = 16;
+  const MAX_PREVIEW_LENGTH = 100;
+  let handshakeComplete = false;
+  let latestRules = [];
+  let debuggerEnabled = false;
 
-// Function to inject the script
-function injectScript(file) {
-  const script = document.createElement("script");
-  script.src = chrome.runtime.getURL(file);
-  script.onload = function () {
-    this.remove();
+  const postToMainWorld = (type, payload = {}) => {
+    window.postMessage({ type, channelToken, ...payload }, "*");
   };
-  (document.head || document.documentElement).appendChild(script);
-}
 
-// Function to send rules to the injected script
-function sendRules() {
-  chrome.storage.local.get(["rules"], (result) => {
-    const rules = result.rules || [];
-    const responseRules = rules.filter(
-      (r) => r.type === "response" && r.enabled !== false,
+  const sendState = () => {
+    postToMainWorld("HTTP_MODIFIER_RULES_UPDATE", { rules: latestRules });
+    postToMainWorld("HTTP_MODIFIER_DEBUGGER_MODE", {
+      enabled: debuggerEnabled,
+    });
+  };
+
+  const initializeMainWorld = () => {
+    postToMainWorld("HTTP_MODIFIER_INIT");
+    if (handshakeComplete) sendState();
+  };
+
+  const isValidLogPayload = (log) => {
+    if (!log || typeof log !== "object" || Array.isArray(log)) return false;
+    const keys = Object.keys(log);
+    if (
+      keys.some(
+        (key) =>
+          !["method", "ruleId", "type", "url", "mockResponse"].includes(key),
+      )
+    ) {
+      return false;
+    }
+
+    return (
+      typeof log.url === "string" &&
+      log.url.length > 0 &&
+      log.url.length <= MAX_URL_LENGTH &&
+      typeof log.method === "string" &&
+      log.method.length > 0 &&
+      log.method.length <= MAX_METHOD_LENGTH &&
+      ["fetch", "xhr"].includes(log.type) &&
+      typeof log.ruleId === "string" &&
+      log.ruleId.length > 0 &&
+      log.ruleId.length <= 256 &&
+      log.mockResponse &&
+      typeof log.mockResponse === "object" &&
+      !Array.isArray(log.mockResponse) &&
+      Object.keys(log.mockResponse).every((key) =>
+        ["bodyLength", "preview"].includes(key),
+      ) &&
+      Number.isSafeInteger(log.mockResponse.bodyLength) &&
+      log.mockResponse.bodyLength >= 0 &&
+      typeof log.mockResponse.preview === "string" &&
+      log.mockResponse.preview.length <= MAX_PREVIEW_LENGTH
     );
+  };
 
-    // Send message to window (inject.js listens to this)
-    window.postMessage(
-      {
-        type: "HTTP_MODIFIER_RULES_UPDATE",
-        rules: responseRules,
-      },
-      "*",
-    );
-  });
-}
+  const sendRules = () => {
+    chrome.storage.local.get(["rules"], (result) => {
+      if (chrome.runtime.lastError) return;
 
-function sendDebuggerStatus() {
-  chrome.runtime.sendMessage({ type: "GET_DEBUGGER_STATUS" }, (response) => {
-    // If background script is not running (e.g. extension disabled/reloaded), response might be undefined
-    if (chrome.runtime.lastError) {
-      console.warn("HTTP Modifier: Failed to get debugger status", chrome.runtime.lastError);
+      latestRules = (Array.isArray(result.rules) ? result.rules : [])
+        .map(normalizeRule)
+        .filter(
+          (rule) =>
+            rule.type === "response" &&
+            rule.enabled !== false &&
+            validateRule(rule).valid,
+        );
+      if (handshakeComplete) sendState();
+    });
+  };
+
+  const sendDebuggerStatus = () => {
+    chrome.runtime.sendMessage({ type: "GET_DEBUGGER_STATUS" }, (response) => {
+      if (chrome.runtime.lastError || !response) return;
+      debuggerEnabled = response.enabled === true;
+      if (handshakeComplete) sendState();
+    });
+  };
+
+  window.addEventListener("message", (event) => {
+    if (event.source !== window || !event.data) return;
+
+    if (event.data.type === "HTTP_MODIFIER_READY") {
+      initializeMainWorld();
       return;
     }
-    
-    if (response) {
-      window.postMessage(
-        {
-          type: "HTTP_MODIFIER_DEBUGGER_MODE",
-          enabled: response.enabled,
-        },
-        "*",
-      );
+    if (
+      event.data.type === "HTTP_MODIFIER_ACK" &&
+      event.data.channelToken === channelToken
+    ) {
+      handshakeComplete = true;
+      sendState();
+      return;
+    }
+    if (
+      event.data.type !== "HTTP_MODIFIER_LOG" ||
+      event.data.channelToken !== channelToken ||
+      !isValidLogPayload(event.data.log)
+    ) {
+      return;
+    }
+
+    chrome.runtime.sendMessage(
+      { type: "LOG_REQUEST", payload: event.data.log },
+      () => void chrome.runtime.lastError,
+    );
+  });
+
+  chrome.runtime.onMessage.addListener((message, sender) => {
+    if (sender.id !== chrome.runtime.id) return;
+    if (message?.type === "DEBUGGER_MODE_ENABLED") {
+      debuggerEnabled = true;
+      if (handshakeComplete) sendState();
+    } else if (message?.type === "DEBUGGER_MODE_DISABLED") {
+      debuggerEnabled = false;
+      if (handshakeComplete) sendState();
     }
   });
-}
 
-// Listen for messages from injected script
-// Use specific target origin checking if possible, but '*' is acceptable for this context
-// We need to ensure we don't process our own messages in an infinite loop if we were to send messages back
-window.addEventListener("message", (event) => {
-  // Only accept messages from the same window
-  if (event.source !== window) return;
+  chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (namespace === "local" && changes.rules) sendRules();
+  });
 
-  if (event.data && event.data.type === "HTTP_MODIFIER_LOG") {
-    // Relay log to background script
-    // console.log("Content script received log:", event.data.log); // Debug log
-    try {
-      chrome.runtime.sendMessage({
-        type: "LOG_REQUEST",
-        payload: event.data.log,
-      });
-    } catch (e) {
-      // Ignore "Extension context invalidated" errors that happen on reload
-      console.warn("HTTP Modifier: Failed to send log to background", e);
+  const handshakeTimer = setInterval(() => {
+    if (handshakeComplete) {
+      clearInterval(handshakeTimer);
+      return;
     }
-  }
-});
-
-// Listen for messages from background
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.type === "DEBUGGER_MODE_ENABLED") {
-    window.postMessage(
-      { type: "HTTP_MODIFIER_DEBUGGER_MODE", enabled: true },
-      "*",
-    );
-  } else if (message.type === "DEBUGGER_MODE_DISABLED") {
-    window.postMessage(
-      { type: "HTTP_MODIFIER_DEBUGGER_MODE", enabled: false },
-      "*",
-    );
-  }
-});
-
-// Inject the interceptor
-injectScript("inject.js");
-
-// Send initial rules after a short delay to ensure script is loaded
-setTimeout(() => {
+    initializeMainWorld();
+  }, 50);
+  initializeMainWorld();
   sendRules();
   sendDebuggerStatus();
-}, 100);
-
-// Listen for storage changes
-chrome.storage.onChanged.addListener((changes, namespace) => {
-  if (namespace === "local") {
-    if (changes.rules) {
-      sendRules();
-    }
-  }
-});
+})();

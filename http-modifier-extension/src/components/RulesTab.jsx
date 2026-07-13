@@ -10,33 +10,46 @@ import {
 } from "../constants";
 import { generateId } from "../utils";
 
-const RuleItem = memo(({ rule, onEdit, onDelete, onCopy, onToggle }) => {
-  const isDisabled = rule.enabled === false;
+const RuleItem = memo(
+  ({ rule, applicationStatus, onEdit, onDelete, onCopy, onToggle }) => {
+    const isDisabled = rule.enabled === false;
 
-  const isHeaderRule =
-    rule.type === RULE_TYPES.HEADER || rule.type === "header";
-  const isResponseRule =
-    rule.type === RULE_TYPES.RESPONSE || rule.type === "response";
+    const isHeaderRule =
+      rule.type === RULE_TYPES.HEADER || rule.type === "header";
+    const isResponseRule =
+      rule.type === RULE_TYPES.RESPONSE || rule.type === "response";
 
-  let label, labelColor;
+    let label, labelColor;
 
-  if (isHeaderRule) {
-    label = rule.actionType === ACTION_TYPES.REQUEST ? "REQ" : "RES";
-    labelColor =
-      rule.actionType === ACTION_TYPES.REQUEST
-        ? "bg-blue-100 text-blue-700"
-        : "bg-purple-100 text-purple-700";
-  } else if (isResponseRule) {
-    label = "MOCK";
-    labelColor = "bg-green-100 text-green-700";
-  } else {
-    label = "UNKNOWN";
-    labelColor = "bg-gray-100 text-gray-700";
-  }
+    if (isHeaderRule) {
+      label = rule.actionType === ACTION_TYPES.REQUEST ? "REQ" : "RES";
+      labelColor =
+        rule.actionType === ACTION_TYPES.REQUEST
+          ? "bg-blue-100 text-blue-700"
+          : "bg-purple-100 text-purple-700";
+    } else if (isResponseRule) {
+      label = "MOCK";
+      labelColor = "bg-green-100 text-green-700";
+    } else {
+      label = "UNKNOWN";
+      labelColor = "bg-gray-100 text-gray-700";
+    }
 
-  return (
-    <div
-      className={`
+    const applicationLabel =
+      isHeaderRule && applicationStatus
+        ? {
+            applied: "Applied",
+            failed: "Failed",
+            invalid: "Invalid",
+          }[applicationStatus.state]
+        : null;
+    const applicationMessage =
+      applicationStatus?.error ||
+      Object.values(applicationStatus?.errors || {}).join(" ");
+
+    return (
+      <div
+        className={`
         group relative bg-white rounded-lg border transition-all duration-200
         ${
           !isDisabled
@@ -44,153 +57,184 @@ const RuleItem = memo(({ rule, onEdit, onDelete, onCopy, onToggle }) => {
             : "border-gray-100 bg-gray-50 opacity-75"
         }
       `}
-    >
-      <div className="p-3">
-        <div className="flex items-start justify-between gap-3 mb-2">
-          <div className="flex items-center gap-2">
-            <span
-              className={`
+      >
+        <div className="p-3">
+          <div className="flex items-start justify-between gap-3 mb-2">
+            <div className="flex items-center gap-2">
+              <span
+                className={`
                 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide
                 ${labelColor}
               `}
-            >
-              {label}
-            </span>
-            <span
-              className="text-xs font-medium text-gray-500 truncate max-w-[200px]"
-              title={rule.urlPattern}
-            >
-              {rule.urlPattern}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <label className="inline-flex items-center gap-1.5 cursor-pointer rounded-full border border-gray-200 bg-gray-50 px-2 py-1 text-[10px] font-medium text-gray-600 hover:bg-white transition-colors">
-              <span>{isDisabled ? "Disabled" : "Enabled"}</span>
-              <span className="relative inline-flex h-4 w-7 items-center">
-                <input
-                  type="checkbox"
-                  className="sr-only peer"
-                  checked={!isDisabled}
-                  onChange={(e) => onToggle(rule.id, e.target.checked)}
-                />
-                <span className="absolute inset-0 rounded-full bg-gray-200 transition-colors peer-checked:bg-blue-600"></span>
-                <span className="absolute left-[2px] top-[2px] h-3 w-3 rounded-full border border-gray-300 bg-white transition-transform peer-checked:translate-x-3"></span>
+              >
+                {label}
               </span>
-            </label>
+              <span
+                className="text-xs font-medium text-gray-500 truncate max-w-[200px]"
+                title={rule.urlPattern}
+              >
+                {rule.urlPattern}
+              </span>
+            </div>
 
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => onCopy(rule)}
-                className="p-1 text-gray-400 hover:text-green-600 rounded hover:bg-green-50 transition-colors"
-                title="Duplicate"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+            <div className="flex items-center gap-2">
+              <label className="inline-flex items-center gap-1.5 cursor-pointer rounded-full border border-gray-200 bg-gray-50 px-2 py-1 text-[10px] font-medium text-gray-600 hover:bg-white transition-colors">
+                <span>{isDisabled ? "Disabled" : "Enabled"}</span>
+                <span className="relative inline-flex h-4 w-7 items-center">
+                  <input
+                    type="checkbox"
+                    name={`enabled-${rule.id}`}
+                    aria-label="Enable rule"
+                    className="sr-only peer"
+                    checked={!isDisabled}
+                    onChange={(e) => onToggle(rule.id, e.target.checked)}
+                  />
+                  <span className="absolute inset-0 rounded-full bg-gray-200 transition-colors peer-checked:bg-blue-600"></span>
+                  <span className="absolute left-[2px] top-[2px] h-3 w-3 rounded-full border border-gray-300 bg-white transition-transform peer-checked:translate-x-3"></span>
+                </span>
+              </label>
+
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => onCopy(rule)}
+                  className="p-1 text-gray-400 hover:text-green-600 rounded hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500"
+                  title="Duplicate"
+                  aria-label="Duplicate rule"
                 >
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                </svg>
-              </button>
-              <button
-                onClick={() => onEdit(rule)}
-                className="p-1 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50 transition-colors"
-                title="Edit"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect
+                      x="9"
+                      y="9"
+                      width="13"
+                      height="13"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+                <button
+                  onClick={() => onEdit(rule)}
+                  className="p-1 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  title="Edit"
+                  aria-label="Edit rule"
                 >
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                </svg>
-              </button>
-              <button
-                onClick={() => onDelete(rule.id)}
-                className="p-1 text-gray-400 hover:text-red-600 rounded hover:bg-red-50 transition-colors"
-                title="Delete"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                </button>
+                <button
+                  onClick={() => onDelete(rule.id)}
+                  className="p-1 text-gray-400 hover:text-red-600 rounded hover:bg-red-50 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+                  title="Delete"
+                  aria-label="Delete rule"
                 >
-                  <polyline points="3 6 5 6 21 6"></polyline>
-                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                </svg>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
+
+          {applicationLabel ? (
+            <div
+              role={applicationStatus.state === "applied" ? "status" : "alert"}
+              className={`mb-2 text-xs font-medium ${applicationStatus.state === "applied" ? "text-green-700" : "text-red-700"}`}
+            >
+              {applicationLabel}
+              {applicationMessage ? `: ${applicationMessage}` : ""}
+            </div>
+          ) : null}
+
+          {isHeaderRule && (
+            <div className="flex items-center gap-2 text-sm">
+              <span
+                className={`font-mono font-medium ${rule.operation === OPERATIONS.REMOVE ? "text-red-600 line-through" : "text-gray-700"}`}
+              >
+                {rule.headerName}
+              </span>
+              {rule.operation !== OPERATIONS.REMOVE && (
+                <>
+                  <span className="text-gray-400 text-xs">
+                    {OPERATION_LABELS[rule.operation]}
+                  </span>
+                  <span
+                    className="font-mono text-gray-600 truncate max-w-[220px]"
+                    title={rule.headerValue}
+                  >
+                    {rule.headerValue}
+                  </span>
+                </>
+              )}
+              {rule.operation === OPERATIONS.REMOVE && (
+                <span className="text-xs text-red-500 bg-red-50 px-1.5 rounded">
+                  Removed
+                </span>
+              )}
+            </div>
+          )}
+
+          {isResponseRule && (
+            <>
+              <div className="bg-gray-50 rounded p-2 border border-gray-100 font-mono text-[10px] text-gray-600 truncate">
+                {rule.responseBody && rule.responseBody.substring(0, 100)}
+                {rule.responseBody && rule.responseBody.length > 100 && "..."}
+              </div>
+              <div className="mt-1 text-[10px] text-gray-400 text-right">
+                Size: {rule.responseBody ? rule.responseBody.length : 0} chars
+              </div>
+            </>
+          )}
         </div>
-
-        {isHeaderRule && (
-          <div className="flex items-center gap-2 text-sm">
-            <span
-              className={`font-mono font-medium ${rule.operation === OPERATIONS.REMOVE ? "text-red-600 line-through" : "text-gray-700"}`}
-            >
-              {rule.headerName}
-            </span>
-            {rule.operation !== OPERATIONS.REMOVE && (
-              <>
-                <span className="text-gray-400 text-xs">
-                  {OPERATION_LABELS[rule.operation]}
-                </span>
-                <span
-                  className="font-mono text-gray-600 truncate max-w-[220px]"
-                  title={rule.headerValue}
-                >
-                  {rule.headerValue}
-                </span>
-              </>
-            )}
-            {rule.operation === OPERATIONS.REMOVE && (
-              <span className="text-xs text-red-500 bg-red-50 px-1.5 rounded">
-                Removed
-              </span>
-            )}
-          </div>
-        )}
-
-        {isResponseRule && (
-          <>
-            <div className="bg-gray-50 rounded p-2 border border-gray-100 font-mono text-[10px] text-gray-600 truncate">
-              {rule.responseBody && rule.responseBody.substring(0, 100)}
-              {rule.responseBody && rule.responseBody.length > 100 && "..."}
-            </div>
-            <div className="mt-1 text-[10px] text-gray-400 text-right">
-              Size: {rule.responseBody ? rule.responseBody.length : 0} chars
-            </div>
-          </>
-        )}
       </div>
-    </div>
-  );
-});
+    );
+  },
+);
 
 const RulesTab = () => {
-  const { rules, addRule, updateRule, deleteRule, toggleRule, disableGroup } =
-    useRules();
+  const {
+    rules,
+    storageError,
+    ruleApplicationStatus,
+    addRule,
+    updateRule,
+    deleteRule,
+    toggleRule,
+    disableGroup,
+  } = useRules();
   const [editingRule, setEditingRule] = useState(null);
   const [creationType, setCreationType] = useState(null); // 'header' | 'response' | null
 
@@ -240,6 +284,7 @@ const RulesTab = () => {
 
   const handleDeleteWithCheck = useCallback(
     (id) => {
+      if (!globalThis.confirm("Delete this rule?")) return;
       if (editingRule && editingRule.id === id) {
         setEditingRule(null);
       }
@@ -258,6 +303,17 @@ const RulesTab = () => {
       (editingRule.type === RULE_TYPES.RESPONSE ||
         editingRule.type === "response")) ||
     creationType === RULE_TYPES.RESPONSE;
+
+  const applicationStatuses = useMemo(
+    () =>
+      new Map(
+        (ruleApplicationStatus?.statuses || []).map((status) => [
+          status.sourceRuleId,
+          status,
+        ]),
+      ),
+    [ruleApplicationStatus],
+  );
 
   const groupedRules = useMemo(() => {
     const groups = new Map();
@@ -286,6 +342,23 @@ const RulesTab = () => {
 
   return (
     <div className="space-y-6">
+      {storageError ? (
+        <div
+          role="alert"
+          className="rounded-md border border-red-200 bg-red-50 p-3 text-xs font-medium text-red-700"
+        >
+          {storageError}
+        </div>
+      ) : null}
+      {ruleApplicationStatus?.globalError ? (
+        <div
+          role="alert"
+          className="rounded-md border border-red-200 bg-red-50 p-3 text-xs font-medium text-red-700"
+        >
+          {ruleApplicationStatus.globalError}
+        </div>
+      ) : null}
+
       {/* Creation Buttons */}
       {!editingRule && !creationType && (
         <div className="flex items-center justify-between gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 shadow-sm">
@@ -394,10 +467,14 @@ const RulesTab = () => {
                   </div>
                   <button
                     type="button"
-                    onClick={() =>
-                      disableGroup(normalizeGroupName(group.groupName))
-                    }
-                    className="text-xs font-medium text-red-600 hover:text-red-700"
+                    onClick={() => {
+                      if (
+                        globalThis.confirm("Disable every rule in this group?")
+                      ) {
+                        disableGroup(normalizeGroupName(group.groupName));
+                      }
+                    }}
+                    className="text-xs font-medium text-red-600 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
                   >
                     Disable Group
                   </button>
@@ -408,6 +485,7 @@ const RulesTab = () => {
                     <RuleItem
                       key={rule.id}
                       rule={rule}
+                      applicationStatus={applicationStatuses.get(rule.id)}
                       onEdit={handleEdit}
                       onDelete={handleDeleteWithCheck}
                       onCopy={handleCopy}

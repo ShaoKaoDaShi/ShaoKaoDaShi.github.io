@@ -1,11 +1,13 @@
 {
   "name": "http-modifier-extension",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.1.0",
   "type": "module",
+  "packageManager": "npm@10",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "verify:build": "node scripts/verify-extension-build.js",
     "lint": "eslint .",
     "generate-icons": "node scripts/generate-icons.js",
     "preview": "vite preview",

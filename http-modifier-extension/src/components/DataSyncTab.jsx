@@ -1,498 +1,387 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-const API_BASE_URL = "http://localhost:3000/api";
+import "../../public/ruleContract.js";
 
-// --- Helpers ---
+const LEGACY_STORAGE_KEYS = ["user", "debuggerEnabled"];
+const SENSITIVE_HEADER_NAME = /authorization|cookie|token|api[-_]?key|secret/i;
+const SENSITIVE_HEADER_VALUE = /bearer\s+|basic\s+|token|secret|api[-_]?key/i;
 
 const isChromeExtension = () =>
   typeof chrome !== "undefined" && chrome.storage && chrome.runtime;
 
-const getStorage = (keys) => {
-  return new Promise((resolve) => {
-    if (isChromeExtension()) {
-      chrome.storage.local.get(keys, resolve);
-    } else {
+const getStorage = (keys) =>
+  new Promise((resolve, reject) => {
+    if (!isChromeExtension()) {
       resolve({});
+      return;
     }
-  });
-};
 
-const setStorage = (data) => {
-  return new Promise((resolve) => {
-    if (isChromeExtension()) {
-      chrome.storage.local.set(data, resolve);
-    } else {
+    chrome.storage.local.get(keys, (data) => {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+        return;
+      }
+      resolve(data);
+    });
+  });
+
+const setStorage = (data) =>
+  new Promise((resolve, reject) => {
+    if (!isChromeExtension()) {
       resolve();
+      return;
     }
-  });
-};
 
-const removeStorage = (keys) => {
-  return new Promise((resolve) => {
-    if (isChromeExtension()) {
-      chrome.storage.local.remove(keys, resolve);
-    } else {
+    chrome.storage.local.set(data, () => {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+        return;
+      }
       resolve();
-    }
+    });
   });
-};
 
-const sendMessageToActiveTab = (message) => {
-  return new Promise((resolve) => {
-    if (isChromeExtension()) {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs[0]) {
-          chrome.runtime.sendMessage(
-            { ...message, tabId: tabs[0].id },
-            resolve,
-          );
-        } else {
-          resolve(null);
-        }
-      });
-    } else {
+const removeStorage = (keys) =>
+  new Promise((resolve, reject) => {
+    if (!isChromeExtension()) {
+      resolve();
+      return;
+    }
+
+    chrome.storage.local.remove(keys, () => {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+        return;
+      }
+      resolve();
+    });
+  });
+
+const sendMessageToActiveTab = (message) =>
+  new Promise((resolve) => {
+    if (!isChromeExtension()) {
       resolve(null);
+      return;
     }
+
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (!tabs[0]) {
+        resolve(null);
+        return;
+      }
+
+      chrome.runtime.sendMessage({ ...message, tabId: tabs[0].id }, resolve);
+    });
   });
+
+const readFile = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(reader.error);
+    reader.readAsText(file);
+  });
+
+const normalizeForComparison = (rule) => {
+  const normalizedRule = globalThis.HttpModifierRules.normalizeRule(rule);
+  return JSON.stringify(
+    Object.fromEntries(
+      Object.keys(normalizedRule)
+        .sort()
+        .map((key) => [key, normalizedRule[key]]),
+    ),
+  );
 };
 
-const apiCall = async (endpoint, method = "GET", body = null, token = null) => {
-  const headers = { "Content-Type": "application/json" };
-  if (token) headers["Authorization"] = `Bearer ${token}`;
+const hasSensitiveHeaders = (rules) =>
+  rules.some(
+    (rule) =>
+      rule.enabled !== false &&
+      rule.type === "header" &&
+      (SENSITIVE_HEADER_NAME.test(rule.headerName || "") ||
+        SENSITIVE_HEADER_VALUE.test(rule.headerValue || "")),
+  );
 
-  const config = { method, headers };
-  if (body) config.body = JSON.stringify(body);
+const pluralize = (count, singular, plural = `${singular}s`) =>
+  `${count} ${count === 1 ? singular : plural}`;
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
-  const data = await response.json();
-  if (data.error) throw new Error(data.error);
-  return data;
-};
-
-// --- Sub-components ---
-
-const DebuggerSection = ({ enabled, onToggle }) => (
-  <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg p-4 shadow-sm">
+const DebuggerSection = ({ enabled, error, pending, onToggle }) => (
+  <section className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg p-4 shadow-sm">
     <div className="flex items-start gap-3">
-      <div className="p-2 bg-amber-100 rounded-lg text-amber-600">
+      <div
+        className="p-2 bg-amber-100 rounded-lg text-amber-600"
+        aria-hidden="true"
+      >
         <svg
-          xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
         >
-          <path d="M12 2v4" />
-          <path d="m16.2 7.8 2.9-2.9" />
-          <path d="M18 12h4" />
-          <path d="m16.2 16.2 2.9 2.9" />
-          <path d="M12 18v4" />
-          <path d="m4.9 19.1 2.9-2.9" />
-          <path d="M2 12h4" />
-          <path d="m4.9 4.9 2.9 2.9" />
+          <path d="M12 2v4M18 12h4M12 18v4M2 12h4" />
+          <circle cx="12" cy="12" r="4" />
         </svg>
       </div>
       <div className="flex-1">
-        <h4 className="text-sm font-bold text-gray-800 mb-1">
+        <h3 className="text-sm font-bold text-gray-800 mb-1">
           Debugger Mode (Advanced)
-        </h4>
+        </h3>
         <p className="text-xs text-gray-600 mb-3 leading-relaxed">
-          Enables network-level mocking via Chrome Debugger API. Allows mocked
-          responses to be visible in the Network tab.
+          Enables network-level mocking via Chrome Debugger API so mocked
+          responses appear in the Network tab.
           <span className="block mt-1 text-amber-700 font-medium">
-            Note: Will show a "Debugging" banner in Chrome.
+            Chrome will show a debugging banner while this is enabled.
           </span>
         </p>
-
         <label className="inline-flex items-center cursor-pointer select-none">
           <input
             type="checkbox"
+            aria-label="Debugger Mode"
+            aria-describedby={error ? "debugger-error" : undefined}
             className="sr-only peer"
             checked={enabled}
-            onChange={(e) => onToggle(e.target.checked)}
+            disabled={pending}
+            onChange={(event) => onToggle(event.target.checked)}
           />
-          <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
+          <span className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus-visible:ring-2 peer-focus-visible:ring-amber-500 peer-focus-visible:ring-offset-2 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500" />
           <span className="ml-3 text-sm font-medium text-gray-700">
             {enabled ? "Enabled" : "Disabled"}
           </span>
         </label>
+        {error ? (
+          <p
+            id="debugger-error"
+            role="alert"
+            className="mt-3 text-xs font-medium text-red-700"
+          >
+            {error}
+          </p>
+        ) : null}
       </div>
     </div>
-  </div>
+  </section>
 );
 
-const BackupSection = ({ onExport, onImport }) => (
-  <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-    <h3 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="text-blue-500"
-      >
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-        <polyline points="7 10 12 15 17 10" />
-        <line x1="12" y1="15" x2="12" y2="3" />
-      </svg>
-      Backup & Restore
-    </h3>
+const BackupSection = ({ fileInputRef, onExport, onImport }) => (
+  <section className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+    <h3 className="text-sm font-bold text-gray-800 mb-3">Backup & Restore</h3>
     <p className="text-xs text-gray-500 mb-4">
-      Export your rules to a JSON file or import from an existing backup.
+      Export a local JSON backup or merge rules from a previous backup.
     </p>
-
     <div className="flex gap-3">
       <button
+        type="button"
         onClick={onExport}
-        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+        className="flex-1 px-4 py-2 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-colors"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-          <polyline points="7 10 12 15 17 10" />
-          <line x1="12" y1="15" x2="12" y2="3" />
-        </svg>
         Export JSON
       </button>
       <button
-        onClick={() => document.getElementById("import-file").click()}
-        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+        type="button"
+        onClick={() => fileInputRef.current?.click()}
+        className="flex-1 px-4 py-2 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-colors"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-          <polyline points="17 8 12 3 7 8" />
-          <line x1="12" y1="3" x2="12" y2="15" />
-        </svg>
         Import JSON
       </button>
       <input
+        ref={fileInputRef}
         type="file"
-        id="import-file"
-        accept=".json"
-        className="hidden"
+        aria-label="Import JSON backup"
+        accept=".json,application/json"
+        className="sr-only"
         onChange={onImport}
       />
     </div>
-  </div>
+  </section>
 );
-
-const CloudSyncSection = ({
-  user,
-  loginData,
-  setLoginData,
-  isLoading,
-  onLogin,
-  onLogout,
-  onPush,
-  onPull,
-}) => (
-  <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-    <h3 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="text-purple-500"
-      >
-        <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
-        <path d="M12 12v.01" />
-      </svg>
-      Cloud Sync
-    </h3>
-
-    {!user ? (
-      <div className="space-y-3">
-        <p className="text-xs text-gray-500 mb-2">
-          Sign in to sync your rules across devices.
-        </p>
-        <div>
-          <input
-            type="email"
-            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 mb-2"
-            placeholder="Email address"
-            value={loginData.email}
-            onChange={(e) =>
-              setLoginData({ ...loginData, email: e.target.value })
-            }
-          />
-          <input
-            type="password"
-            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
-            placeholder="Password"
-            value={loginData.password}
-            onChange={(e) =>
-              setLoginData({ ...loginData, password: e.target.value })
-            }
-          />
-        </div>
-        <button
-          onClick={onLogin}
-          disabled={isLoading}
-          className="w-full px-4 py-2 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 shadow-sm transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {isLoading ? "Processing..." : "Login / Register"}
-        </button>
-      </div>
-    ) : (
-      <div>
-        <div className="flex items-center gap-2 mb-4 p-2 bg-blue-50 rounded text-blue-800 text-xs">
-          <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-          Logged in as <span className="font-bold">{user.email}</span>
-        </div>
-
-        <div className="grid grid-cols-2 gap-3 mb-3">
-          <button
-            onClick={onPush}
-            disabled={isLoading}
-            className="px-4 py-2 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 shadow-sm transition-all active:scale-95 disabled:opacity-50"
-          >
-            {isLoading ? "..." : "Push to Cloud"}
-          </button>
-          <button
-            onClick={onPull}
-            disabled={isLoading}
-            className="px-4 py-2 text-xs font-medium text-white bg-purple-600 rounded-md hover:bg-purple-700 shadow-sm transition-all active:scale-95 disabled:opacity-50"
-          >
-            {isLoading ? "..." : "Pull from Cloud"}
-          </button>
-        </div>
-
-        <button
-          onClick={onLogout}
-          className="w-full px-4 py-2 text-xs font-medium text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"
-        >
-          Sign Out
-        </button>
-      </div>
-    )}
-  </div>
-);
-
-// --- Main Component ---
 
 const DataSyncTab = () => {
-  const [user, setUser] = useState(null);
-  const [loginData, setLoginData] = useState({ email: "", password: "" });
-  const [isLoading, setIsLoading] = useState(false);
   const [debuggerEnabled, setDebuggerEnabled] = useState(false);
+  const [debuggerError, setDebuggerError] = useState("");
+  const [debuggerPending, setDebuggerPending] = useState(false);
+  const [status, setStatus] = useState("");
+  const fileInputRef = useRef(null);
+  const debuggerRequestGeneration = useRef(0);
+  const debuggerPendingRef = useRef(false);
+
+  const refreshDebuggerStatus = useCallback(async (generation) => {
+    const response = await sendMessageToActiveTab({
+      type: "GET_DEBUGGER_STATUS",
+    });
+    if (generation !== debuggerRequestGeneration.current) return response;
+
+    setDebuggerEnabled(Boolean(response?.enabled));
+    if (response?.error) {
+      setDebuggerError(
+        `Could not read Debugger Mode status: ${response.error}`,
+      );
+    }
+    return response;
+  }, []);
 
   useEffect(() => {
-    const init = async () => {
-      const { user } = await getStorage(["user"]);
-      if (user) setUser(user);
-
-      const response = await sendMessageToActiveTab({
-        type: "GET_DEBUGGER_STATUS",
-      });
-      if (response) setDebuggerEnabled(response.enabled);
-    };
-    init();
-  }, []);
-
-  const mergeRules = useCallback(async (newRules) => {
-    const { rules: existingRules = [] } = await getStorage(["rules"]);
-    const existingIds = new Set(existingRules.map((r) => r.id));
-
-    let addedCount = 0;
-    newRules.forEach((rule) => {
-      if (!existingIds.has(rule.id)) {
-        // If ID collision happens, we skip as per previous logic (or maybe generate new ID?)
-        // The previous code had a bug where it tried to regenerate ID if it existed but was inside !exists block.
-        // Assuming we want to merge unique rules.
-        // If we want to force add, we should regenerate ID.
-        // But let's stick to "Duplicate IDs will be skipped" as per prompt.
-        existingRules.push(rule);
-        existingIds.add(rule.id);
-        addedCount++;
-      }
+    removeStorage(LEGACY_STORAGE_KEYS).catch((error) => {
+      setStatus(`Legacy cleanup failed: ${error.message}`);
     });
 
-    if (addedCount > 0) {
-      await setStorage({ rules: existingRules });
-      alert(`Successfully synced/imported ${addedCount} new rules.`);
-    } else {
-      alert("No new rules to add (all IDs already exist).");
-    }
-  }, []);
+    refreshDebuggerStatus(debuggerRequestGeneration.current);
+  }, [refreshDebuggerStatus]);
 
   const handleExport = async () => {
-    const { rules = [] } = await getStorage(["rules"]);
-    const dataStr =
-      "data:text/json;charset=utf-8," +
-      encodeURIComponent(JSON.stringify(rules, null, 2));
-    const downloadAnchorNode = document.createElement("a");
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "http-modifier-rules.json");
-    document.body.appendChild(downloadAnchorNode);
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
-  };
-
-  const handleImport = (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      try {
-        const importedRules = JSON.parse(e.target.result);
-        if (!Array.isArray(importedRules)) {
-          alert("Invalid file format: content must be an array of rules.");
-          return;
-        }
-
-        const validRules = importedRules.filter(
-          (r) => r.id && r.type && r.urlPattern,
-        );
-        if (validRules.length === 0) {
-          alert("No valid rules found in the file.");
-          return;
-        }
-
-        if (
-          confirm(
-            `Found ${validRules.length} rules. Do you want to merge them with existing rules? (Duplicate IDs will be skipped)`,
-          )
-        ) {
-          mergeRules(validRules);
-        }
-      } catch (err) {
-        alert("Error parsing JSON file: " + err.message);
-      }
-      event.target.value = "";
-    };
-    reader.readAsText(file);
-  };
-
-  const handleLogin = async () => {
-    if (!loginData.email || !loginData.password) {
-      alert("Please enter email and password");
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      const data = await apiCall("/login", "POST", loginData);
-      const userData = data.data;
-      await setStorage({ user: userData });
-      setUser(userData);
-      alert("Login successful");
-    } catch (err) {
-      alert("Login failed: " + err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleLogout = async () => {
-    await removeStorage("user");
-    setUser(null);
-    setLoginData({ email: "", password: "" });
-  };
-
-  const handlePush = async () => {
-    if (!user) return;
-    setIsLoading(true);
     try {
       const { rules = [] } = await getStorage(["rules"]);
-      await apiCall("/sync/push", "POST", { rules }, user.token);
-      alert("Rules synced to cloud successfully");
-    } catch (err) {
-      alert("Sync failed: " + err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handlePull = async () => {
-    if (!user) return;
-    setIsLoading(true);
-    try {
-      const data = await apiCall("/sync/pull", "GET", null, user.token);
-      const rules = data.data.rules;
-
-      if (!rules || rules.length === 0) {
-        alert("No rules found in cloud");
+      if (
+        hasSensitiveHeaders(rules) &&
+        !confirm(
+          "This backup contains enabled rules with potentially sensitive headers. Export anyway?",
+        )
+      ) {
+        setStatus("Export canceled. No backup file was created.");
         return;
       }
 
-      if (confirm(`Found ${rules.length} rules in cloud. Merge with local?`)) {
-        mergeRules(rules);
+      const backup = {
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        rules,
+      };
+      const blob = new Blob([JSON.stringify(backup, null, 2)], {
+        type: "application/json",
+      });
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = "http-modifier-rules.json";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(objectUrl);
+      setStatus(
+        `Exported ${pluralize(rules.length, "rule")} to a JSON backup.`,
+      );
+    } catch (error) {
+      setStatus(`Export failed: ${error.message}`);
+    }
+  };
+
+  const handleImport = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const backup = JSON.parse(await readFile(file));
+      const { validRules, rejectedRules } =
+        globalThis.HttpModifierRules.parseBackup(backup);
+      const { rules: storedRules = [] } = await getStorage(["rules"]);
+      const mergedRules = [...storedRules];
+      const duplicates = [];
+      const conflicts = [];
+      const additions = [];
+
+      validRules.forEach((rule) => {
+        const sameIdRule = mergedRules.find(
+          (existing) => existing.id === rule.id,
+        );
+        if (!sameIdRule) {
+          additions.push(rule);
+          mergedRules.push(rule);
+        } else if (
+          normalizeForComparison(sameIdRule) === normalizeForComparison(rule)
+        ) {
+          duplicates.push(rule);
+        } else {
+          conflicts.push(rule);
+        }
+      });
+
+      let acceptedConflicts = [];
+      if (
+        conflicts.length > 0 &&
+        confirm(
+          `${pluralize(conflicts.length, "rule has", "rules have")} a conflicting ID. Import with new IDs?`,
+        )
+      ) {
+        acceptedConflicts = conflicts.map((rule) => ({
+          ...rule,
+          id: crypto.randomUUID(),
+        }));
+        mergedRules.push(...acceptedConflicts);
       }
-    } catch (err) {
-      alert("Sync failed: " + err.message);
+
+      const importedCount = additions.length + acceptedConflicts.length;
+      if (importedCount > 0) {
+        await setStorage({ rules: mergedRules });
+      }
+
+      const parts = [
+        `Imported ${pluralize(importedCount, "rule")}`,
+        `skipped ${pluralize(duplicates.length, "duplicate")}`,
+        `rejected ${pluralize(rejectedRules.length, "invalid rule")}`,
+      ];
+      if (conflicts.length !== acceptedConflicts.length) {
+        parts.push(
+          `skipped ${pluralize(conflicts.length - acceptedConflicts.length, "ID conflict")}`,
+        );
+      }
+      setStatus(`${parts.join(", ")}.`);
+    } catch (error) {
+      setStatus(`Import failed: ${error.message}. Select a valid JSON backup.`);
     } finally {
-      setIsLoading(false);
+      event.target.value = "";
     }
   };
 
   const toggleDebugger = async (checked) => {
-    const messageType = checked ? "ENABLE_DEBUGGER" : "DISABLE_DEBUGGER";
-    const response = await sendMessageToActiveTab({ type: messageType });
+    if (debuggerPendingRef.current) return;
 
-    if (response && response.success) {
-      setDebuggerEnabled(checked);
-    } else {
-      if (checked) {
-        alert(
-          "Failed to enable Debugger Mode: " +
-            (response ? response.error : "Unknown error"),
-        );
-        setDebuggerEnabled(false);
-      } else {
-        setDebuggerEnabled(false);
+    debuggerPendingRef.current = true;
+    setDebuggerPending(true);
+    setDebuggerError("");
+    const generation = ++debuggerRequestGeneration.current;
+    const response = await sendMessageToActiveTab({
+      type: checked ? "ENABLE_DEBUGGER" : "DISABLE_DEBUGGER",
+    });
+
+    if (response?.success) {
+      if (generation === debuggerRequestGeneration.current) {
+        setDebuggerEnabled(checked);
+        setStatus(`Debugger Mode ${checked ? "enabled" : "disabled"}.`);
       }
+    } else {
+      setDebuggerError(
+        `Could not ${checked ? "enable" : "disable"} Debugger Mode: ${response?.error || "No active tab responded."}`,
+      );
+      await refreshDebuggerStatus(generation);
+    }
+
+    if (generation === debuggerRequestGeneration.current) {
+      debuggerPendingRef.current = false;
+      setDebuggerPending(false);
     }
   };
 
   return (
     <div className="space-y-6">
-      <DebuggerSection enabled={debuggerEnabled} onToggle={toggleDebugger} />
-      <BackupSection onExport={handleExport} onImport={handleImport} />
-      <CloudSyncSection
-        user={user}
-        loginData={loginData}
-        setLoginData={setLoginData}
-        isLoading={isLoading}
-        onLogin={handleLogin}
-        onLogout={handleLogout}
-        onPush={handlePush}
-        onPull={handlePull}
+      <DebuggerSection
+        enabled={debuggerEnabled}
+        error={debuggerError}
+        pending={debuggerPending}
+        onToggle={toggleDebugger}
       />
+      <BackupSection
+        fileInputRef={fileInputRef}
+        onExport={handleExport}
+        onImport={handleImport}
+      />
+      <p
+        role="status"
+        aria-live="polite"
+        className="min-h-5 text-xs text-gray-700"
+      >
+        {status}
+      </p>
     </div>
   );
 };

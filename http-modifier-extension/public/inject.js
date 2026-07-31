@@ -1,4 +1,17 @@
 (() => {
+  const rulesContract = globalThis.HttpModifierRules;
+  const fetchRuntime = globalThis.HttpModifierFetch;
+  const xhrRuntime = globalThis.HttpModifierXhr;
+
+  if (
+    typeof rulesContract?.normalizeRule !== "function" ||
+    typeof rulesContract?.findMatchingResponseRule !== "function" ||
+    typeof fetchRuntime?.createFetchMock !== "function" ||
+    typeof xhrRuntime?.createXhrMock !== "function"
+  ) {
+    throw new Error("HTTP Modifier runtime failed to initialize.");
+  }
+
   let rules = [];
   let debuggerEnabled = false;
   let channelToken = null;
@@ -13,11 +26,11 @@
 
     const acceptedRules = [];
     for (const sourceRule of value) {
-      const rule = globalThis.HttpModifierRules.normalizeRule(sourceRule);
+      const rule = rulesContract.normalizeRule(sourceRule);
       if (
         rule.type !== "response" ||
         rule.enabled === false ||
-        !globalThis.HttpModifierRules.validateRule(rule).valid
+        !rulesContract.validateRule(rule).valid
       ) {
         return null;
       }
@@ -62,16 +75,19 @@
     baseUrl: window.location.href,
     getRules: () => rules,
     isDebuggerEnabled: () => debuggerEnabled,
+    rulesContract,
     sendLog,
   };
 
-  window.fetch = globalThis.HttpModifierFetch.createFetchMock(
-    window.fetch,
-    environment,
-  );
-  window.XMLHttpRequest = globalThis.HttpModifierXhr.createXhrMock(
+  window.fetch = fetchRuntime.createFetchMock(window.fetch, environment);
+  window.XMLHttpRequest = xhrRuntime.createXhrMock(
     window.XMLHttpRequest,
     environment,
   );
+
+  delete globalThis.HttpModifierRules;
+  delete globalThis.HttpModifierFetch;
+  delete globalThis.HttpModifierXhr;
+
   window.postMessage({ type: "HTTP_MODIFIER_READY" }, "*");
 })();

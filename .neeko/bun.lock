@@ -4,14 +4,14 @@
   "workspaces": {
     "": {
       "dependencies": {
-        "@opencode-ai/plugin": "npm:@byted/neeko-plugin@2.1.108",
+        "@opencode-ai/plugin": "npm:@byted/neeko-plugin@2.1.113",
       },
     },
   },
   "packages": {
-    "@opencode-ai/plugin": ["@byted/neeko-plugin@2.1.108", "https://bnpm.byted.org/@byted/neeko-plugin/-/neeko-plugin-2.1.108.tgz", { "dependencies": { "@opencode-ai/sdk": "npm:@byted/neeko-sdk@2.1.108", "zod": "4.1.8" }, "peerDependencies": { "@opentui/core": ">=0.1.92", "@opentui/solid": ">=0.1.92" }, "optionalPeers": ["@opentui/core", "@opentui/solid"] }, "sha512-C+E0RcyK5QUEaheSKN6mJrPBnBpQANy0AsSXZX+ebrv8YGEiSiMg4JgjTnsDFXgpMGOhpTxCbHgsMuRoBZS3LA=="],
+    "@opencode-ai/plugin": ["@byted/neeko-plugin@2.1.113", "https://bnpm.byted.org/@byted/neeko-plugin/-/neeko-plugin-2.1.113.tgz", { "dependencies": { "@opencode-ai/sdk": "npm:@byted/neeko-sdk@2.1.113", "zod": "4.1.8" }, "peerDependencies": { "@opentui/core": ">=0.1.92", "@opentui/solid": ">=0.1.92" }, "optionalPeers": ["@opentui/core", "@opentui/solid"] }, "sha512-OgmIHB7AwVb5gN79ex42twD/7XTkLTlW4wKeAK1qik/ElOYHPhuFMt/5DsbBp6/oHzaoV9zZ8ehYkMPJxQotIg=="],
 
-    "@opencode-ai/sdk": ["@byted/neeko-sdk@2.1.108", "https://bnpm.byted.org/@byted/neeko-sdk/-/neeko-sdk-2.1.108.tgz", {}, "sha512-VXVNINSEnvhPXC9Kl1nGvzp2ddIsb3jRN4Ct7GRlJ4m/n3KZddvxvXMHpIAHbYUXuLitsyHFQdEgxOi8oRanJQ=="],
+    "@opencode-ai/sdk": ["@byted/neeko-sdk@2.1.113", "https://bnpm.byted.org/@byted/neeko-sdk/-/neeko-sdk-2.1.113.tgz", {}, "sha512-+dD8QEIJF0nFZ4i+XwrikJCzvfVvpEW2/w57ZA6z3JzeGs85707wSne5HhdxOL+EPMuEywWk+cDmbGpLvtbyXg=="],
 
     "zod": ["zod@4.1.8", "https://bnpm.byted.org/zod/-/zod-4.1.8.tgz", {}, "sha512-5R1P+WwQqmmMIEACyzSvo4JXHY5WiAFHRMg+zBZKgKS+Q1viRa0C1hmUKtHltoIFKtIdki3pRxkmpP74jnNYHQ=="],
   }

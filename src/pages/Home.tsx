@@ -1,94 +1,149 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
-const Home: React.FC = () => {
-  const features = [
-    {
-      title: "JSON Editor",
-      description:
-        "A powerful JSON editor with parsing, formatting, and history support.",
-      path: "/editor",
-      color: "bg-blue-500",
-    },
-    {
-      title: "Diff Viewer",
-      description: "Compare two text files and visualize the differences.",
-      path: "/diff",
-      color: "bg-green-500",
-    },
-    {
-      title: "Precise Diff Viewer",
-      description:
-        "Advanced character-level difference visualization for code.",
-      path: "/precise-diff",
-      color: "bg-purple-500",
-    },
-    {
-      title: "Playground",
-      description:
-        "Component playground for testing and previewing UI components.",
-      path: "/playground",
-      color: "bg-yellow-500",
-    },
-    {
-      title: "Video Test",
-      description:
-        "A simple page for testing local and remote video playback in the browser.",
-      path: "/video-test",
-      color: "bg-rose-500",
-    },
-    {
-      title: "Three Physics",
-      description:
-        "A Three.js scene with Rapier rigid-body physics and collisions.",
-      path: "/three-physics",
-      color: "bg-cyan-500",
-    },
-    {
-      title: "Teaching Slingshot",
-      description:
-        "A safe Three.js teaching model for a low-energy guided slingshot mechanism.",
-      path: "/three-teaching-slingshot",
-      color: "bg-sky-500",
-    },
-  ];
+type Tool = {
+  index: string;
+  title: string;
+  description: string;
+  path: string;
+  tags: string[];
+};
 
-  return (
-    <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-      <div className="text-center">
-        <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-          Welcome to React Json View
-        </h1>
-        <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
-          Explore the features of this project.
+const toolGroups: { title: string; description: string; tools: Tool[] }[] = [
+  {
+    title: "Data tools",
+    description: "Edit structured data and inspect text changes.",
+    tools: [
+      {
+        index: "01",
+        title: "JSON Editor",
+        description: "Parse, repair, format, and revisit local JSON history.",
+        path: "/editor",
+        tags: ["JSON", "Monaco"],
+      },
+      {
+        index: "02",
+        title: "Diff Viewer",
+        description: "Compare two text revisions in split or unified form.",
+        path: "/diff",
+        tags: ["Text", "Split"],
+      },
+      {
+        index: "03",
+        title: "Optimized Diff",
+        description: "Inspect modified lines with focused inline highlights.",
+        path: "/optimized-diff",
+        tags: ["Text", "Inline"],
+      },
+      {
+        index: "04",
+        title: "Precise Diff",
+        description: "Use Monaco for editable, large-file comparisons.",
+        path: "/precise-diff",
+        tags: ["Monaco", "Editable"],
+      },
+    ],
+  },
+  {
+    title: "Labs",
+    description: "Focused sandboxes for browser and interaction experiments.",
+    tools: [
+      {
+        index: "05",
+        title: "Component Playground",
+        description:
+          "Stress-test responsive components and constrained layouts.",
+        path: "/playground",
+        tags: ["React", "Layout"],
+      },
+      {
+        index: "06",
+        title: "Video Test",
+        description:
+          "Verify local files, remote sources, and playback options.",
+        path: "/video-test",
+        tags: ["Media", "Browser"],
+      },
+      {
+        index: "07",
+        title: "Three Physics",
+        description: "Explore rigid-body collisions in a Three.js scene.",
+        path: "/three-physics",
+        tags: ["Three.js", "Rapier"],
+      },
+      {
+        index: "08",
+        title: "Teaching Slingshot",
+        description: "Inspect a guided, low-energy mechanism model.",
+        path: "/three-teaching-slingshot",
+        tags: ["Three.js", "Model"],
+      },
+    ],
+  },
+];
+
+const Home = () => (
+  <div className="home-page">
+    <header className="home-hero">
+      <div className="home-hero-copy">
+        <p className="home-eyebrow">Local development workbench</p>
+        <h1>Inspect data. Compare changes. Test in place.</h1>
+        <p className="home-lead">
+          A compact set of browser tools for JSON, text diffs, media, and
+          interactive experiments.
         </p>
       </div>
-
-      <div className="mt-10">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => (
-            <Link
-              key={feature.path}
-              to={feature.path}
-              className="block group hover:no-underline"
-            >
-              <div className="bg-white overflow-hidden shadow rounded-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
-                <div className={`h-2 ${feature.color}`} />
-                <div className="px-4 py-5 sm:p-6 flex-1">
-                  <h3 className="text-lg leading-6 font-medium text-gray-900 group-hover:text-indigo-600 transition-colors duration-200">
-                    {feature.title}
-                  </h3>
-                  <div className="mt-2 max-w-xl text-sm text-gray-500">
-                    <p>{feature.description}</p>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
+      <dl className="home-facts" aria-label="Workbench details">
+        <div>
+          <dt>Tools</dt>
+          <dd>08</dd>
         </div>
-      </div>
+        <div>
+          <dt>Runtime</dt>
+          <dd>Local</dd>
+        </div>
+        <div>
+          <dt>Stack</dt>
+          <dd>React + Vite</dd>
+        </div>
+      </dl>
+    </header>
+
+    <div className="home-workspace">
+      {toolGroups.map((group) => (
+        <section className="tool-panel" key={group.title}>
+          <header className="tool-panel-header">
+            <div>
+              <h2>{group.title}</h2>
+              <p>{group.description}</p>
+            </div>
+            <span>{String(group.tools.length).padStart(2, "0")} tools</span>
+          </header>
+
+          <div className="tool-list">
+            {group.tools.map((tool) => (
+              <Link className="tool-row" key={tool.path} to={tool.path}>
+                <span className="tool-index" aria-hidden="true">
+                  {tool.index}
+                </span>
+                <span className="tool-copy">
+                  <strong>{tool.title}</strong>
+                  <span>{tool.description}</span>
+                </span>
+                <span className="tool-tags" aria-label="Technology tags">
+                  {tool.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </span>
+                <span className="tool-arrow" aria-hidden="true">
+                  →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
-  );
-};
+  </div>
+);
 
 export default Home;

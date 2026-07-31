@@ -206,6 +206,21 @@ describe("XHR mocking", () => {
     },
   );
 
+  it("keeps working if page code replaces the shared contract global", async () => {
+    const runtime = await loadRuntime();
+    const MockXhr = runtime.createXhrMock(FakeNativeXhr, createEnvironment());
+    delete globalThis.HttpModifierRules;
+    const xhr = new MockXhr();
+
+    xhr.open("GET", "/api/users");
+    xhr.send();
+    await Promise.resolve();
+
+    expect(xhr.nativeSend).not.toHaveBeenCalled();
+    expect(xhr.status).toBe(200);
+    expect(xhr.responseText).toBe(responseRule.responseBody);
+  });
+
   it("delegates unmatched and debugger-mode requests to native XHR", async () => {
     const runtime = await loadRuntime();
     let debuggerEnabled = false;

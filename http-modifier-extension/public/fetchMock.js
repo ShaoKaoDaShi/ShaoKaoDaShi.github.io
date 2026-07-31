@@ -24,11 +24,17 @@
   };
 
   const createFetchMock = (nativeFetch, environment) => {
+    const rulesContract =
+      environment.rulesContract || globalThis.HttpModifierRules;
+    if (typeof rulesContract?.findMatchingResponseRule !== "function") {
+      throw new Error("HTTP Modifier rule contract is unavailable.");
+    }
+
     const mockedFetch = async function (input, init) {
       const request = getRequestDetails(input, init, environment);
       const rule = environment.isDebuggerEnabled()
         ? null
-        : globalThis.HttpModifierRules.findMatchingResponseRule(
+        : rulesContract.findMatchingResponseRule(
             environment.getRules(),
             request.url,
             environment.baseUrl,

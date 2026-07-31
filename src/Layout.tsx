@@ -1,61 +1,67 @@
-import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
-const Layout: React.FC = () => {
-  const location = useLocation();
-  const [json, setJson] = useState("");
+const navItems = [
+  { path: "/", label: "Home" },
+  { path: "/editor", label: "JSON Editor", shortLabel: "JSON" },
+  { path: "/diff", label: "Diff Viewer", shortLabel: "Diff" },
+  { path: "/optimized-diff", label: "Optimized Diff", shortLabel: "Optimized" },
+  { path: "/precise-diff", label: "Precise Diff", shortLabel: "Precise" },
+  {
+    path: "/playground",
+    label: "Component Playground",
+    shortLabel: "Components",
+  },
+  { path: "/video-test", label: "Video Test", shortLabel: "Video" },
+  { path: "/three-physics", label: "Three Physics", shortLabel: "Physics" },
+  {
+    path: "/three-teaching-slingshot",
+    label: "Teaching Slingshot",
+    shortLabel: "Slingshot",
+  },
+];
 
-  const navItems = [
-    { path: "/", label: "Home" },
-    { path: "/editor", label: "JSON Editor" },
-    { path: "/diff", label: "Diff Viewer" },
-    { path: "/optimized-diff", label: "Optimized Diff" },
-    { path: "/precise-diff", label: "Precise Diff" },
-    { path: "/playground", label: "Playground" },
-    { path: "/video-test", label: "Video Test" },
-    { path: "/three-physics", label: "Three Physics" },
-    { path: "/three-teaching-slingshot", label: "Teaching Slingshot" },
-  ];
+const Layout = () => {
+  const location = useLocation();
 
   return (
-    <div className="h-full w-full flex flex-col bg-gray-100">
-      <nav className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex">
-              <div className="flex-shrink-0 flex items-center">
-                <span className="font-bold text-xl text-gray-800">
-                  React Json View
-                </span>
-              </div>
-              <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                {navItems.map((item) => (
+    <div className="site-shell">
+      <header className="site-header">
+        <div className="site-header-inner">
+          <Link className="site-brand" to="/" aria-label="React JSON View home">
+            <span className="site-brand-mark" aria-hidden="true">
+              {"{}"}
+            </span>
+            <span className="site-brand-copy">
+              <strong>React JSON View</strong>
+              <span>Local developer tools</span>
+            </span>
+          </Link>
+
+          <nav className="site-nav" aria-label="Primary navigation">
+            <div className="site-nav-list">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.path;
+
+                return (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                      location.pathname === item.path
-                        ? "border-indigo-500 text-gray-900"
-                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                    }`}
+                    className={`site-nav-link${isActive ? " is-active" : ""}`}
+                    aria-current={isActive ? "page" : undefined}
+                    aria-label={item.label}
+                    title={item.label}
                   >
-                    {item.label}
+                    {item.shortLabel ?? item.label}
                   </Link>
-                ))}
-              </div>
+                );
+              })}
             </div>
-          </div>
+          </nav>
         </div>
-      </nav>
+      </header>
 
-      <main className="flex-1 overflow-hidden flex flex-col">
+      <main className="site-main">
         <Outlet />
-        <textarea
-          className="flex-1"
-          value={json}
-          defaultValue={"asdfasfd"}
-          onChange={(e) => setJson(e.target.value)}
-        ></textarea>
       </main>
     </div>
   );

@@ -145,6 +145,37 @@ describe("fetch mocking", () => {
     expect(sendLog).not.toHaveBeenCalled();
   });
 
+  it("keeps working if page code replaces the shared contract global", async () => {
+    const runtime = await loadRuntime();
+    const nativeFetch = vi.fn();
+    const environment = {
+      Response,
+      Request,
+      URL,
+      baseUrl: "https://example.com/",
+      getRules: () => [
+        {
+          id: "response-1",
+          type: "response",
+          enabled: true,
+          groupName: "Default",
+          urlPattern: "/mocked",
+          matchType: "contains",
+          responseBody: '{"mocked":true}',
+        },
+      ],
+      isDebuggerEnabled: () => false,
+      sendLog: vi.fn(),
+    };
+    const mockedFetch = runtime.createFetchMock(nativeFetch, environment);
+    delete globalThis.HttpModifierRules;
+
+    const response = await mockedFetch("/mocked");
+
+    expect(nativeFetch).not.toHaveBeenCalled();
+    await expect(response.json()).resolves.toEqual({ mocked: true });
+  });
+
   it("delegates unmatched and debugger-mode requests to native fetch", async () => {
     const runtime = await loadRuntime();
     const nativeResponse = new Response("native");

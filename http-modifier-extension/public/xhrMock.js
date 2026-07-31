@@ -1,5 +1,11 @@
 (() => {
   const createXhrMock = (NativeXhr, environment) => {
+    const rulesContract =
+      environment.rulesContract || globalThis.HttpModifierRules;
+    if (typeof rulesContract?.findMatchingResponseRule !== "function") {
+      throw new Error("HTTP Modifier rule contract is unavailable.");
+    }
+
     const MockXhr = function () {
       const xhr = new NativeXhr();
       const nativeOpen = xhr.open;
@@ -64,7 +70,7 @@
 
         const rule =
           request && !environment.isDebuggerEnabled()
-            ? globalThis.HttpModifierRules.findMatchingResponseRule(
+            ? rulesContract.findMatchingResponseRule(
                 environment.getRules(),
                 request.url,
                 environment.baseUrl,
